@@ -13,35 +13,44 @@
 # intervention = Intervention.createUser.create (
 
     puts "creating ireporter database"
-  5.times do
-User.create(name:Faker::Internet.name, 
-    email:Faker::Internet.free_email,
-     password_digest:Faker::Internet.password,
-     is_admin: true) 
+    5.times do
+        User.create(
+        name:Faker::Internet.name, 
+        email:Faker::Internet.free_email,
+        password:Faker::Internet.password,
+        is_admin: Faker::Boolean.boolean,
+        phone_number: Faker::PhoneNumber.cell_phone
+        ) 
 
-end
+    end 
 
-user = User.create(name:Faker::Internet.name, 
-    email:Faker::Internet.free_email,
-     password_digest:Faker::Internet.password,
-     is_admin: true) 
+# user = User.create(name:Faker::Internet.name, 
+#     email:Faker::Internet.free_email,
+#      password_digest:Faker::Internet.password,
+#      is_admin: true) 
 
 
      10.times do 
-        Intervention.create(location: "Nairobi",
-             image: "https://www.pexels.com/photo/milan-13379800/",
-              video: "https://www.youtube.com/watch?v=GOISuk0pYIY", status: 
-              "Resolved", description: "Lorem ipsum and etc....", 
-              user_id:rand(1..5))
+        Intervention.create(
+            location: "Nairobi",
+            image: "https://www.pexels.com/photo/milan-13379800/",
+            video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
+            status: ["resolved", "rejected", "under investigation"].sample, 
+            description: "Lorem ipsum and etc....", 
+            user_id:rand(1..5)
+        )
         end
 
         
-            10.times do 
-                Redflag.create(location: "Nairobi",
-                     image: "https://www.pexels.com/photo/milan-13379800/",
-                      video: "https://www.youtube.com/watch?v=GOISuk0pYIY", status: 
-                      "Resolved", description: "Lorem ipsum and etc....", 
-                      user_id: user.id)
-                end
+        10.times do 
+            Redflag.create(
+                location: "Nairobi",
+                image: "https://www.pexels.com/photo/milan-13379800/",
+                video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
+                status: ["resolved", "rejected", "under investigation"].sample, 
+                user_id:rand(1..5),
+                location:"Nairobi"
+            )
+            end
 
                 puts "ireporter created"
