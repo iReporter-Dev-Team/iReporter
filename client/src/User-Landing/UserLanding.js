@@ -8,6 +8,8 @@ export default function UserLanding() {
   const[description, setDescription] =useState("")
   // redflag 
   const[categoryBtn, setCategoryBtn] =useState("redflag")
+  const[displayy, setDisplayy] =useState("none")
+
 
   
   function handleSubmitRedflag(e) {
@@ -22,6 +24,9 @@ export default function UserLanding() {
     }
     console.log("Red Flag")
     console.log(formData)
+
+    setDisplayy("none")
+
   }
 
   function handleSubmitIntervention(e) {
@@ -36,6 +41,8 @@ export default function UserLanding() {
     }
     console.log("Intervention")
     console.log(formData)
+
+    setDisplayy("none")
   }
 
 
@@ -47,7 +54,9 @@ export default function UserLanding() {
         <div>
           <h3 >Redflag</h3>
           <p >Lorem ipsum 1dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <button onClick={()=>setCategoryBtn("redflag")}>Report redflag</button>
+          <button onClick={()=>{
+            setCategoryBtn("redflag") 
+            setDisplayy("block")}}>Report redflag</button>
         </div>
       </div>
 
@@ -55,12 +64,14 @@ export default function UserLanding() {
         <div>
           <h3 >Intervention</h3>
           <p >Lorem ipsum 1dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <button onClick={()=>setCategoryBtn("intervention")}>Report Intervention</button>
+          <button onClick={()=>{
+            setCategoryBtn("intervention") 
+            setDisplayy("block")}}>Report Intervention</button>
         </div>
 
       </div>
 
-      <div style={{ padding: 20 }}>
+      <div style={{ padding: 20 , display:displayy}}>
       <form onSubmit={(e)=>categoryBtn ==="redflag"?handleSubmitRedflag(e):handleSubmitIntervention(e)}>
         <div>
           <h2>{categoryBtn==="redflag"?"Post new redflag":"Post new intervention"}</h2>
