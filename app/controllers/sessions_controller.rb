@@ -17,9 +17,6 @@ skip_before_action :authorize, only: :create
         head :no_content
     end
 
-    private
-    def authorize
-        return render json: { errors: ["Not Logged In"] }, status: :unauthorized unless session.include? :user_id
-
-    end
+   
+    
 end
