@@ -1,4 +1,5 @@
 class InterventionsController < ApplicationController
+    before_action :authorize
     def 
         index
      
@@ -32,6 +33,7 @@ def destroy
 end
 
 private
+
 def intervention_params
     params.permit(:location, :image, :video, :status, :description, :user_id)
 end
