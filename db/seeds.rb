@@ -48,8 +48,8 @@
                 image: "https://www.pexels.com/photo/milan-13379800/",
                 video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
                 status: ["resolved", "rejected", "under investigation"].sample, 
-                user_id:rand(1..5),
-                location:"Nairobi"
+                description: "Lorem ipsum and etc....", 
+                user_id:rand(1..5)
             )
             end
 
