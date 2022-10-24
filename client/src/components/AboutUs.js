@@ -63,7 +63,7 @@ const AboutUs = () => {
       <section className="float-container">
         <div className="float-child1">
           <h1>
-            <span style={{ fontweight: "bold", color: "#C60021" }}>
+            <span style={{ fontweight: "bold", color: "white" }}>
               Welcome To &nbsp;
             </span>
             <span>iReporter</span>
@@ -77,7 +77,7 @@ const AboutUs = () => {
       </section>
 
       <section className="about">
-        <h1 style={{ fontweight: "bold", color: "#C60021" }}>
+        <h1 style={{ fontweight: "bold" }}>
           About Us &nbsp;
         </h1>
         <p>
@@ -90,20 +90,15 @@ const AboutUs = () => {
         </p>
       </section>
 
-      {/* <section>
-        <h2 style={{ fontweight: "bold", color: "#white" }}>
-          Client's Stories
-        </h2> */}
-        {/* <p className="right-half">Share Your Story, Join the </p> */}
-
         <div className="App">
-        <h2 style={{ fontweight: "bold", color: "#white" }}>
+        <h2 style={{ fontweight: "bold",color:"white" }}>
           Client's Stories
         </h2>
           <ul className="carousel__list">
             {reviews.map((review, index) => {
               const { citation, name, quote } = review;
               const count = index + 1;
+              
               return (
                 <li
                   className={`carousel__item
@@ -118,7 +113,9 @@ const AboutUs = () => {
                       <span className="carousel__name">{name}</span>
                       <span className="carousel__citation">{citation}</span>
                     </cite>
-                    <p>"{quote}"</p>
+                    <p>"{quote}" <Link to="/dashboard" style={{ fontweight: "bold", color: "white" }}>
+                     ...Read more
+                    </Link></p>
                   </blockquote>
                 </li>
               );
@@ -132,12 +129,6 @@ const AboutUs = () => {
               />
               <span
                 className={`carousel__dot${activeSlide === 3 ? " active" : ""}`}
-              />
-              <span
-                className={`carousel__dot${activeSlide === 4 ? " active" : ""}`}
-              />
-              <span
-                className={`carousel__dot${activeSlide === 5 ? " active" : ""}`}
               />
             </li>
             <Link to="/dashboard">

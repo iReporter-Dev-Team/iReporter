@@ -1,0 +1,57 @@
+.float-container {
+  /* border: 3px solid #fff; */
+  padding: 20px;
+}
+
+.float-child1 {
+  width: 50%;
+  float: left;
+  padding: 20px;
+  position: relative;
+  bottom: -300px;
+  left: 16px;
+  
+}
+.float-child {
+  width: 50%;
+  float: left;
+  padding: 20px;
+  position: relative;
+  top: 20px;
+  
+}  
+.float-container {
+  /* border: 3px solid #fff; */
+  padding: 20px;
+}
+
+.float-child1 {
+  width: 50%;
+  float: left;
+  padding: 20px;
+  position: relative;
+  bottom: -300px;
+  left: 16px;
+  
+}
+.float-child {
+  width: 50%;
+  float: left;
+  padding: 20px;
+  position: relative;
+  top: 20px;
+  
+}  
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

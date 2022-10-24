@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-sm  navbar-expand-lg navbar-dark bg-dark static-top">
+    <nav className="fixed-top navbar navbar-expand-sm  navbar-expand-lg navbar-dark bg-dark static-top">
       <div className="container-fluid">
       <Link to={"/"} className="navbar-brand">
       iREP<img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/327/eyes_1f440.png" alt="..." height="36"/>RTER
