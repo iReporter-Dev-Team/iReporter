@@ -63,7 +63,7 @@ const AboutUs = () => {
       <section className="float-container">
         <div className="float-child1">
           <h1>
-            <span style={{ fontweight: "bold", color: "#C60021" }}>
+            <span style={{ fontweight: "bold", color: "white" }}>
               Welcome To &nbsp;
             </span>
             <span>iReporter</span>
