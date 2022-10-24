@@ -104,6 +104,7 @@ const AboutUs = () => {
             {reviews.map((review, index) => {
               const { citation, name, quote } = review;
               const count = index + 1;
+              
               return (
                 <li
                   className={`carousel__item
@@ -118,7 +119,9 @@ const AboutUs = () => {
                       <span className="carousel__name">{name}</span>
                       <span className="carousel__citation">{citation}</span>
                     </cite>
-                    <p>"{quote}"</p>
+                    <p>"{quote}" <Link to="/dashboard" style={{ fontweight: "bold", color: "white" }}>
+                     ...Read more
+                    </Link></p>
                   </blockquote>
                 </li>
               );
@@ -132,12 +135,6 @@ const AboutUs = () => {
               />
               <span
                 className={`carousel__dot${activeSlide === 3 ? " active" : ""}`}
-              />
-              <span
-                className={`carousel__dot${activeSlide === 4 ? " active" : ""}`}
-              />
-              <span
-                className={`carousel__dot${activeSlide === 5 ? " active" : ""}`}
               />
             </li>
             <Link to="/dashboard">
