@@ -22,7 +22,7 @@
 }  
 body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  background: linear-gradient(to top, #C60021, #F6F6F8);
+  /* background: linear-gradient(to top, #C60021, #F6F6F8); */
   margin: 0px;
   padding: 25px;
   /* min-height: 100vh; */
