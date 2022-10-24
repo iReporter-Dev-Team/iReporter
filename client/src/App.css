@@ -1,12 +1,30 @@
- /* .left-half {
-  background-color: #f8f4f0;
-  position: absolute;
-  left: 20px;
+.float-container {
+  /* border: 3px solid #fff; */
+  padding: 20px;
+}
+
+.float-child1 {
   width: 50%;
-} */
+  float: left;
+  padding: 20px;
+  position: relative;
+  bottom: -300px;
+  left: 16px;
+  
+}
+.float-child {
+  width: 50%;
+  float: left;
+  padding: 20px;
+  position: relative;
+  top: 20px;
+  
+}  
 body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   background: linear-gradient(to top, #C60021, #F6F6F8);
+  margin: 0px;
+  padding: 25px;
   /* min-height: 100vh; */
 }
 
@@ -17,12 +35,15 @@ body {
   padding: 0;
 }
 html {
-  font-size: 16px;
+  font-size: 18px;
+}
+.mx-2{
+  align-items: center;
 }
 .App {
   align-items: center;
   display: grid;
-  height: 100vh;
+  height: 50vh;
   font-family: system-ui;
   justify-content: center;
 }
