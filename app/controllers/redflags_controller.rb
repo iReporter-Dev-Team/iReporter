@@ -1,4 +1,5 @@
 class RedflagsController < ApplicationController
+    before_action :authorize
     def index
         render json: Redflag.all, status: :ok
     end
@@ -14,10 +15,11 @@ class RedflagsController < ApplicationController
 
     def update
         redflag = Redflag.find(params[:id])
-        if redflag.update(redflag_params)
+        if redflag.update!(redflag_params)
             render json: redflag, status: :ok
         else
-            render json: { errors: redflag.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: redflag.errors.full_messages }, 
+            status: :unprocessable_entity
         end
     end
 
@@ -28,8 +30,9 @@ class RedflagsController < ApplicationController
     end
 
     private
-    def
-    redflag_params
-    params.permit(:location, :image, :video, :status, :description, :user_id)
-end
+    
+    def redflag_params
+        params.permit(:location, :image, :video, :status, :description, :user_id)
+    end
+
 end

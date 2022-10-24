@@ -1,0 +1,13 @@
+# Package Information for pkg-config
+
+prefix=/home/access/Documents/iReporter/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.5.3/ports/x86_64-linux-gnu/sqlite3/3.39.4
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: SQLite
+Description: SQL database engine
+Version: 3.39.4
+Libs: -L${libdir} -lsqlite3
+Libs.private: -lz -lm -ldl -lpthread 
+Cflags: -I${includedir}

@@ -1,0 +1,16 @@
+current directory: /home/access/Documents/phase5/iReporter/vendor/bundle/ruby/2.7.0/gems/debug-1.6.2/ext/debug
+/usr/share/rvm/rubies/ruby-2.7.4/bin/ruby -I /usr/share/rvm/rubies/ruby-2.7.4/lib/ruby/2.7.0 -r ./siteconf20221020-182124-cvj1pj.rb extconf.rb
+creating Makefile
+
+current directory: /home/access/Documents/phase5/iReporter/vendor/bundle/ruby/2.7.0/gems/debug-1.6.2/ext/debug
+make "DESTDIR=" clean
+
+current directory: /home/access/Documents/phase5/iReporter/vendor/bundle/ruby/2.7.0/gems/debug-1.6.2/ext/debug
+make "DESTDIR="
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/access/Documents/phase5/iReporter/vendor/bundle/ruby/2.7.0/gems/debug-1.6.2/ext/debug
+make "DESTDIR=" install
+/usr/bin/install -m 0755 debug.so ./.gem.20221020-182124-wf5aju/debug

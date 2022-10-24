@@ -1,38 +1,36 @@
 class InterventionsController < ApplicationController
-    def 
-        index
-     
+    before_action :authorize
+    def index
         render json: Intervention.all, status: :ok 
     end
-def create
-    intervention = Intervention.create(intervention_params)
-    if intervention.valid?
-        render json: intervention, status: :created
-    else
-        render json: { errors: intervention.errors.full_messages }, status: :unprocessable_entity
+
+    def create
+        intervention = Intervention.create(intervention_params)
+        if intervention.valid?
+            render json: intervention, status: :created
+        else
+            render json: { errors: intervention.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
-end
-
-def update
-    intervention = Intervention.find(params[:id])
-    if intervention.update(intervention_params)
-        render json: intervention, status: :ok
-    else
-        render json: { errors: intervention.errors.full_messages }, status: :unprocessable_entity
+    def update
+        intervention = Intervention.find(params[:id])
+        if intervention.update(intervention_params)
+            render json: intervention, status: :ok
+        else
+            render json: { errors: intervention.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
-end
+    def destroy
+        intervention = Intervention.find(params[:id])
+        intervention.destroy
+        head :no_content
+    end
 
-def destroy
-    intervention = Intervention.find(params[:id])
-    intervention.destroy
-    head :no_content
+    private
 
-end
-
-private
-def intervention_params
-    params.permit(:location, :image, :video, :status, :description, :user_id)
-end
+    def intervention_params
+        params.permit(:location, :image, :video, :status, :description, :user_id)
+    end
 end
