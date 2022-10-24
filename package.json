@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "react-scripts": "^5.0.1"
+    "react-router-dom": "^6.4.2"
   }
 }
