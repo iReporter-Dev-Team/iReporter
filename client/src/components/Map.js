@@ -5,6 +5,7 @@ import React, {
     useRef,
     useCallback,
   } from "react"
+  import "@fortawesome/fontawesome-free/css/all.min.css";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
 import styled from "styled-components"
   ;

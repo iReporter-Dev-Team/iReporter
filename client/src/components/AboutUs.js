@@ -90,14 +90,8 @@ const AboutUs = () => {
         </p>
       </section>
 
-      {/* <section>
-        <h2 style={{ fontweight: "bold", color: "#white" }}>
-          Client's Stories
-        </h2> */}
-        {/* <p className="right-half">Share Your Story, Join the </p> */}
-
         <div className="App">
-        <h2 style={{ fontweight: "bold", color: "#white" }}>
+        <h2 style={{ fontweight: "bold" }}>
           Client's Stories
         </h2>
           <ul className="carousel__list">
