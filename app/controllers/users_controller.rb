@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    skip_before_action :authorize, only: :create
 
     def index
         render json: User.all, status: :ok
@@ -7,7 +8,6 @@ class UsersController < ApplicationController
     def show 
         user = User.find_by(id: session[:user_id])
         render json: user, status: :ok
-
     end
 
     def create
@@ -19,10 +19,10 @@ class UsersController < ApplicationController
             render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end
     end
-        private
-        def user_params
-            params.permit(:name, :email, :password, :password_confirmation)
-        end
 
+    private
 
+    def user_params
+        params.permit(:name, :email, :password, :password_confirmation)
+    end
 end
