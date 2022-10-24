@@ -1,0 +1,1 @@
+["--host=x86_64-linux-gnu", "--enable-static", "--disable-shared", "--enable-shared=no", "--enable-static=yes", "CC=gcc", "CFLAGS=-fPIC -O2", "--prefix=/home/access/Documents/iReporter/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.5.3/ports/x86_64-linux-gnu/sqlite3/3.39.4"]
