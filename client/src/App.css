@@ -22,8 +22,8 @@
 }  
 body {
   /* font-family: Roboto, Helvetica, Arial, sans-serif; */
-  font-family: “Permanent Marker”, serif;
-  background: linear-gradient(to top, #C60021, #F6F6F8);
+  font-family: “Permanent Marker”, helvetica,sans-serif;
+  background: linear-gradient(to top, #F00028, #F6F6F8);
   margin: 0px;
   padding: 25px;
   min-height: 100vh;

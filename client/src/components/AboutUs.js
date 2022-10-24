@@ -77,7 +77,7 @@ const AboutUs = () => {
       </section>
 
       <section className="about">
-        <h1 style={{ fontweight: "bold", color: "#C60021" }}>
+        <h1 style={{ fontweight: "bold" }}>
           About Us &nbsp;
         </h1>
         <p>
@@ -91,7 +91,7 @@ const AboutUs = () => {
       </section>
 
         <div className="App">
-        <h2 style={{ fontweight: "bold" }}>
+        <h2 style={{ fontweight: "bold",color:"white" }}>
           Client's Stories
         </h2>
           <ul className="carousel__list">
