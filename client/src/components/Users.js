@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Error } from "../styles";
+// import { Error } from "../styles";
 
 function Users({ user }) {
   const [users, setUsers] = useState([]);
@@ -41,11 +41,11 @@ function Users({ user }) {
           <ActionButtonDelete onClick={handleDelete}>
             {isLoading ? "Deleting..." : "Delete User"}
           </ActionButtonDelete>
-          <FormField>
+          {/* <FormField>
             {errors.map((err) => (
               <Error key={err}>{err}</Error>
             ))}
-          </FormField>
+          </FormField> */}
         </Card>
       ))}
     </Wrapper>
