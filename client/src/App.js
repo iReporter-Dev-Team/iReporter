@@ -6,6 +6,7 @@ import DashBoardViewDetails from "./DashBoardViewDetails";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 import AdminDashboard from "./AdminDashboard";
+import UserLanding  from './User-Landing/UserLanding';
 
 function App() {
     const [user, setUser] = useState(null);
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/dashboard" element={<AdminDashboard user={user}/>}/>
           <Route exact path='/login' element={<SignIn onLogin={setUser}/>}/>
           <Route exact path="/signup" element={<SignUp onLogin={setUser}/>}/>
+          <Route exact path="/user-landing" element={<UserLanding />}/>
         </Routes>
       </div>
   );
