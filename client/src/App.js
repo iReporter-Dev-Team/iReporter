@@ -5,6 +5,7 @@ import DashBoardViewDetails from "../src/components/DashBoardViewDetails";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 import AdminDashboard from "./AdminDashboard";
+import Profile from "./components/Profile/profile";
 import UserLanding from "./User-Landing/UserLanding";
 import UsersList from "./components/UsersList";
 
@@ -20,7 +21,6 @@ function App() {
   }, []);
 
   return (
-
     <div className="row mt-3">
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
@@ -38,6 +38,7 @@ function App() {
         <Route exact path="/signup" element={<SignUp onLogin={setUser} />} />
         <Route exact path="/user-landing" element={<UserLanding />} />
         <Route exact path="/users" element={<UsersList user={user} />} />
+        <Route exact path="/profile" element={<Profile user={user} />} />
       </Routes>
     </div>
   );
