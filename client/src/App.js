@@ -35,7 +35,7 @@ function App() {
           element={<AdminDashboard user={user} />}
         />
         <Route exact path="/login" element={<SignIn onLogin={setUser} />} />
-        <Route exact path="/signup" element={<SignUp onLogin={setUser} />} />
+        <Route exact path="/get-started" element={<SignUp onLogin={setUser} />} />
         <Route exact path="/user-landing" element={<UserLanding />} />
         <Route exact path="/users" element={<UsersList user={user} />} />
         <Route exact path="/profile" element={<Profile user={user} />} />

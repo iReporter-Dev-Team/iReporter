@@ -8,15 +8,13 @@ const Navbar = () => {
       <div className="container-fluid">
       <Link to={"/"} className="navbar-brand">
       iREPO{/* <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/327/eyes_1f440.png" alt="..." height="36"/>*/}RTER
-      
-          </Link>
-      
+      </Link>
         <div
           class="collapse navbar-collapse justify-content-end"
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav">
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <Link
                 className="nav-link d-flex justify-content-center"
                 to="/"
@@ -25,7 +23,7 @@ const Navbar = () => {
               >
                 About Us
               </Link>
-            </li> */}
+            </li>
             <li className="nav-item">
               <Link
                 className="nav-link d-flex justify-content-center"
@@ -33,7 +31,7 @@ const Navbar = () => {
                 //to signup
                 style={{ color: "white" }}
               >
-                Login
+                Get started
               </Link>
             </li>
           </ul>
