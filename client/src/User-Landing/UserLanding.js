@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function UserLanding() {
+export default function UserLanding({ user }) {
   const [location, setLocation] = useState("");
   const [image, setImage] = useState("");
   const [video, setVideo] = useState("");
@@ -43,7 +43,7 @@ export default function UserLanding() {
 
   return (
     <>
-      <h2>UserLanding</h2>
+      <h2>Welcome {user?.name}</h2>
 
       <div style={{}}>
         <div class="row justify-content-center">
