@@ -63,10 +63,9 @@ const AboutUs = () => {
       <section className="float-container">
         <div className="float-child1">
           <h1>
-            <span style={{ fontweight: "bold", color: "white" }}>
-              Welcome To &nbsp;
+            <span style={{ fontweight: "bold", color: "black" }}>
+              Welcome To iReporter
             </span>
-            <span>iReporter</span>
           </h1>
           A Platform where you can report any form of corruption or Intervention
           incidences.
@@ -77,7 +76,7 @@ const AboutUs = () => {
       </section>
 
       <section className="about">
-        <h1 style={{ fontweight: "bold" }}>
+        <h1 style={{ fontweight: "bold", textAlign: "center" }}>
           About Us &nbsp;
         </h1>
         <p>
@@ -89,10 +88,9 @@ const AboutUs = () => {
           government intervention
         </p>
       </section>
-
         <div className="App">
-        <h2 style={{ fontweight: "bold",color:"white" }}>
-          Client's Stories
+        <h2 style={{ fontweight: "bold",color:"black", textAlign: "center", marginBottom: "60px" }}>
+          Testimonials
         </h2>
           <ul className="carousel__list">
             {reviews.map((review, index) => {
@@ -113,9 +111,7 @@ const AboutUs = () => {
                       <span className="carousel__name">{name}</span>
                       <span className="carousel__citation">{citation}</span>
                     </cite>
-                    <p>"{quote}" <Link to="/dashboard" style={{ fontweight: "bold", color: "white" }}>
-                     ...Read more
-                    </Link></p>
+                    <p>"{quote}</p>
                   </blockquote>
                 </li>
               );
@@ -131,8 +127,8 @@ const AboutUs = () => {
                 className={`carousel__dot${activeSlide === 3 ? " active" : ""}`}
               />
             </li>
-            <Link to="/dashboard">
-            <MDBBtn outline rounded className='mx-2' color='light'>
+            <Link to="/get-started" style={{ textAlign: "center", marginTop:'-55px'}}>
+            <MDBBtn outline rounded className='mx-2' color='danger'>
        Share Your Story
       </MDBBtn>
       </Link>
