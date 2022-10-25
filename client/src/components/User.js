@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Error } from "../styles";
+import Error from "../styles/Error";
 
 function User({ user, onDeleteUser }) {
   const [errors, setErrors] = useState([]);
