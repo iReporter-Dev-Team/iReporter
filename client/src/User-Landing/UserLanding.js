@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Navbar from "../components/Navbar";
 export default function UserLanding() {
   const [location, setLocation] = useState("");
   const [image, setImage] = useState("");
@@ -43,9 +43,9 @@ export default function UserLanding() {
 
   return (
     <>
-      <h2>UserLanding</h2>
+      <Navbar/>
 
-      <div style={{}}>
+      <div style={{marginTop:50}}>
         <div class="row justify-content-center">
           <div class="col-sm-5 mb-3">
             <div class="card">

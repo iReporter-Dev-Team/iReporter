@@ -59,9 +59,11 @@ const AboutUs = () => {
   ];
 
   return (
-    <div>
-      <section className="float-container">
-        <div className="float-child1">
+
+    <div class="container">
+
+      <div class ="row">
+        <div class="col-12 col-lg-6 mt-10">
           <h1>
             <span style={{ fontweight: "bold", color: "white" }}>
               Welcome To &nbsp;
@@ -71,10 +73,10 @@ const AboutUs = () => {
           A Platform where you can report any form of corruption or Intervention
           incidences.
         </div>
-        <div className="float-child">
+        <div  class="col-12 col-lg-6">
           <Map />
         </div>
-      </section>
+      </div>
 
       <section className="about">
         <h1 style={{ fontweight: "bold" }}>
@@ -90,54 +92,54 @@ const AboutUs = () => {
         </p>
       </section>
 
-        <div className="App">
-        <h2 style={{ fontweight: "bold",color:"white" }}>
+      <div className="App">
+        <h2 style={{ fontweight: "bold", color: "white" }}>
           Client's Stories
         </h2>
-          <ul className="carousel__list">
-            {reviews.map((review, index) => {
-              const { citation, name, quote } = review;
-              const count = index + 1;
-              
-              return (
-                <li
-                  className={`carousel__item
+        <ul className="carousel__list">
+          {reviews.map((review, index) => {
+            const { citation, name, quote } = review;
+            const count = index + 1;
+
+            return (
+              <li
+                className={`carousel__item
                 ${count === activeSlide ? " active" : ""}
                 ${count < activeSlide ? " left" : ""}
                 ${count > activeSlide ? " right" : ""}
               `}
-                  key={count}
-                >
-                  <blockquote className="carousel__quote">
-                    <cite>
-                      <span className="carousel__name">{name}</span>
-                      <span className="carousel__citation">{citation}</span>
-                    </cite>
-                    <p>"{quote}" <Link to="/dashboard" style={{ fontweight: "bold", color: "white" }}>
-                     ...Read more
-                    </Link></p>
-                  </blockquote>
-                </li>
-              );
-            })}
-            <li className="carousel__indicator">
-              <span
-                className={`carousel__dot${activeSlide === 1 ? " active" : ""}`}
-              />
-              <span
-                className={`carousel__dot${activeSlide === 2 ? " active" : ""}`}
-              />
-              <span
-                className={`carousel__dot${activeSlide === 3 ? " active" : ""}`}
-              />
-            </li>
-            <Link to="/dashboard">
+                key={count}
+              >
+                <blockquote className="carousel__quote">
+                  <cite>
+                    <span className="carousel__name">{name}</span>
+                    <span className="carousel__citation">{citation}</span>
+                  </cite>
+                  <p>"{quote}" <Link to="/dashboard" style={{ fontweight: "bold", color: "white" }}>
+                    ...Read more
+                  </Link></p>
+                </blockquote>
+              </li>
+            );
+          })}
+          <li className="carousel__indicator">
+            <span
+              className={`carousel__dot${activeSlide === 1 ? " active" : ""}`}
+            />
+            <span
+              className={`carousel__dot${activeSlide === 2 ? " active" : ""}`}
+            />
+            <span
+              className={`carousel__dot${activeSlide === 3 ? " active" : ""}`}
+            />
+          </li>
+          <Link to="/dashboard">
             <MDBBtn outline rounded className='mx-2' color='light'>
-       Share Your Story
-      </MDBBtn>
-      </Link>
-          </ul>
-        </div>
+              Share Your Story
+            </MDBBtn>
+          </Link>
+        </ul>
+      </div>
     </div>
   );
 };
