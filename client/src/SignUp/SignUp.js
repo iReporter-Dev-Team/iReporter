@@ -38,9 +38,18 @@ function SignUp({ onLogin }) {
         r.json().then((user) => {
           setIsLoading(false)
           onLogin(user)
-          navigate('/')
+          navigate('/user-landing')
         })
       } else {
+        console.log({
+          name, 
+          email,
+          phoneNumber,
+          password,
+          passwordConfirmation,
+          isAdmin
+        })
+        setIsLoading(false)
         r.json().then((err) => setErrors(err.errors))
       }
     })
@@ -81,8 +90,6 @@ function SignUp({ onLogin }) {
         type="number" 
         placeholder='Phone Number'
         required
-        minLength={9}
-        maxLength={9}
         onChange={(e) => setPhoneNumber(e.target.value)}
         />
         {/* </div> */}
@@ -114,7 +121,7 @@ function SignUp({ onLogin }) {
         />
         <div>
           {errors.map((error) => (
-            <p key={error} style={{ color: "red"}}>{error}</p>
+            <p key={error} style={{ color: "red", textAlign: "center"}}>{error}</p>
           ))}
         </div>
       </form>
