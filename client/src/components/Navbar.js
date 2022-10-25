@@ -23,17 +23,17 @@ const Navbar = () => {
                 style={{ color: "white" }}
 
               >
-                AboutUs
+                About Us
               </Link>
             </li>
             <li className="nav-item">
               <Link
                 className="nav-link d-flex justify-content-center"
-                to="/" 
+                to="/get-started" 
                 //to signup
                 style={{ color: "white" }}
               >
-                GetStarted
+                Get Started
               </Link>
             </li>
           </ul>
