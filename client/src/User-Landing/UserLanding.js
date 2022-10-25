@@ -99,80 +99,84 @@ export default function UserLanding() {
 
       <div style={{ display: displayy }}>
         <div class="d-flex justify-content-center">
-          <div class="col-sm-8 ">
-            <form
-              onSubmit={(e) =>
-                categoryBtn === "redflag"
-                  ? handleSubmitRedflag(e)
-                  : handleSubmitIntervention(e)
-              }
-            >
-              <div class=" text-center">
-                <h2>
-                  {categoryBtn === "redflag"
-                    ? "Post new redflag"
-                    : "Post new intervention"}
-                </h2>
-              </div>
+          <div class="col-sm-10 ">
+            <div class="shadow p-3 mb-5 bg-white rounded">
 
-              <div>
-                <label htmlFor="Location" className="form-label">
-                  location
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={location}
-                  placeholder="location here..."
-                  onChange={(e) => setLocation(e.target.value)}
-                />
-              </div>
+              <form
+                onSubmit={(e) =>
+                  categoryBtn === "redflag"
+                    ? handleSubmitRedflag(e)
+                    : handleSubmitIntervention(e)
+                }
+              >
+                <div class=" text-center">
+                  <h2>
+                    {categoryBtn === "redflag"
+                      ? "Post new redflag"
+                      : "Post new intervention"}
+                  </h2>
+                </div>
 
-              <div>
-                <label htmlFor="Location" className="form-label">
-                  image
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={image}
-                  placeholder="image here..."
-                  onChange={(e) => setImage(e.target.value)}
-                />
-              </div>
+                <div>
+                  <label htmlFor="Location" className="form-label">
+                    location
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={location}
+                    placeholder="location here..."
+                    onChange={(e) => setLocation(e.target.value)}
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="Location" className="form-label">
-                  video
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={video}
-                  placeholder="video here..."
-                  onChange={(e) => setVideo(e.target.value)}
-                />
-              </div>
+                <div>
+                  <label htmlFor="Location" className="form-label">
+                    image
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={image}
+                    placeholder="image here..."
+                    onChange={(e) => setImage(e.target.value)}
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="Location" className="form-label">
-                  description
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={description}
-                  placeholder="description here..."
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </div>
+                <div>
+                  <label htmlFor="Location" className="form-label">
+                    video
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={video}
+                    placeholder="video here..."
+                    onChange={(e) => setVideo(e.target.value)}
+                  />
+                </div>
 
-              <input
-                class="btn btn-danger mt-3"
-                type={"submit"}
-                value={categoryBtn === "redflag" ? "Submit " : "Submit "}
-              />
-            </form>
+                <div>
+                  <label htmlFor="Location" className="form-label">
+                    description
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={description}
+                    placeholder="description here..."
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </div>
+                <div class="text-center">
+                  <input
+                    class="btn btn-danger mt-3"
+                    type={"submit"}
+                    value={categoryBtn === "redflag" ? "Submit " : "Submit "}
+                  />
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
