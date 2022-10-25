@@ -34,26 +34,26 @@ export default function DashBoardViewDetails({}){
     )
 
    //Display redflag
-    let {redflagId} = useParams()
+    // let {redflagId} = useParams()
   
-    console.log(interventionId)
+    // console.log(redflagId)
 
-    const VIEW_REDFLAG = () => {
-        fetch(`/redflagS/${redflagId}`)
-         .then((response) => response.json())
-            .then((redflags) => {
-              console.log(redflags)
+    // const VIEW_REDFLAG = () => {
+    //     fetch(`/redflags/${redflagId}`)
+    //      .then((response) => response.json())
+    //         .then((redflags) => {
+    //           console.log(redflags)
 
-               setImage(redflags.image)
-               setLocation(redflags.location)
-                setDescription(redflags.description)
+    //            setImage(redflags.image)
+    //            setLocation(redflags.location)
+    //             setDescription(redflags.description)
                 
-            })
-    }
+    //         })
+    // }
 
-    useEffect(
-        VIEW_REDFLAG, []
-    )
+    // useEffect(
+    //     VIEW_REDFLAG, []
+    // )
  return(
         <div className="container">
             <center>

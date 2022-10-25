@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :redflags, only: [:show,:index, :create, :destroy, :update]
+  resources :redflags
 
   resources :interventions
 
