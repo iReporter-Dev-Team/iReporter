@@ -49,7 +49,7 @@ import styled from "styled-components"
       );
     return (
       <Wrapper>
-        <Logo>Map Incident View</Logo>
+        {/* <Logo>View Incidence Locations</Logo> */}
         <Box>
           <GoogleMap zoom={15} center={center} options={options} onLoad={onLoad}>
             <MapContainer>
@@ -79,9 +79,9 @@ import styled from "styled-components"
   const Logo = styled.h1`
     font-family: “Permanent Marker”, serif;
     font-size: 2rem;
-    color: firebrick;
+    color: white;
     margin: 0;
-    line-height: 1;
+    line-height: 0;
     a {
       color: inherit;
       text-decoration: none;

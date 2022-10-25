@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :redflags, except:[:show] 
+  resources :redflags, only: [:show,:index, :create, :destroy, :update]
 
-  resources :interventions, except: [:show]
+  resources :interventions
 
   resources :users, only: [:index, :create, :show]
 
