@@ -10,16 +10,16 @@
   position: relative;
   bottom: -300px;
   left: 16px;
-  
 }
+
 .float-child {
   width: 50%;
   float: left;
   padding: 20px;
   position: relative;
   top: 20px;
-  
 }  
+
 body {
   /* font-family: Roboto, Helvetica, Arial, sans-serif; */
   font-family: “Permanent Marker”, helvetica,sans-serif;
@@ -29,6 +29,7 @@ body {
   min-height: 100vh;
   box-sizing: border-box;
 }
+
 html {
   font-size: 1.2rem;
 }
@@ -39,9 +40,10 @@ html {
   padding: 0;
 } */
 
-.mx-2{
+.mx-2 {
   align-items: center;
 }
+
 .App {
   align-items: center;
   display: grid;
@@ -49,6 +51,7 @@ html {
   font-family: system-ui;
   justify-content: center;
 }
+
 .carousel__list {
   align-items: center;
   display: grid;
@@ -58,8 +61,10 @@ html {
   max-width: 40rem;
   overflow: hidden;
   padding: 1rem 2rem;
+  margin-top: -30px;
   list-style-type: none;
 }
+
 .carousel__item {
   grid-column: 1;
   grid-row: 1;
@@ -67,22 +72,29 @@ html {
   text-align: center;
   transition: transform 0.2s;
 }
+
 .carousel__item.active {
   transform: translateX(0);
 }
+
 .carousel__item.left {
   transform: translateX(-110%);
 }
+
 .carousel__item.right {
   transform: translateX(110%);
 }
+
 .carousel__indicator {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(5, 1fr);
   grid-row: 2;
+  margin-left: 50px;
+  margin-top: -85px;
   justify-self: center;
 }
+
 .carousel__dot {
   background-color: white;
   border-radius: 50%;
@@ -91,31 +103,34 @@ html {
   height: 0.5rem;
   width: 0.5rem;
 }
+
 .carousel__dot.active {
   background-color: #696a6b;
 }
+
 .carousel__citation {
   display: block;
   font-size: 0.875rem;
   font-style: normal;
   margin-bottom: 1.25rem;
 }
+
 .carousel__name {
   display: block;
   font-style: normal;
   font-weight: 600;
 }
+
 .carousel__quote {
   font-style: italic;
   line-height: 1.5;
 }
 
 .about {
-
   position: center;
   left: 20px;
-  
 } 
+
 .footer {
   background-color: #E3E3E3;
 }

@@ -76,7 +76,7 @@ function SignIn({ onLogin, is_admin }) {
         </div>
         <div>
           {errors.map((error) => (
-            <p key={error} style={{ color: "red" }}>{error}</p>
+            <p key={error} style={{ color: "red", textAlign: "center" }}>{error}</p>
           ))} 
         </div>
         <p style={{ textAlign: "center", marginTop: "20px" }}>New to iReporter?</p>

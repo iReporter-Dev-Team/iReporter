@@ -2,7 +2,9 @@ import React from 'react'
 
 function AdminDashboard({ user }) {
   return (
-    <div>Welcome {user?.name}!</div>
+    <div>
+      <h1>Welcome {user?.name}</h1>
+    </div>
   )
 }
 

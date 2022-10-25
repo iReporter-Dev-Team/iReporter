@@ -22,9 +22,9 @@ puts '...seeding interventions 🚧'
             image: "https://www.pexels.com/photo/milan-13379800/",
             video: "https://www.youtube.com/watch?v=GOISuk0pYIY", status: 
             "Under Investigation", description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", 
-            user_id: user.id
+            user_id:rand(1..10)
             )
-
+     end
 puts '...seeding redflags 🚩'
 
     10.times do 
@@ -33,8 +33,8 @@ puts '...seeding redflags 🚩'
             image: "https://www.pexels.com/photo/milan-13379800/",
             video: "https://www.youtube.com/watch?v=GOISuk0pYIY", status: 
             "Under Investigation", description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", 
-            user_id: user.id
-            )
+            user_id:rand(1..10)
+        )
          end
 
 puts "Done seeding!"
