@@ -16,7 +16,7 @@ const Navbar = () => {
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link
                 className="nav-link d-flex justify-content-center"
                 to="/"
@@ -25,15 +25,15 @@ const Navbar = () => {
               >
                 About Us
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link
                 className="nav-link d-flex justify-content-center"
-                to="/get-started" 
+                to="/login"
                 //to signup
                 style={{ color: "white" }}
               >
-                Get Started
+                Login
               </Link>
             </li>
           </ul>
