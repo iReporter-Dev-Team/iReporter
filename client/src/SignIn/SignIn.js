@@ -46,7 +46,6 @@ function SignIn({ onLogin, is_admin }) {
       <div className="sign-in-holder">
       <form onSubmit={handleSubmit}>
       <h2 style={{ textAlign: "center"}}>iReporter</h2>
-      <h3 style={{ textAlign: "center"}}>Log in to your account</h3>
       <label>Email</label>
       {/* <div className="form-field-login"> */}
         {/* <MdEmail className="login-icon" style={{ color: "#c60021", borderRight: "1px solid #000"}}/> */}
@@ -80,8 +79,8 @@ function SignIn({ onLogin, is_admin }) {
             <p key={error} style={{ color: "red" }}>{error}</p>
           ))} 
         </div>
-        <p style={{ textAlign: "center" }}>New to iReporter?</p>
-        <Link to="/get-started" style={{ textDecoration: "none", color: "#c60021", textAlign: "center"}}>Sign Up</Link>
+        <p style={{ textAlign: "center", marginTop: "20px" }}>New to iReporter?</p>
+        <Link to="/get-started" style={{ textDecoration: "none", color: "#c60021", textAlign: "center", marginTop: "-5px" }}>Sign Up</Link>
       </form>
       </div>
     </div>
