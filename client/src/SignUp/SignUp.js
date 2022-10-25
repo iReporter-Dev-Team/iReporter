@@ -38,7 +38,7 @@ function SignUp({ onLogin }) {
         r.json().then((user) => {
           setIsLoading(false)
           onLogin(user)
-          navigate('/')
+          navigate('/user-landing')
         })
       } else {
         console.log({

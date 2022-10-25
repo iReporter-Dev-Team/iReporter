@@ -31,11 +31,13 @@ function SignIn({ onLogin, is_admin }) {
             navigate('/dashboard')
           } 
           else {
+            setIsLoading(false)
             onLogin(user)
-            navigate('/')
+            navigate('/user-landing')
           }
       })}
       else {
+        setIsLoading(false)
         r.json().then((err) => setErrors([err.errors]));
       }
     });
