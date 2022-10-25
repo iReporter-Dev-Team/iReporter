@@ -81,7 +81,7 @@ function SignIn({ onLogin, is_admin }) {
           ))} 
         </div>
         <p style={{ textAlign: "center" }}>New to iReporter?</p>
-        <Link to="/signup" style={{ textDecoration: "none", color: "#c60021", textAlign: "center"}}>Sign Up</Link>
+        <Link to="/get-started" style={{ textDecoration: "none", color: "#c60021", textAlign: "center"}}>Sign Up</Link>
       </form>
       </div>
     </div>
