@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./Home";
-import GetStarted from "./GetStarted";
-import DashBoardViewDetails from "./DashBoardViewDetails";
+import Home from "../src/components/Home";
+import DashBoardViewDetails from "../src/components/DashBoardViewDetails";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 import AdminDashboard from "./AdminDashboard";
 import UserLanding  from './User-Landing/UserLanding';
+import Users from "./components/Users";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -24,7 +24,6 @@ function App() {
       <div className="row mt-3">
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
-          <Route exact path="/getstarted" element={<GetStarted />}></Route>
           <Route
             exact
             path="/interventions/:interventionId"
@@ -34,6 +33,7 @@ function App() {
           <Route exact path='/login' element={<SignIn onLogin={setUser}/>}/>
           <Route exact path="/signup" element={<SignUp onLogin={setUser}/>}/>
           <Route exact path="/user-landing" element={<UserLanding />}/>
+          <Route exact path="/users" element={<Users />}/>
         </Routes>
       </div>
   );
