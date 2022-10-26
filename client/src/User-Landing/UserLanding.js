@@ -43,7 +43,7 @@ export default function UserLanding({ user }) {
 
   return (
     <>
-      <h2>Welcome {user?.name}</h2>
+      <h2 style={{ marginTop: "60px"}}>Welcome {user?.name}</h2>
 
       <div style={{}}>
         <div class="row justify-content-center">

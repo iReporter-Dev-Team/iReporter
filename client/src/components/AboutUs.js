@@ -92,7 +92,7 @@ const AboutUs = () => {
         </section>
 
         <section className="about">
-          <h1 style={{ fontweight: "bold" }}>About Us &nbsp;</h1>
+          <h1 style={{ fontweight: "bold", textAlign: "center" }}>About Us &nbsp;</h1>
           <p>
             Corruption is a huge bane to Africa’s development. African countries
             must develop novel and localised solutions that will curb this
@@ -105,7 +105,7 @@ const AboutUs = () => {
         <h2 style={{ fontweight: "bold",  textAlign: 'center' }}>Client's Stories</h2>
         <div className="App ">
           <ul className="carousel__list">
-            {interventions.map((intervention, index) => {
+            {interventions?.map((intervention, index) => {
               const { description, location } = intervention;
               const count = index + 1;
 
@@ -145,7 +145,7 @@ const AboutUs = () => {
               />
             </li>
           </ul>
-          <Link to="/login">
+          <Link to="/get-started">
             <MDBBtn outline rounded className="mx-2" color="dark">
               Share Your Story
             </MDBBtn>
