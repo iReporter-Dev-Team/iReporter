@@ -11,9 +11,12 @@
   background-size: cover;   */
 }
 .float-child1 {
+  border-radius: 15px 50px 30px;
+  background: #fa7670;
+  padding: 20px;
+  height: 150px;
   width: 50%;
   float: left;
-  padding: 20px;
   position: relative;
   bottom: -300px;
   left: 16px;
@@ -28,15 +31,21 @@
 }  
 
 body {
-  /* font-family: Roboto, Helvetica, Arial, sans-serif; */
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-family: “Permanent Marker”, helvetica,sans-serif;
-  /* background: linear-gradient(to top, #F00028, #F6F6F8); */
+  /* background: linear-gradient(to top, #b89f5d, #F6F6F8); */
+  /* background-color: #b89f5d !important; */
+  /* background-color:#fa7670 !important; */
+  
   margin: 0px;
   padding: 0px;
   height: 100%;
   box-sizing: border-box;
+ 
 }
-
+/* .container{
+  background: #b89f5d;
+} */
 html {
   font-size: 1.2rem;
 }
@@ -57,6 +66,7 @@ html {
   height: 60vh;
   font-family: system-ui;
   justify-content: center;
+  background-color:#fa7670
 
 }
 
@@ -135,9 +145,15 @@ html {
 
 .about {
   position: center;
-  left: 20px;
+  left: 400px;
+  padding: 20px;
+  /* background-color:#fa292a; */
 } 
 
+/* .welcome{
+   background-color:#fa292a; 
+   background-color:#fa7670
+} */
 .footer {
   background-color: #E3E3E3;
   border-top:2px solid red;
