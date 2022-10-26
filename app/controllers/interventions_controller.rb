@@ -4,6 +4,11 @@ class InterventionsController < ApplicationController
         render json: Intervention.all, status: :ok 
     end
 
+    def show 
+        intervention = Intervention.find_by!(id: params[:id])
+        render json: intervention, status: :ok
+    end
+
     def create
         intervention = Intervention.create(intervention_params)
         if intervention.valid?

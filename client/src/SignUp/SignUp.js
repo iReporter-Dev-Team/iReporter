@@ -12,7 +12,7 @@ function SignUp({ onLogin }) {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(true)
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -38,9 +38,18 @@ function SignUp({ onLogin }) {
         r.json().then((user) => {
           setIsLoading(false)
           onLogin(user)
-          navigate('/')
+          navigate('/user-landing')
         })
       } else {
+        console.log({
+          name, 
+          email,
+          phoneNumber,
+          password,
+          passwordConfirmation,
+          isAdmin
+        })
+        setIsLoading(false)
         r.json().then((err) => setErrors(err.errors))
       }
     })
@@ -50,8 +59,7 @@ function SignUp({ onLogin }) {
     <div className="sign-up-page">
       <div className="sign-up-holder">
       <form onSubmit={handleSubmit}>
-      <h2 style={{ textAlign: "center"}}>Welcome to iReporter</h2>
-      <h3 style={{ textAlign: "center"}}>Sign up below to get started</h3>
+      <h2 style={{ textAlign: "center"}}>iReporter</h2>
       <label>Name</label>
       {/* <div className="form-field-signup"> */}
         {/* <MdPerson style={{ color: "#c60021", borderRight: "1px solid #000"}}/> */}
@@ -82,8 +90,6 @@ function SignUp({ onLogin }) {
         type="number" 
         placeholder='Phone Number'
         required
-        minLength={9}
-        maxLength={9}
         onChange={(e) => setPhoneNumber(e.target.value)}
         />
         {/* </div> */}
@@ -115,12 +121,12 @@ function SignUp({ onLogin }) {
         />
         <div>
           {errors.map((error) => (
-            <p key={error} style={{ color: "red"}}>{error}</p>
+            <p key={error} style={{ color: "red", textAlign: "center"}}>{error}</p>
           ))}
         </div>
-        <p style={{ textAlign: "center" }}>Already have an account?</p>
-        <Link to="/login" style={{ textDecoration: "none", color: "#c60021", textAlign: "center"}}>Login</Link>
       </form>
+      <p style={{ textAlign: "center", marginTop: "20px" }}>Already have an account?</p>
+        <Link to="/login" style={{ textDecoration: "none", color: "#c60021", textAlign: "center", marginTop: "-10px"}}>Login</Link>
     </div>
     </div>
   )

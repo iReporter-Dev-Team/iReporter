@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
+
 export default function UserLanding() {
   const [location, setLocation] = useState("");
   const [image, setImage] = useState("");
@@ -43,7 +43,7 @@ export default function UserLanding() {
 
   return (
     <>
-      <Navbar/>
+      <h2>UserLanding</h2>
 
       <div style={{marginTop:50}}>
         <div class="row justify-content-center">

@@ -7,10 +7,8 @@ const Navbar = () => {
     <nav className="fixed-top navbar navbar-expand-sm  navbar-expand-lg navbar-dark bg-dark static-top">
       <div className="container-fluid">
       <Link to={"/"} className="navbar-brand">
-      iREP<img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/327/eyes_1f440.png" alt="..." height="36"/>RTER
-      
-          </Link>
-      
+      iREPO{/* <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/327/eyes_1f440.png" alt="..." height="36"/>*/}RTER
+      </Link>
         <div
           class="collapse navbar-collapse justify-content-end"
           id="navbarSupportedContent"
@@ -23,17 +21,17 @@ const Navbar = () => {
                 style={{ color: "white" }}
 
               >
-                AboutUs
+                About Us
               </Link>
             </li>
             <li className="nav-item">
               <Link
                 className="nav-link d-flex justify-content-center"
-                to="/" 
+                to="/get-started"
                 //to signup
                 style={{ color: "white" }}
               >
-                GetStarted
+                Get started
               </Link>
             </li>
           </ul>
