@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :interventions
 
-  resources :users, only: [:index, :create, :show]
+  resources :users, only: [:index, :create, :show, :update, :destroy]
 
   get '/me', to: 'users#show'
 
