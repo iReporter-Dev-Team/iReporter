@@ -1,7 +1,8 @@
 .search-container {
   padding: 10px 540px;
 }
-input[type="text"] {
+
+.search-container input {
   font-family: “Permanent Marker”, sans-serif;
   display: block;
   width: calc(100% - 456px);
