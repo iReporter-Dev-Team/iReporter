@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { MdEmail } from "react-icons/md";
+import { CiFaceSmile } from "react-icons/ci";
+import { BsPhoneVibrate } from "react-icons/bs";
 import Error from "../styles/Error";
 
 function User({ user, onDeleteUser }) {
@@ -24,9 +27,15 @@ function User({ user, onDeleteUser }) {
 
   return (
     <Card key={user.id}>
-      <UserName>{user.name}</UserName>
-      <Email>{user.email}</Email>
-      <PhoneNumber>{user.phone_number}</PhoneNumber>
+      <UserName>
+        <CiFaceSmile style={{ fontSize: "60px" }} /> {user.name}
+      </UserName>
+      <Email>
+        <MdEmail /> : {user.email}
+      </Email>
+      <PhoneNumber>
+        <BsPhoneVibrate /> : {user.phone_number}
+      </PhoneNumber>
       <ActionButtonMakeAdmin onClick={handleAdminState}>
         {isAdmin ? "Is Admin" : "Make Admin"}
       </ActionButtonMakeAdmin>
@@ -52,15 +61,24 @@ const Card = styled.div`
 `;
 
 const UserName = styled.h2`
-  font-weight: 300;
+  font-size: 36px;
+  font-weight: 200;
+  color: teal;
 `;
 
 const Email = styled.h4`
-  font-weight: 300;
+  font-size: 24px;
+  font-weight: 200;
+  color: darkblue;
+  padding-left: 20px;
+  padding-top: 20px;
 `;
 
 const PhoneNumber = styled.h4`
-  font-weight: 300;
+  font-size: 24px;
+  font-weight: 200;
+  color: black;
+  padding-left: 20px;
 `;
 
 const ActionButtonMakeAdmin = styled.button`
