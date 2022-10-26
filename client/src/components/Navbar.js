@@ -27,7 +27,7 @@ const Navbar = () => {
             <li className="nav-item">
               <Link
                 className="nav-link d-flex justify-content-center"
-                to="/login"
+                to="/get-started"
                 //to signup
                 style={{ color: "white" }}
               >

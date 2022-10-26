@@ -25,6 +25,7 @@ puts '...seeding interventions 🚧'
             user_id:rand(1..10)
             )
      end
+     
 puts '...seeding redflags 🚩'
 
     10.times do 
