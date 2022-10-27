@@ -1,0 +1,15 @@
+.search-container {
+  padding: 10px 540px;
+}
+
+.search-container input {
+  font-family: “Permanent Marker”, sans-serif;
+  display: block;
+  /* width: calc(100% - 256px); */ /*varying screen sizes*/
+  font-size: 20px;
+  font-weight: 300;
+  color: teal;
+  padding: 10px;
+  border: 1px solid teal;
+  border-radius: 6px;
+}
