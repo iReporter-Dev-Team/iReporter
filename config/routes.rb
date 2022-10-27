@@ -1,21 +1,17 @@
 Rails.application.routes.draw do
-  resources :redflags, except:[:show] 
+  resources :redflags
 
-  resources :interventions, except: [:show]
+  resources :interventions
 
-  resources :users, only: [:index, :create, :show]
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :users, only: [:index, :create, :show, :update, :destroy]
 
+  get '/me', to: 'users#show'
 
-get '/me', to: 'users#show'
-
-post '/signup', to: "users#create"
+  post '/signup', to: "users#create"
 
 
-post '/login', to: 'sessions#create'
+  post '/login', to: 'sessions#create'
 
-delete '/logout', to: 'sessions#destroy'
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  delete '/logout', to: 'sessions#destroy'
+  
 end

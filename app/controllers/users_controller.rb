@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    skip_before_action :authorize, only: :create
 
     def index
         render json: User.all, status: :ok
@@ -7,7 +8,6 @@ class UsersController < ApplicationController
     def show 
         user = User.find_by(id: session[:user_id])
         render json: user, status: :ok
-
     end
 
     def create
@@ -19,10 +19,29 @@ class UsersController < ApplicationController
             render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end
     end
-        private
-        def user_params
-            params.permit(:name, :email, :password, :password_confirmation)
+
+    # update user details
+    def update
+        user = User.find(params[:id])
+        if user.update(user_params)
+            render json: user, status: :ok
+        else
+            render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end
 
+    end
 
+    # delete a user
+    def destroy
+        user = User.find(params[:id])
+        user.destroy
+        head :no_content
+
+    end
+
+    private
+
+    def user_params
+        params.permit(:name, :email, :phone_number,:password, :password_confirmation)
+    end
 end
