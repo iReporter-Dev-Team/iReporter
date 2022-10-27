@@ -89,7 +89,7 @@ const ActionButtonDelete = styled.button`
   border: 1px solid #fff;
   outline: 0;
   font-weight: 300;
-  border-radius: 6px;
+i
 
   &:hover {
     opacity: 0.8;

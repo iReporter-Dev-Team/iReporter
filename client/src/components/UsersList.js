@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import AdminNavbar from "./AdminNavbar";
 import User from "./User";
 
 function UsersList({ user }) {
@@ -20,6 +21,7 @@ function UsersList({ user }) {
 
   return (
     <>
+      <AdminNavbar/>
       <Logo>Active Reporters</Logo>
       <Wrapper>
         {users.map((user) => (
@@ -33,7 +35,6 @@ const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-
   max-width: 900px;
   margin: 40px auto;
   padding: 16px;
@@ -43,7 +44,7 @@ const Logo = styled.h1`
   font-family: "Permanent Marker", serif;
   font-size: 2rem;
   color: salmon;
-  margin: 20px 0;
+  margin: 40px 0;
   padding-top: 20px;
   padding-left: 280px;
   line-height: 1;

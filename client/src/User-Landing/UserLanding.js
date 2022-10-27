@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "../components/Navbar";
 
 export default function UserLanding({ user }) {
   const [location, setLocation] = useState("");
@@ -43,6 +44,7 @@ export default function UserLanding({ user }) {
 
   return (
     <>
+    <Navbar/>
       <h2 style={{ marginTop: "60px"}}>Welcome {user?.name}</h2>
 
       <div style={{}}>
