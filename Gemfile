@@ -10,6 +10,11 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.18'
 
 gem 'faker'
 
+#handles image upload
+gem 'paperclip', '~> 6.1'
+gem 'activestorage'
+gem "image_processing", ">= 1.2"
+
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 

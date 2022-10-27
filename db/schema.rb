@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_25_121245) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_26_210240) do
   create_table "interventions", force: :cascade do |t|
     t.string "location"
     t.string "image"
@@ -24,13 +24,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_121245) do
 
   create_table "redflags", force: :cascade do |t|
     t.string "location"
-    t.string "image"
     t.string "video"
     t.text "description"
     t.string "status"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "users", force: :cascade do |t|

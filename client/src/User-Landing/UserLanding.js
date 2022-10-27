@@ -8,9 +8,15 @@ export default function UserLanding({ user }) {
   // redflag
   const [categoryBtn, setCategoryBtn] = useState("redflag");
   const [displayy, setDisplayy] = useState("none");
+  //errors
+  const [errors, setErrors] = useState([]);
+
 
   function handleSubmitRedflag(e) {
     e.preventDefault();
+    // if (image.size > 1024){
+    // setErrors({ error: "File size cannot exceed more than 1MB" })
+    // }
     const formData = {
       location,
       image,
@@ -22,7 +28,24 @@ export default function UserLanding({ user }) {
     console.log("Red Flag");
     console.log(formData);
 
-    setDisplayy("none");
+    fetch("/redflags", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then((r) => {
+      if (r.ok) {
+        r.json().then(data => console.log( data))
+        // navigate("/blogs");
+        setDisplayy("none");
+
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
+
   }
 
   function handleSubmitIntervention(e) {
@@ -38,16 +61,32 @@ export default function UserLanding({ user }) {
     console.log("Intervention");
     console.log(formData);
 
+    // fetch("/interventions", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(formData)
+    // })
+    // .then((r) => {
+    //   if (r.ok) {
+    //     r.json().then(data => setInterventions([...interventions, data]))
+    //     navigate("/blogs");
+    //   } else {
+    //     r.json().then((err) => setErrors(err.errors));
+    //   }
+    // });
     setDisplayy("none");
   }
 
   return (
     <>
-      <h2 style={{ marginTop: "60px"}}>Welcome {user?.name}</h2>
 
-      <div style={{}}>
+      <div style={{marginTop:20}}>
+      <h2 style={{ marginTop: "60px", marginLeft:80 }}>Welcome {user?.name}</h2>
+
         <div class="row justify-content-center">
-          <div class="col-sm-5 mb-3">
+          <div class="col-sm-5 mb-2">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Redflag</h5>
@@ -71,7 +110,7 @@ export default function UserLanding({ user }) {
             </div>
           </div>
 
-          <div class="col-sm-5 mb-3">
+          <div class="col-sm-5 mb-2">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Intervention</h5>
@@ -86,6 +125,8 @@ export default function UserLanding({ user }) {
                     onClick={() => {
                       setCategoryBtn("intervention");
                       setDisplayy("block");
+                      // setDisplayy("none");
+
                     }}
                   >
                     Report Intervention
@@ -135,11 +176,11 @@ export default function UserLanding({ user }) {
                     image
                   </label>
                   <input
-                    type="text"
+                    type="file"
                     className="form-control"
-                    value={image}
-                    placeholder="image here..."
-                    onChange={(e) => setImage(e.target.value)}
+                    // value={image}
+                    accept="image/*"
+                    onChange={(e) => setImage(e.target.files[0])}
                   />
                 </div>
 
@@ -148,11 +189,12 @@ export default function UserLanding({ user }) {
                     video
                   </label>
                   <input
-                    type="text"
+                    type="file"
                     className="form-control"
-                    value={video}
-                    placeholder="video here..."
-                    onChange={(e) => setVideo(e.target.value)}
+                    accept="video/*"
+                    // value={video}
+                    // placeholder="video here..."
+                    onChange={(e) => setVideo(e.target.files[0])}
                   />
                 </div>
 
@@ -160,7 +202,7 @@ export default function UserLanding({ user }) {
                   <label htmlFor="Location" className="form-label">
                     description
                   </label>
-                  <input
+                  <textarea
                     type="text"
                     className="form-control"
                     value={description}
@@ -174,6 +216,11 @@ export default function UserLanding({ user }) {
                     type={"submit"}
                     value={categoryBtn === "redflag" ? "Submit " : "Submit "}
                   />
+                </div>
+                <div>
+                  {errors.map((err) => (
+                    <p key={err} style={{ color: "red" }}>{err}</p>
+                  ))}
                 </div>
               </form>
             </div>
