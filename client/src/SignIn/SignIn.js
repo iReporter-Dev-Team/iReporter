@@ -47,7 +47,7 @@ function SignIn({ onLogin, is_admin }) {
     <div className='sign-in-page'>
       <div className="sign-in-holder">
       <form onSubmit={handleSubmit}>
-      <h2 style={{ textAlign: "center"}}>iReporter</h2>
+      <Link to="/" style={{ textDecoration: "none", color: "black"}}><h2 style={{ textAlign: "center"}}>iReporter</h2></Link>
       <label>Email</label>
       {/* <div className="form-field-login"> */}
         {/* <MdEmail className="login-icon" style={{ color: "#c60021", borderRight: "1px solid #000"}}/> */}

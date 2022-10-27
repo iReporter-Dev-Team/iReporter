@@ -1,8 +1,28 @@
 // 🎙
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+
+  const HandleLogout = () => {
+    fetch("/logout", {
+      method: "DELETE"
+    })
+    .then((r) => { 
+      if (r.ok) {
+        setUser(null);
+      }
+    })
+  }
   return (
     <nav className="fixed-top navbar navbar-expand-sm  navbar-expand-lg navbar-dark bg-light static-top" >
       <div className="container-fluid">
@@ -12,9 +32,45 @@ const Navbar = () => {
         <div
           class="collapse navbar-collapse justify-content-end"
           id="navbarSupportedContent"
-        >
+        > 
           <ul className="navbar-nav">
+          {user ? (  
+            <>
+          <li className="nav-item">
+              <Link
+                className="nav-link d-flex justify-content-center"
+                to="/profile"
+                //to signup
+                style={{ color: "white" }}
+              >
+                Profile
+              </Link>
+            </li>
             <li className="nav-item">
+            <Link
+              className="nav-link d-flex justify-content-center"
+              to="/user-landing"
+              //to signup
+              style={{ color: "white" }}
+            >
+             Raise an issue
+            </Link>
+          </li>
+          <li className="nav-item">
+          <Link
+            className="nav-link d-flex justify-content-center"
+            to="/"
+            onClick={HandleLogout}
+            //to signup
+            style={{ color: "white" }}
+          >
+            Logout
+          </Link>
+        </li>
+        </>
+            ) : (
+            <>
+            {/* <li className="nav-item">
               <Link
                 className="nav-link d-flex justify-content-center"
                 to="/"
@@ -23,7 +79,7 @@ const Navbar = () => {
               >
                 About Us
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link
                 className="nav-link d-flex justify-content-center"
@@ -34,6 +90,8 @@ const Navbar = () => {
                 Get started
               </Link>
             </li>
+          </>
+          )}
           </ul>
         </div>
       </div>

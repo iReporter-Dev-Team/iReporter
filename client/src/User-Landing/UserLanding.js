@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
+import Navbar from "../components/Navbar";
+import "../styles/LocationBar.css";
 
 export default function UserLanding({ user }) {
   const [location, setLocation] = useState("");
@@ -8,6 +11,27 @@ export default function UserLanding({ user }) {
   // redflag
   const [categoryBtn, setCategoryBtn] = useState("redflag");
   const [displayy, setDisplayy] = useState("none");
+
+  // ************* Map Location Functionality *************
+  const autoCompleteRef = useRef();
+  const inputRef = useRef();
+  const options = {
+    // componentRestrictions: { country: "ke" },
+    fields: ["address_components", "geometry", "icon", "name"],
+    // types: ["establishment"],
+  };
+  useEffect(() => {
+    autoCompleteRef.current = new window.google.maps.places.Autocomplete(
+      inputRef.current,
+      options
+    );
+
+    autoCompleteRef.current.addListener("place_changed", async function () {
+      const place = await autoCompleteRef.current.getPlace();
+      console.log({ place });
+    });
+  }, []);
+  // ************* Map Location Functionality *************
 
   function handleSubmitRedflag(e) {
     e.preventDefault();
@@ -43,19 +67,24 @@ export default function UserLanding({ user }) {
 
   return (
     <>
-      <h2>Welcome {user?.name}</h2>
+      <Navbar />
+      <Logo>Welcome, {user?.name}!</Logo>
 
       <div style={{}}>
         <div class="row justify-content-center">
           <div class="col-sm-5 mb-3">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Redflag</h5>
+                <h5 class="card-title">What is a Red-Flag Incident?</h5>
                 <img
                   class="card-img-top"
                   src="https://2456764.fs1.hubspotusercontent-na1.net/hub/2456764/hubfs/2102%20Blogs/red-flags-1200-627.jpg?width=680&name=red-flags-1200-627.jpg"
                   alt="Redflag"
                 />
+                <h5>
+                  A red-flag is an incident linked to corruption and/or
+                  corruption-related activities.
+                </h5>
                 <div class="text-center">
                   <button
                     class="btn btn-danger mt-3"
@@ -64,7 +93,7 @@ export default function UserLanding({ user }) {
                       setDisplayy("block");
                     }}
                   >
-                    Report redflag
+                    Report A Red-Flag Incident
                   </button>
                 </div>
               </div>
@@ -74,12 +103,16 @@ export default function UserLanding({ user }) {
           <div class="col-sm-5 mb-3">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Intervention</h5>
+                <h5 class="card-title">What is an Intervention Incident?</h5>
                 <img
                   class="card-img-top"
                   src="https://thumbs.dreamstime.com/b/intervention-grungy-wooden-headline-maple-d-rendered-royalty-free-stock-image-can-be-used-online-website-86488320.jpg"
                   alt="Redflag"
                 />
+                <h5>
+                  An intervention is a call for a government agency to intervene
+                  e.g repair bad roads, collapsed bridges e.t.c
+                </h5>
                 <div class="text-center">
                   <button
                     class="btn btn-danger mt-4"
@@ -88,7 +121,7 @@ export default function UserLanding({ user }) {
                       setDisplayy("block");
                     }}
                   >
-                    Report Intervention
+                    Report An Intervention Incident
                   </button>
                 </div>
               </div>
@@ -101,7 +134,6 @@ export default function UserLanding({ user }) {
         <div class="d-flex justify-content-center">
           <div class="col-sm-10 ">
             <div class="shadow p-3 mb-5 bg-white rounded">
-
               <form
                 onSubmit={(e) =>
                   categoryBtn === "redflag"
@@ -112,59 +144,64 @@ export default function UserLanding({ user }) {
                 <div class=" text-center">
                   <h2>
                     {categoryBtn === "redflag"
-                      ? "Post new redflag"
-                      : "Post new intervention"}
+                      ? "Post a Red-Flag Incident"
+                      : "Post an Intervention Incident"}
                   </h2>
                 </div>
 
                 <div>
+                  {/* ********* */}
+                  {/* <label>Location :</label>
+                  <input ref={inputRef} /> */}
+                  {/* ********** */}
                   <label htmlFor="Location" className="form-label">
-                    location
+                    Location
                   </label>
                   <input
+                    ref={inputRef}
                     type="text"
                     className="form-control"
                     value={location}
-                    placeholder="location here..."
+                    placeholder="Add Location"
                     onChange={(e) => setLocation(e.target.value)}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="Location" className="form-label">
-                    image
+                  <label htmlFor="Image" className="form-label">
+                    Image
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     value={image}
-                    placeholder="image here..."
+                    placeholder="Upload Image"
                     onChange={(e) => setImage(e.target.value)}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="Location" className="form-label">
-                    video
+                  <label htmlFor="Video" className="form-label">
+                    Video
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     value={video}
-                    placeholder="video here..."
+                    placeholder="Upload Video"
                     onChange={(e) => setVideo(e.target.value)}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="Location" className="form-label">
-                    description
+                  <label htmlFor="Description" className="form-label">
+                    Incident Description
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     value={description}
-                    placeholder="description here..."
+                    placeholder="Add Description"
                     onChange={(e) => setDescription(e.target.value)}
                   />
                 </div>
@@ -172,7 +209,11 @@ export default function UserLanding({ user }) {
                   <input
                     class="btn btn-danger mt-3"
                     type={"submit"}
-                    value={categoryBtn === "redflag" ? "Submit " : "Submit "}
+                    value={
+                      categoryBtn === "redflag"
+                        ? "Submit Red-Flag Incident"
+                        : "Submit Intervention Incident "
+                    }
                   />
                 </div>
               </form>
@@ -183,3 +224,18 @@ export default function UserLanding({ user }) {
     </>
   );
 }
+
+const Logo = styled.h1`
+  font-family: "Permanent Marker", serif;
+  font-size: 2.5rem;
+  color: teal;
+  margin: 20px 0;
+  padding-top: 80px;
+  padding-left: 40px;
+  line-height: 1;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+`;

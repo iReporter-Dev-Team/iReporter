@@ -59,7 +59,7 @@ function SignUp({ onLogin }) {
     <div className="sign-up-page">
       <div className="sign-up-holder">
       <form onSubmit={handleSubmit}>
-      <h2 style={{ textAlign: "center"}}>iReporter</h2>
+      <Link to="/" style={{ textDecoration: "none", color: "black"}}><h2 style={{ textAlign: "center"}}>iReporter</h2></Link>
       <label>Name</label>
       {/* <div className="form-field-signup"> */}
         {/* <MdPerson style={{ color: "#c60021", borderRight: "1px solid #000"}}/> */}
@@ -126,7 +126,7 @@ function SignUp({ onLogin }) {
         </div>
       </form>
       <p style={{ textAlign: "center", marginTop: "20px" }}>Already have an account?</p>
-        <Link to="/login" style={{ textDecoration: "none", color: "#c60021", textAlign: "center", marginTop: "-10px"}}>Login</Link>
+        <Link to="/login" style={{ textDecoration: "none", color: "#c60021", textAlign: "center", marginTop: "-25px"}}>Login</Link>
     </div>
     </div>
   )

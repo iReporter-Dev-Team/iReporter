@@ -90,7 +90,6 @@ const AboutUs = () => {
             <Map />
           </div>
         </section>
-
         <section  className="about">
           <h1 style={{ fontweight: "bold",  textAlign: 'center',color: "#fa7670" }}>About Us &nbsp;</h1>
           <p style={{ padding:"30px" }}>
@@ -145,7 +144,7 @@ const AboutUs = () => {
               />
             </li>
           </ul>
-          <Link to="/login">
+          <Link to="/get-started">
             <MDBBtn outline rounded className="mx-2" color="dark">
               Share Your Story
             </MDBBtn>
