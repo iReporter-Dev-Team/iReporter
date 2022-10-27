@@ -41,7 +41,7 @@ const Navbar = () => {
                 className="nav-link d-flex justify-content-center"
                 to="/profile"
                 //to signup
-                style={{ color: "white" }}
+                style={{ color: "#fa7670" }}
               >
                 {user.name}'s Profile
               </Link>
@@ -51,7 +51,7 @@ const Navbar = () => {
               className="nav-link d-flex justify-content-center"
               to="/user-landing"
               //to signup
-              style={{ color: "white" }}
+              style={{ color: "#fa7670" }}
             >
              Raise an issue
             </Link>
@@ -62,7 +62,7 @@ const Navbar = () => {
             to="/"
             onClick={HandleLogout}
             //to signup
-            style={{ color: "white" }}
+            style={{ color: "#fa7670" }}
           >
             Logout
           </Link>
@@ -85,7 +85,7 @@ const Navbar = () => {
                 className="nav-link d-flex justify-content-center"
                 to="/get-started"
                 //to signup
-                style={{ color: "black" }}
+                style={{ color: "#fa7670" }}
               >
                 Get started
               </Link>

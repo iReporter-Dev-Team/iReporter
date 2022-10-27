@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import AdminNavbar from "./AdminNavbar";
+import Footer from "./Footer";
 import User from "./User";
 import "../styles/SearchBar.css";
 

@@ -124,7 +124,7 @@ const AboutUs = () => {
                     </cite>
                     <p>
                       "{description.substring(0, 400)}"{" "}
-                      <Link to="/login" style={{ fontweight: "bold" }}>
+                      <Link to="/get-started" style={{ fontweight: "bold", textDecoration: "none" }}>
                         ...Read more
                       </Link>
                     </p>
@@ -144,8 +144,8 @@ const AboutUs = () => {
               />
             </li>
           </ul>
-          <Link to="/get-started">
-            <MDBBtn outline rounded className="mx-2" color="dark">
+          <Link to="/get-started" style={{ marginLeft: "20px"}}>
+            <MDBBtn outline rounded className="mx-2" color="light">
               Share Your Story
             </MDBBtn>
           </Link>

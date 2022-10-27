@@ -45,7 +45,6 @@ export default function UserLanding({ user }) {
     };
     console.log("Red Flag");
     console.log(formData);
-
     setDisplayy("none");
   }
 
@@ -69,7 +68,7 @@ export default function UserLanding({ user }) {
     <>
       <Navbar />
       <Logo>Welcome, {user?.name}!</Logo>
-      <div style={{}}>
+      <div>
         <div class="row justify-content-center">
           <div class="col-sm-5 mb-3">
             <div class="card">
@@ -110,7 +109,7 @@ export default function UserLanding({ user }) {
                 />
                 <h5>
                   An intervention is a call for a government agency to intervene
-                  e.g repair bad roads, collapsed bridges e.t.c
+                  e.g repair bad roads, collapsed bridges.
                 </h5>
                 <div class="text-center">
                   <button
@@ -143,11 +142,10 @@ export default function UserLanding({ user }) {
                 <div class=" text-center">
                   <h2>
                     {categoryBtn === "redflag"
-                      ? "Post a Red-Flag Incident"
-                      : "Post an Intervention Incident"}
+                      ? "Report a Red-Flag Incident"
+                      : "Report an Intervention Incident"}
                   </h2>
                 </div>
-
                 <div>
                   {/* ********* */}
                   {/* <label>Location :</label>

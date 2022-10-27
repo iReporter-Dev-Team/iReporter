@@ -108,7 +108,7 @@ html {
   grid-gap: 1rem;
   grid-template-columns: repeat(5, 1fr);
   grid-row: 2;
-  margin-left: 50px;
+  margin-left: 35px;
   margin-top: -85px;
   justify-self: center;
 }
@@ -131,6 +131,7 @@ html {
   font-size: 0.875rem;
   font-style: normal;
   margin-bottom: 1.25rem;
+  margin-right: 30px;
 }
 
 .carousel__name {
@@ -184,9 +185,6 @@ html {
 .spacer {
   margin-top: 130px;
 }
-=======
- right: 0;
- left: 0;
 
    /* position: absolute;
   left: 0;
@@ -198,4 +196,4 @@ html {
   background-color: #080000;
   border-top:2px solid red;
   height:80px; */
-} 
+
