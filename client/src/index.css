@@ -11,7 +11,7 @@
   background-size: cover;   */
 }
 .float-child1 {
-  border-radius: 15px 50px 30px;
+  border-radius: 20px 50px 30px;
   background: #fa7670;
   padding: 20px;
   height: 150px;
@@ -156,10 +156,25 @@ html {
 } */
 .footer {
   background-color: #E3E3E3;
-  border-top:2px solid red;
- position: fixed;
+  /* border-top:2px solid red; */
+ position: relative;
+ z-index: 1;
  width: 100%;
  height:80px;
  bottom: 0;
+ right: 0;
+ left: 0;
 
-}
+   /* position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+
+  background-color: #080000;
+  border-top:2px solid red;
+  height:80px; */
+} 
+
+

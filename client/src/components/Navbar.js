@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="fixed-top navbar navbar-expand-sm  navbar-expand-lg navbar-dark bg-dark static-top" >
+    <nav className="fixed-top navbar navbar-expand-sm  navbar-expand-lg navbar-dark bg-light static-top" >
       <div className="container-fluid">
       <Link to={"/"} className="navbar-brand" style={{ fontWeight: "bold",color: "#fa7670",padding:"2px" }} >
       iREPO{/* <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/327/eyes_1f440.png" alt="..." height="36"/>*/}RTER
@@ -18,7 +18,7 @@ const Navbar = () => {
               <Link
                 className="nav-link d-flex justify-content-center"
                 to="/"
-                style={{ color: "white" }}
+                style={{ color: "black" }}
 
               >
                 About Us
@@ -29,7 +29,7 @@ const Navbar = () => {
                 className="nav-link d-flex justify-content-center"
                 to="/get-started"
                 //to signup
-                style={{ color: "white" }}
+                style={{ color: "black" }}
               >
                 Get started
               </Link>
