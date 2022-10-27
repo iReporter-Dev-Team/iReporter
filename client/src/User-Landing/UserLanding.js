@@ -69,7 +69,6 @@ export default function UserLanding({ user }) {
     <>
       <Navbar />
       <Logo>Welcome, {user?.name}!</Logo>
-
       <div style={{}}>
         <div class="row justify-content-center">
           <div class="col-sm-5 mb-3">

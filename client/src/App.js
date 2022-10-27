@@ -8,6 +8,7 @@ import AdminDashboard from "./AdminDashboard";
 import Profile from "./components/Profile/profile";
 import UserLanding from "./User-Landing/UserLanding";
 import UsersList from "./components/UsersList";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -19,7 +20,7 @@ function App() {
       }
     });
   }, []);
-
+    
   return (
     <div className="row mt-3">
       <Routes>
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/user-landing" element={<UserLanding user={user}/>} />
         <Route exact path="/users" element={<UsersList user={user} />} />
         <Route exact path="/profile" element={<Profile user={user} />} />
+        <Route path="/*" element={<NotFound/>}/>
       </Routes>
     </div>
   );
