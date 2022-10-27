@@ -31,11 +31,13 @@ function SignIn({ onLogin, is_admin }) {
             navigate('/dashboard')
           } 
           else {
+            setIsLoading(false)
             onLogin(user)
-            navigate('/')
+            navigate('/user-landing')
           }
       })}
       else {
+        setIsLoading(false)
         r.json().then((err) => setErrors([err.errors]));
       }
     });
@@ -45,7 +47,7 @@ function SignIn({ onLogin, is_admin }) {
     <div className='sign-in-page'>
       <div className="sign-in-holder">
       <form onSubmit={handleSubmit}>
-      <h2 style={{ textAlign: "center"}}>iReporter</h2>
+      <Link to="/" style={{ textDecoration: "none", color: "black"}}><h2 style={{ textAlign: "center"}}>iReporter</h2></Link>
       <label>Email</label>
       {/* <div className="form-field-login"> */}
         {/* <MdEmail className="login-icon" style={{ color: "#c60021", borderRight: "1px solid #000"}}/> */}
@@ -76,7 +78,7 @@ function SignIn({ onLogin, is_admin }) {
         </div>
         <div>
           {errors.map((error) => (
-            <p key={error} style={{ color: "red" }}>{error}</p>
+            <p key={error} style={{ color: "red", textAlign: "center" }}>{error}</p>
           ))} 
         </div>
         <p style={{ textAlign: "center", marginTop: "20px" }}>New to iReporter?</p>

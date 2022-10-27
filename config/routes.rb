@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :redflags, except:[:show] 
+  resources :redflags
 
-  resources :interventions, except: [:show]
+  resources :interventions
 
-  resources :users, only: [:index, :create, :show]
+  resources :users, only: [:index, :create, :show, :update, :destroy]
 
   get '/me', to: 'users#show'
 
