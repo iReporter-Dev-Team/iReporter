@@ -32,11 +32,11 @@ function Profile() {
   };
 
   // Handle Redflag Update
-  // const handleRedflagUpdate = (updatedRedflag) => {
+  const handleRedflagUpdate = (updatedRedflag) => {
   const handleRedflagUpdate = redflags.map((redflag) => {
     return redflag.id === updatedRedflag.id ? updatedRedflag : redflag;
   });
-  // };
+  };
 
   // HandleInterventionDelete
   const handleInterventionDelete = (id) => {
@@ -44,13 +44,13 @@ function Profile() {
   };
 
   // Handle Intervention Update
-  // const handleInterventionUpdate = (updatedIntervention) => {
+  const handleInterventionUpdate = (updatedIntervention) => {
   const handleInterventionUpdate = interventions.map((intervention) => {
     return intervention.id === updatedIntervention.id
       ? updatedIntervention
       : intervention;
   });
-  // };
+  };
 
   return (
     <>
