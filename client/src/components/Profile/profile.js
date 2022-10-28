@@ -1,51 +1,88 @@
-// import React, { useState } from "react";
-// import Footer from "../Footer";
-// import NavBar from "../Navbar";
+import React, { useState, useEffect } from "react";
+import Footer from "../Footer";
+import NavBar from "../Navbar";
+// import UsersList from "../UsersList";
 
-// function Profile() {
-//   const [location, setLocation] = useState("");
-//   const [mail, setMail] = useState("");
-//   const [phone, setPhone] = useState("");
+function Profile() {
+  const [redflags, setRedflags] = useState([]);
+  const [interventions, setInterventions] = useState([]);
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // fetch response
-//     fetch("/raiseissue", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application",
-//       },
-//       body: JSON.stringify({ location, mail, phone }),
-//     }).then((r) => {
-//       r.json();
-//     });
-//   };
+  // fetch redflags response
+  useEffect(() => {
+    fetch("/redflags")
+      .then((r) => r.json())
+      .then((data) => setRedflags(data));
+  }, []);
 
-//   return (
-//     <>
-//       <NavBar />
+  // fetch interventions responses
+  useEffect(() => {
+    fetch("/interventions")
+      .then((r) => r.json())
+      .then((data) => setInterventions(data));
+  }, []);
 
-//       <div>
-//         {redflags.map((redflag) => (
-//           <Card key={redflag}>
-//             <h2>{title}</h2>
-//             <p>{description}</p>
-//           </Card>
-//         ))}
-//       </div>
+  // display specific data to user
+  // function showRedflag(){
+  //   if
+  // }
 
-//       <div>
-//         {interventions.map((intervention) => (
-//           <Card key={intervention}>
-//             <h2>{title}</h2>
-//             <p>{description}</p>
-//           </Card>
-//         ))}
-//       </div>
+  // HandleRedflagDelete
+  const handleredflagDelete = (id) => {
+    setRedflags(redflags.filter((user) => user.id !== id));
+  };
 
-//       <Footer />
-//     </>
-//   );
-// }
+  // Handle Redflag Update
+  // const handleRedflagUpdate = (updatedRedflag) => {
+  const handleRedflagUpdate = redflags.map((redflag) => {
+    return redflag.id === updatedRedflag.id ? updatedRedflag : redflag;
+  });
+  // };
 
-// export default Profile;
+  // HandleInterventionDelete
+  const handleInterventionDelete = (id) => {
+    setInterventions(interventions.filter((user) => user.id !== id));
+  };
+
+  // Handle Intervention Update
+  // const handleInterventionUpdate = (updatedIntervention) => {
+  const handleInterventionUpdate = interventions.map((intervention) => {
+    return intervention.id === updatedIntervention.id
+      ? updatedIntervention
+      : intervention;
+  });
+  // };
+
+  return (
+    <>
+      <NavBar />
+
+      {/* Cards */}
+      <div>
+        {redflags.map((redflag) => (
+          <div key={redflag}>
+            <h2>{redflag.status}</h2>
+            <p>{redflag.description}</p>
+            <button onClick={handleRedflagUpdate}>Update</button>
+            <button onClick={handleredflagDelete}>Delete</button>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        {interventions.map((intervention) => (
+          <div key={intervention}>
+            <h2>{intervention.status}</h2>
+            <p>{intervention.description}</p>
+            <button onClick={handleInterventionUpdate}>Update</button>
+            <button onClick={handleInterventionDelete}>Delete</button>
+          </div>
+        ))}
+      </div>
+
+      {/* <UsersList /> */}
+
+      <Footer />
+    </>
+  );
+}
+export default Profile;
