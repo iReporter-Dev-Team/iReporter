@@ -3,7 +3,8 @@ import Footer from "../Footer";
 import NavBar from "../Navbar";
 // import UsersList from "../UsersList";
 
-function Profile() {
+function Profile({ user }) {
+  // const []
   const [redflags, setRedflags] = useState([]);
   const [interventions, setInterventions] = useState([]);
 
@@ -14,12 +15,16 @@ function Profile() {
       .then((data) => setRedflags(data));
   }, []);
 
+  const filteredRedflags = redflags.filter((flag) => flag.user_id == user.id);
+
   // fetch interventions responses
   useEffect(() => {
     fetch("/interventions")
       .then((r) => r.json())
       .then((data) => setInterventions(data));
   }, []);
+
+  const filteredInterventions = interventions.filter((intervention) => intervention.user_id == user.id);
 
   // display specific data to user
   // function showRedflag(){
@@ -33,9 +38,10 @@ function Profile() {
 
   // Handle Redflag Update
   const handleRedflagUpdate = (updatedRedflag) => {
-  const handleRedflagUpdate = redflags.map((redflag) => {
-    return redflag.id === updatedRedflag.id ? updatedRedflag : redflag;
-  });
+    const handleRedflagUpdates = redflags.map((redflag) => {
+      return redflag.id === updatedRedflag.id ? updatedRedflag : redflag;
+    });
+    setRedflags(handleRedflagUpdates)
   };
 
   // HandleInterventionDelete
@@ -45,11 +51,12 @@ function Profile() {
 
   // Handle Intervention Update
   const handleInterventionUpdate = (updatedIntervention) => {
-  const handleInterventionUpdate = interventions.map((intervention) => {
-    return intervention.id === updatedIntervention.id
-      ? updatedIntervention
-      : intervention;
-  });
+    const handleInterventionUpdates = interventions.map((intervention) => {
+      return intervention.id === updatedIntervention.id
+        ? updatedIntervention
+        : intervention;
+    });
+    setInterventions(handleInterventionUpdates)
   };
 
   return (
@@ -58,7 +65,7 @@ function Profile() {
 
       {/* Cards */}
       <div>
-        {redflags.map((redflag) => (
+        {filteredRedflags.map((redflag) => (
           <div key={redflag}>
             <h2>{redflag.status}</h2>
             <p>{redflag.description}</p>
@@ -69,7 +76,7 @@ function Profile() {
       </div>
 
       <div>
-        {interventions.map((intervention) => (
+        {filteredInterventions.map((intervention) => (
           <div key={intervention}>
             <h2>{intervention.status}</h2>
             <p>{intervention.description}</p>
