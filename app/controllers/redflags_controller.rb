@@ -12,6 +12,7 @@ class RedflagsController < ApplicationController
             render json: { errors: redflag.errors.full_messages }, status: :unprocessable_entity
         end
     end
+    
     def show 
         redflag = Redflag.find_by!(id: params[:id])
         render json: redflag, status: :ok

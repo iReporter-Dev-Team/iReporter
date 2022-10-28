@@ -1,8 +1,7 @@
-// 🎙
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const AdminNavbar = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -23,10 +22,11 @@ const Navbar = () => {
       }
     })
   }
+  
   return (
-    <nav className="fixed-top navbar navbar-expand-sm  navbar-expand-lg navbar-dark bg-light static-top" >
+    <nav className="fixed-top navbar navbar-expand-sm  navbar-expand-lg navbar-dark bg-light static-top">
       <div className="container-fluid">
-      <Link to={"/"} className="navbar-brand" style={{ fontWeight: "bold",color: "#fa7670",padding:"2px" }} >
+      <Link to={"/"} className="navbar-brand" style={{ fontWeight: "bold", color: "#fa7670",padding:"2px" }}>
       iREPO{/* <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/327/eyes_1f440.png" alt="..." height="36"/>*/}RTER
       </Link>
         <div
@@ -34,26 +34,24 @@ const Navbar = () => {
           id="navbarSupportedContent"
         > 
           <ul className="navbar-nav">
-          {user ? (  
-            <>
           <li className="nav-item">
               <Link
                 className="nav-link d-flex justify-content-center"
-                to="/profile"
+                to="/dashboard"
                 //to signup
                 style={{ color: "#fa7670" }}
               >
-                {user.name}'s Profile
+                Dashboard
               </Link>
             </li>
             <li className="nav-item">
             <Link
               className="nav-link d-flex justify-content-center"
-              to="/user-landing"
+              to="/users"
               //to signup
               style={{ color: "#fa7670" }}
             >
-             Raise an issue
+             Users
             </Link>
           </li>
           <li className="nav-item">
@@ -67,31 +65,6 @@ const Navbar = () => {
             Logout
           </Link>
         </li>
-        </>
-            ) : (
-            <>
-            {/* <li className="nav-item">
-              <Link
-                className="nav-link d-flex justify-content-center"
-                to="/"
-                style={{ color: "black" }}
-
-              >
-                About Us
-              </Link>
-            </li> */}
-            <li className="nav-item">
-              <Link
-                className="nav-link d-flex justify-content-center"
-                to="/get-started"
-                //to signup
-                style={{ color: "#fa7670" }}
-              >
-                Get started
-              </Link>
-            </li>
-          </>
-          )}
           </ul>
         </div>
       </div>
@@ -99,4 +72,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default AdminNavbar;

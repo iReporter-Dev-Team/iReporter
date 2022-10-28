@@ -12,7 +12,7 @@ function SignUp({ onLogin }) {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [isAdmin, setIsAdmin] = useState(true)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -37,6 +37,7 @@ function SignUp({ onLogin }) {
       if (r.ok) {
         r.json().then((user) => {
           setIsLoading(false)
+          setIsAdmin(false)
           onLogin(user)
           navigate('/user-landing')
         })

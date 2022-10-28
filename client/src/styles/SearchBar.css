@@ -5,7 +5,7 @@
 .search-container input {
   font-family: “Permanent Marker”, sans-serif;
   display: block;
-  width: calc(100% - 456px);
+  /* width: calc(100% - 256px); */ /*varying screen sizes*/
   font-size: 20px;
   font-weight: 300;
   color: teal;

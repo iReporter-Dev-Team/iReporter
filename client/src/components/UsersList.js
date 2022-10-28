@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Navbar from "./Navbar";
+import AdminNavbar from "./AdminNavbar";
 import Footer from "./Footer";
 import User from "./User";
 import "../styles/SearchBar.css";
@@ -30,7 +30,7 @@ function UsersList({ user }) {
 
   return (
     <>
-      <Navbar />
+      <AdminNavbar/>
       <Logo>Active Reporters</Logo>
 
       {/* SEARCH INPUT */}
@@ -59,7 +59,6 @@ const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-
   max-width: 900px;
   margin: 40px auto;
   padding-bottom: 120px;
