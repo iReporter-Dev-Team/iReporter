@@ -1,81 +1,95 @@
-// import React, { useState } from "react";
-// import Footer from "../Footer";
-// import NavBar from "../Navbar";
+import React, { useState, useEffect } from "react";
+import Footer from "../Footer";
+import NavBar from "../Navbar";
+// import UsersList from "../UsersList";
 
-// function Profile() {
-//   const [location, setLocation] = useState("");
-//   const [mail, setMail] = useState("");
-//   const [phone, setPhone] = useState("");
+function Profile({ user }) {
+  // const []
+  const [redflags, setRedflags] = useState([]);
+  const [interventions, setInterventions] = useState([]);
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // fetch response
-//     fetch("/raiseissue", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application",
-//       },
-//       body: JSON.stringify({ location, mail, phone }),
-//     }).then((r) => {
-//       r.json();
-//     });
-//   };
+  // fetch redflags response
+  useEffect(() => {
+    fetch("/redflags")
+      .then((r) => r.json())
+      .then((data) => setRedflags(data));
+  }, []);
 
-//   return (
-//     <>
-//       <NavBar />
-//       <form onSubmit={handleSubmit}>
-//         <FormField>
-//           Please provide us with more information;
-//           <label htmlFor="location">Location</label>
-//           <input
-//             type="text"
-//             id="location"
-//             autoComplete="off"
-//             value={location}
-//             onChange={(e) => setLocation(e.target.value)}
-//             required
-//           />
-//         </FormField>
+  const filteredRedflags = redflags.filter((flag) => flag.user_id == user.id);
 
-//         <FormField>
-//           <label htmlFor="mail">Email Address</label>
-//           <input
-//             type="text"
-//             id="mail"
-//             value={mail}
-//             onChange={(e) => setMail(e.target.value)}
-//             required
-//           />
-//         </FormField>
+  // fetch interventions responses
+  useEffect(() => {
+    fetch("/interventions")
+      .then((r) => r.json())
+      .then((data) => setInterventions(data));
+  }, []);
 
-//         <FormField>
-//           <label htmlFor="phone">Phone Number</label>
-//           <input
-//             type="integer"
-//             id="phone"
-//             value={phone}
-//             onChange={(e) => setPhone(e.target.value)}
-//             required
-//           />
-//         </FormField>
+  const filteredInterventions = interventions.filter((intervention) => intervention.user_id == user.id);
 
-//         <button type="submit" value="Submit" />
-//       </form>
+  // display specific data to user
+  // function showRedflag(){
+  //   if
+  // }
 
-//       <div>
-//         {errors.map((err) => (
-//           <Card key={err}>
-//             <h2>{title}</h2>
-//             <p>{description}</p>
-//           </Card>
-//         ))}
-//       </div>
+  // HandleRedflagDelete
+  const handleredflagDelete = (id) => {
+    setRedflags(redflags.filter((user) => user.id !== id));
+  };
 
+  // Handle Redflag Update
+  const handleRedflagUpdate = (updatedRedflag) => {
+    const handleRedflagUpdates = redflags.map((redflag) => {
+      return redflag.id === updatedRedflag.id ? updatedRedflag : redflag;
+    });
+    setRedflags(handleRedflagUpdates)
+  };
 
-//       <Footer />
-//     </>
-//   );
-// }
+  // HandleInterventionDelete
+  const handleInterventionDelete = (id) => {
+    setInterventions(interventions.filter((user) => user.id !== id));
+  };
 
-// export default Profile;
+  // Handle Intervention Update
+  const handleInterventionUpdate = (updatedIntervention) => {
+    const handleInterventionUpdates = interventions.map((intervention) => {
+      return intervention.id === updatedIntervention.id
+        ? updatedIntervention
+        : intervention;
+    });
+    setInterventions(handleInterventionUpdates)
+  };
+
+  return (
+    <>
+      <NavBar />
+
+      {/* Cards */}
+      <div>
+        {filteredRedflags.map((redflag) => (
+          <div key={redflag}>
+            <h2>{redflag.status}</h2>
+            <p>{redflag.description}</p>
+            <button onClick={handleRedflagUpdate}>Update</button>
+            <button onClick={handleredflagDelete}>Delete</button>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        {filteredInterventions.map((intervention) => (
+          <div key={intervention}>
+            <h2>{intervention.status}</h2>
+            <p>{intervention.description}</p>
+            <button onClick={handleInterventionUpdate}>Update</button>
+            <button onClick={handleInterventionDelete}>Delete</button>
+          </div>
+        ))}
+      </div>
+
+      {/* <UsersList /> */}
+
+      <Footer />
+    </>
+  );
+}
+export default Profile;
