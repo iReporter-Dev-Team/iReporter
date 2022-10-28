@@ -19,6 +19,8 @@ const AdminNavbar = () => {
     .then((r) => { 
       if (r.ok) {
         setUser(null);
+      } else {
+        r.json().then(console.log("There was an error in logging you out"))
       }
     })
   }

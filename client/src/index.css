@@ -197,3 +197,8 @@ html {
   border-top:2px solid red;
   height:80px; */
 
+  .not-authorized {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
