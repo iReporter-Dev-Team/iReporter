@@ -29,7 +29,7 @@ function AdminDashboard({ user }) {
     setRedFlags={setRedFlags}
     key={redFlag.id}
     id={redFlag.id}
-    name={redFlag?.user?.name}
+    name={redFlag?.user_id}
     location={redFlag.location}
     image={redFlag.image}
     video={redFlag.video}
@@ -43,14 +43,14 @@ function AdminDashboard({ user }) {
       setInterventions={setInterventions}
       key={intervention.id}
       id={intervention.id}
-      name={intervention?.user?.name}
+      name={intervention?.user_id}
       location={intervention.location}
       image={intervention.image}
       video={intervention.video}
       status={intervention.status}
     />
     })
-
+    
   return (
     <div>
       <AdminNavbar/>

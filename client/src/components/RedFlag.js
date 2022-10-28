@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 
-function RedFlag({ id, name, location, image, video, status, redFlags, setRedFlags }) {
+function RedFlag({ id, name, location, image, video, redFlags, setRedFlags }) {
+  const [status, setStatus] = useState('Under Investigation')
   function handleDeleteRedFlag() {
     fetch(`/redflags/${id}`, {
       method: "DELETE"
@@ -22,6 +23,11 @@ function RedFlag({ id, name, location, image, video, status, redFlags, setRedFla
       }
     })
   }
+  
+  const handleSelect = (e) => {
+    setStatus(e)
+  }
+
   return (
     <>
     <tr>
@@ -29,14 +35,14 @@ function RedFlag({ id, name, location, image, video, status, redFlags, setRedFla
         <td>{name}</td>
         <td>{location}</td>
         <td>
-          <Dropdown>
+          <Dropdown onSelect={handleSelect}>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               {status}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item>Under Investigation</Dropdown.Item>
-              <Dropdown.Item>Rejected</Dropdown.Item>
-              <Dropdown.Item>Resolved</Dropdown.Item>
+              <Dropdown.Item eventKey="Under Investigation">Under Investigation</Dropdown.Item>
+              <Dropdown.Item eventKey="Rejected">Rejected</Dropdown.Item>
+              <Dropdown.Item eventKey="Resolved">Resolved</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           </td>
