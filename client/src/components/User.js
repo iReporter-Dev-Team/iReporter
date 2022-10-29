@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { MdEmail } from "react-icons/md";
 import { CiFaceSmile } from "react-icons/ci";
 import { BsPhoneVibrate } from "react-icons/bs";
@@ -9,6 +10,9 @@ function User({ user, onDeleteUser }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [password, setPassword] = useState("password");
+  const [isAdminButton, setIsAdminButton] = useState(false);
+  const navigate = useNavigate();
 
   function handleUserDelete() {
     setIsLoading(true);
@@ -22,7 +26,25 @@ function User({ user, onDeleteUser }) {
   }
 
   function handleAdminState() {
-    setIsAdmin((isAdmin) => !isAdmin);
+    fetch(`/users/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        is_admin: isAdmin,
+        password,
+      }),
+    }).then((r) => {
+      setIsAdmin((isAdmin) => !isAdmin);
+      setPassword(password);
+      if (r.ok) {
+        navigate("/users");
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
+    setIsAdminButton((isAdminButton) => !isAdminButton);
   }
 
   return (
@@ -37,7 +59,7 @@ function User({ user, onDeleteUser }) {
         <BsPhoneVibrate /> : {user.phone_number}
       </PhoneNumber>
       <ActionButtonMakeAdmin onClick={handleAdminState}>
-        {isAdmin ? "Is Admin" : "Make Admin"}
+        {user.is_admin == isAdminButton ? "Make Admin" : "Is Admin"}
       </ActionButtonMakeAdmin>
       <ActionButtonDelete onClick={handleUserDelete}>
         {isLoading ? "Deleting..." : "Delete User"}
@@ -107,9 +129,7 @@ const ActionButtonDelete = styled.button`
   border: 1px solid #fff;
   outline: 0;
   font-weight: 300;
-i
-
-  &:hover {
+  i &:hover {
     opacity: 0.8;
     transform: scale(1.2);
   }
