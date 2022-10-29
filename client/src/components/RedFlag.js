@@ -3,8 +3,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 
-function RedFlag({ id, name, location, image, video, redFlags, setRedFlags }) {
-  const [status, setStatus] = useState('Under Investigation')
+function RedFlag({ id, name, location, image, video, redFlags, redFlag, setRedFlags, status, description, user_id }) {
+  const [recordStatus, setRecordStatus] = useState('')
   function handleDeleteRedFlag() {
     fetch(`/redflags/${id}`, {
       method: "DELETE"
@@ -25,7 +25,21 @@ function RedFlag({ id, name, location, image, video, redFlags, setRedFlags }) {
   }
   
   const handleSelect = (e) => {
-    setStatus(e)
+    fetch(`/redflags/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        status: recordStatus
+      })})
+      .then((r) => {
+        if (r.ok) {
+          r.json().then(setRecordStatus(e))
+        } else {
+          r.json().then(console.log("Why doesn't this work"))
+        }
+      })
   }
 
   return (

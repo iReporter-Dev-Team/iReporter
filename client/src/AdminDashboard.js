@@ -29,7 +29,7 @@ function AdminDashboard({ user }) {
     setRedFlags={setRedFlags}
     key={redFlag.id}
     id={redFlag.id}
-    name={redFlag?.user_id}
+    name={redFlag?.user?.name}
     location={redFlag.location}
     image={redFlag.image}
     video={redFlag.video}
@@ -43,7 +43,7 @@ function AdminDashboard({ user }) {
       setInterventions={setInterventions}
       key={intervention.id}
       id={intervention.id}
-      name={intervention?.user_id}
+      name={intervention?.user?.name}
       location={intervention.location}
       image={intervention.image}
       video={intervention.video}
