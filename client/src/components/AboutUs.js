@@ -157,14 +157,14 @@ const AboutUs = () => {
                       {user ? (
                         <Link
                           to="/interventions/:id"
-                          style={{ fontweight: "bold" }}
+                          style={{ fontweight: "bold", textDecoration: "none", color: "#fa7670" }}
                         >
                           ...Read more
                         </Link>
                       ) : (
                         <Link
                           to="/get-started"
-                          style={{ fontweight: "bold", textDecoration: "none" }}
+                          style={{ fontweight: "bold", textDecoration: "none", color: "#fa7670" }}
                         >
                           ...Read more
                         </Link>
@@ -193,8 +193,8 @@ const AboutUs = () => {
               </MDBBtn>
             </Link>
           ) : (
-            <Link to="/get-started">
-              <MDBBtn outline rounded className="mx-2" color="dark">
+            <Link to="/get-started" style={{ marginLeft: "20px"}}>
+              <MDBBtn outline rounded className="mx-2" color="light">
                 Share Your Story
               </MDBBtn>
             </Link>
