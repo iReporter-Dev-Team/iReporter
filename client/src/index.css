@@ -59,7 +59,20 @@ html {
 /* .mx-2{
   text-align: center;
 } */
-
+.View{
+  background-color:#fa7670;
+  height: 100vh;
+  text-align: center;
+  display: "flex";
+  
+}
+.clearfix {
+  content: "";
+  clear: both;
+  display: table;
+  border: 3px solid #fa7670;
+  padding: 55px;
+}
 .App {
   text-align: center;
   display: grid;

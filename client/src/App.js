@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../src/components/Home";
-import DashBoardViewDetails from "../src/components/DashBoardViewDetails";
+import InterventionsViewDetails from "../src/components/InterventionsViewDetails";
+import RedFlagsViewDetails from "../src/components/RedFlagsViewDetails";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 import AdminDashboard from "./AdminDashboard";
@@ -25,7 +26,8 @@ function App() {
     <div className="row mt-3">
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
-        {user?.is_admin ? (<Route exact path="/interventions/:interventionId" element={<DashBoardViewDetails />}/>) : (<Route path="/*" element={<NotFound/>}/>)}
+        {user?.is_admin ? (<Route exact path="/interventions/:interventionId" element={<InterventionsViewDetails />}/>) : (<Route path="/*" element={<NotFound/>}/>)}
+        {user?.is_admin ? (<Route exact path="/redflags/:redflagId" element={<RedFlagsViewDetails />}/>) : (<Route path="/*" element={<NotFound/>}/>)}
         {user?.is_admin ? (<Route exact path="/dashboard"element={<AdminDashboard user={user} />}/>) : (<Route path="/*" element={<NotFound/>}/>)}
         <Route exact path="/login" element={<SignIn onLogin={setUser} />} />
         <Route exact path="/get-started" element={<SignUp onLogin={setUser} />} />
