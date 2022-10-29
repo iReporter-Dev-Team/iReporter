@@ -5,6 +5,8 @@ import "../styles/LocationBar.css";
 
 export default function UserLanding({ user }) {
   const [location, setLocation] = useState(null);
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
   const [image, setImage] = useState("");
   const [video, setVideo] = useState("");
   const [description, setDescription] = useState("");
@@ -27,7 +29,7 @@ export default function UserLanding({ user }) {
       options
     );
 
-    autoCompleteRef.current.addListener("place_changed", function () {
+    autoCompleteRef.current.addListener("place_changed", function() {
       const location = autoCompleteRef.current.getPlace();
       setLocation({
         address: location.name,
@@ -176,7 +178,7 @@ export default function UserLanding({ user }) {
                       }}
                     >
                       <div style={{ marginBottom: 10 }}>
-                        <b>*Selected Place</b>
+                        <b>Selected Location:</b>
                       </div>
                       <div>
                         <b>Address:</b> {location.address}
@@ -190,6 +192,32 @@ export default function UserLanding({ user }) {
                     </div>
                   )}
                 </div>
+                {location && (
+                  <>
+                    <div>
+                      <label htmlFor="Latitude" className="form-label">
+                        Latitude
+                      </label>
+                      <input
+                        type="float"
+                        className="form-control"
+                        placeholder="Latitude Coordinate"
+                        defaultValue={location.lat.toFixed(6)}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="Longitude" className="form-label">
+                        Longitude
+                      </label>
+                      <input
+                        type="float"
+                        className="form-control"
+                        placeholder="Longitude Coordinate"
+                        defaultValue={location.lng.toFixed(6)}
+                      />
+                    </div>
+                  </>
+                )}
 
                 <div>
                   <label htmlFor="Image" className="form-label">
@@ -221,7 +249,7 @@ export default function UserLanding({ user }) {
                   <label htmlFor="Description" className="form-label">
                     Incident Description
                   </label>
-                  <input
+                  <textarea
                     type="text"
                     className="form-control"
                     value={description}
