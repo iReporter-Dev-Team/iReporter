@@ -200,6 +200,10 @@ html {
   margin-top: 130px;
 }
 
+.btn-spacer {
+  flex-grow: 1;
+}
+
    /* position: absolute;
   left: 0;
   bottom: 0;
