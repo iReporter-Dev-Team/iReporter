@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../src/components/Home";
-import InterventionsViewDetails from "../src/components/InterventionsViewDetails";
-import RedFlagsViewDetails from "../src/components/RedFlagsViewDetails";
+import InterventionsViewDetails from "./components/InterventionsViewDetails"
+import RedFlagsViewDetails from "./components/RedFlagsViewDetails";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 import AdminDashboard from "./AdminDashboard";
