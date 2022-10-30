@@ -20,9 +20,12 @@ const Navbar = () => {
     .then((r) => { 
       if (r.ok) {
         setUser(null);
+      } else {
+        r.json().then("There was an error in logging you out")
       }
     })
   }
+
   return (
     <nav className="fixed-top navbar navbar-expand-sm  navbar-expand-lg navbar-dark bg-light static-top" >
       <div className="container-fluid">

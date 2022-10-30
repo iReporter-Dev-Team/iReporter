@@ -4,7 +4,9 @@ import Navbar from "../components/Navbar";
 import "../styles/LocationBar.css";
 
 export default function UserLanding({ user }) {
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState(null);
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
   const [image, setImage] = useState("");
   const [video, setVideo] = useState("");
   const [description, setDescription] = useState("");
@@ -14,10 +16,11 @@ export default function UserLanding({ user }) {
 
   // ************* Map Location Functionality *************
   const autoCompleteRef = useRef();
-  const inputRef = useRef();
+  const inputRef = useRef(null);
+
   const options = {
     // componentRestrictions: { country: "ke" },
-    fields: ["address_components", "geometry", "icon", "name"],
+    fields: ["address_components", "geometry.location", "icon", "name"],
     // types: ["establishment"],
   };
   useEffect(() => {
@@ -26,11 +29,16 @@ export default function UserLanding({ user }) {
       options
     );
 
-    autoCompleteRef.current.addListener("place_changed", async function () {
-      const place = await autoCompleteRef.current.getPlace();
-      console.log({ place });
+    autoCompleteRef.current.addListener("place_changed", function() {
+      const location = autoCompleteRef.current.getPlace();
+      setLocation({
+        address: location.name,
+        lat: location.geometry.location.lat(),
+        lng: location.geometry.location.lng(),
+      });
     });
   }, []);
+
   // ************* Map Location Functionality *************
 
   function handleSubmitRedflag(e) {
@@ -45,6 +53,7 @@ export default function UserLanding({ user }) {
     };
     console.log("Red Flag");
     console.log(formData);
+
     setDisplayy("none");
   }
 
@@ -68,7 +77,8 @@ export default function UserLanding({ user }) {
     <>
       <Navbar />
       <Logo>Welcome, {user?.name}!</Logo>
-      <div>
+
+      <div style={{}}>
         <div class="row justify-content-center">
           <div class="col-sm-5 mb-3">
             <div class="card">
@@ -109,7 +119,7 @@ export default function UserLanding({ user }) {
                 />
                 <h5>
                   An intervention is a call for a government agency to intervene
-                  e.g repair bad roads, collapsed bridges.
+                  e.g repair bad roads, collapsed bridges e.t.c
                 </h5>
                 <div class="text-center">
                   <button
@@ -142,15 +152,12 @@ export default function UserLanding({ user }) {
                 <div class=" text-center">
                   <h2>
                     {categoryBtn === "redflag"
-                      ? "Report a Red-Flag Incident"
-                      : "Report an Intervention Incident"}
+                      ? "Post a Red-Flag Incident"
+                      : "Post an Intervention Incident"}
                   </h2>
                 </div>
+
                 <div>
-                  {/* ********* */}
-                  {/* <label>Location :</label>
-                  <input ref={inputRef} /> */}
-                  {/* ********** */}
                   <label htmlFor="Location" className="form-label">
                     Location
                   </label>
@@ -158,11 +165,59 @@ export default function UserLanding({ user }) {
                     ref={inputRef}
                     type="text"
                     className="form-control"
-                    value={location}
+                    // value={location.address}
                     placeholder="Add Location"
-                    onChange={(e) => setLocation(e.target.value)}
+                    // onChange={(e) => setLocation(e.target.value)}
                   />
+                  {location && (
+                    <div
+                      style={{
+                        marginTop: 20,
+                        lineHeight: "25px",
+                        color: "teal",
+                      }}
+                    >
+                      <div style={{ marginBottom: 10 }}>
+                        <b>Selected Location:</b>
+                      </div>
+                      <div>
+                        <b>Address:</b> {location.address}
+                      </div>
+                      <div>
+                        <b>Latitude:</b> {location.lat.toFixed(6)}
+                      </div>
+                      <div style={{ marginBottom: 20 }}>
+                        <b>Longitude:</b> {location.lng.toFixed(6)}
+                      </div>
+                    </div>
+                  )}
                 </div>
+                {location && (
+                  <>
+                    <div>
+                      <label htmlFor="Latitude" className="form-label">
+                        Latitude
+                      </label>
+                      <input
+                        type="float"
+                        className="form-control"
+                        placeholder="Latitude Coordinate"
+                        defaultValue={location.lat.toFixed(6)}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="Longitude" className="form-label">
+                        Longitude
+                      </label>
+                      <input
+                        type="float"
+                        className="form-control"
+                        placeholder="Longitude Coordinate"
+                        defaultValue={location.lng.toFixed(6)}
+                      />
+                    </div>
+                  </>
+                )}
 
                 <div>
                   <label htmlFor="Image" className="form-label">
@@ -194,7 +249,7 @@ export default function UserLanding({ user }) {
                   <label htmlFor="Description" className="form-label">
                     Incident Description
                   </label>
-                  <input
+                  <textarea
                     type="text"
                     className="form-control"
                     value={description}
