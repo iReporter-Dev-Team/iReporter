@@ -14,6 +14,7 @@ gem 'faker'
 gem 'paperclip', '~> 6.1'
 gem 'activestorage'
 gem "image_processing", ">= 1.2"
+gem 'active_model_serializers'
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"

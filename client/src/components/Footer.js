@@ -1,5 +1,12 @@
 import React from "react";
-import { CDBFooter, CDBBtn, CDBBox, CDBIcon } from 'cdbreact';
+import { CDBFooter, CDBBox } from 'cdbreact';
+import { BsFacebook } from "react-icons/bs"
+import { BsTwitter } from "react-icons/bs"
+import { BsInstagram } from "react-icons/bs"
+import { FaTiktok } from "react-icons/fa"
+import { BsYoutube } from "react-icons/bs"
+import { BsLinkedin } from "react-icons/bs"
+
 function Footer(){
     return(
       <CDBFooter className="footer">
@@ -8,24 +15,18 @@ function Footer(){
         justifyContent="between"
         alignItems="center"
         className="mx-auto py-4 flex-wrap"
-        style={{ width: '80%' }}
+        style={{ width: '80%', height: "100%" }}
       >
-        <CDBBox display="flex" alignItems="center">
-          <a href="/" className="d-flex align-items-center p-0 text-dark">
-            <span className="ml-4 h5 mb-0 font-weight-bold">iReporter</span>
-          </a>
-          <small className="ml-2">&copy; 2022. All rights reserved.</small>
+        <CDBBox style={{display: "flex", alignItems: "center"}}>
+          <span className="ml-4" style={{ color: "#fa7670"}}>&copy; iReporter. 2022 All rights reserved.</span>
         </CDBBox>
-        <CDBBox display="flex">
-          <CDBBtn flat color="dark" className="p-2">
-            <CDBIcon fab icon="facebook-f" />
-          </CDBBtn>
-          <CDBBtn flat color="dark" className="mx-3 p-2">
-            <CDBIcon fab icon="twitter" />
-          </CDBBtn>
-          <CDBBtn flat color="dark" className="p-2">
-            <CDBIcon fab icon="instagram" />
-          </CDBBtn>
+        <CDBBox style={{ display: "flex"}}>
+        <BsFacebook style={{ marginRight: "30px", cursor: "pointer", color: "#fa7670"}}/>
+        <BsTwitter style={{ marginRight: "30px", cursor: "pointer", color: "#fa7670"}}/>
+        <BsInstagram style={{ marginRight: "30px", cursor: "pointer", color: "#fa7670"}}/>
+        <FaTiktok style={{ marginRight: "30px", cursor: "pointer", color: "#fa7670"}}/>
+        <BsYoutube style={{ marginRight: "30px", cursor: "pointer", color: "#fa7670"}}/>
+        <BsLinkedin style={{ marginRight: "30px", cursor: "pointer", color: "#fa7670"}}/>
         </CDBBox>
       </CDBBox>
     </CDBFooter>

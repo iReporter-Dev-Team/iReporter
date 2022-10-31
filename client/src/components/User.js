@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { MdEmail } from "react-icons/md";
+import { CiFaceSmile } from "react-icons/ci";
+import { BsPhoneVibrate } from "react-icons/bs";
 import Error from "../styles/Error";
 
 function User({ user, onDeleteUser }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [password, setPassword] = useState("password");
+  const [isAdminButton, setIsAdminButton] = useState(false);
+  const navigate = useNavigate();
 
   function handleUserDelete() {
     setIsLoading(true);
@@ -19,16 +26,40 @@ function User({ user, onDeleteUser }) {
   }
 
   function handleAdminState() {
-    setIsAdmin((isAdmin) => !isAdmin);
+    fetch(`/users/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        is_admin: isAdmin,
+        password,
+      }),
+    }).then((r) => {
+      setIsAdmin((isAdmin) => !isAdmin);
+      setPassword(password);
+      if (r.ok) {
+        navigate("/users");
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
+    setIsAdminButton((isAdminButton) => !isAdminButton);
   }
 
   return (
     <Card key={user.id}>
-      <UserName>{user.name}</UserName>
-      <Email>{user.email}</Email>
-      <PhoneNumber>{user.phone_number}</PhoneNumber>
+      <UserName>
+        <CiFaceSmile style={{ fontSize: "60px" }} /> {user.name}
+      </UserName>
+      <Email>
+        <MdEmail /> : {user.email}
+      </Email>
+      <PhoneNumber>
+        <BsPhoneVibrate /> : {user.phone_number}
+      </PhoneNumber>
       <ActionButtonMakeAdmin onClick={handleAdminState}>
-        {isAdmin ? "Is Admin" : "Make Admin"}
+        {user.is_admin == isAdminButton ? "Make Admin" : "Is Admin"}
       </ActionButtonMakeAdmin>
       <ActionButtonDelete onClick={handleUserDelete}>
         {isLoading ? "Deleting..." : "Delete User"}
@@ -52,15 +83,24 @@ const Card = styled.div`
 `;
 
 const UserName = styled.h2`
-  font-weight: 300;
+  font-size: 36px;
+  font-weight: 200;
+  color: teal;
 `;
 
 const Email = styled.h4`
-  font-weight: 300;
+  font-size: 24px;
+  font-weight: 200;
+  color: darkblue;
+  padding-left: 20px;
+  padding-top: 20px;
 `;
 
 const PhoneNumber = styled.h4`
-  font-weight: 300;
+  font-size: 24px;
+  font-weight: 200;
+  color: black;
+  padding-left: 20px;
 `;
 
 const ActionButtonMakeAdmin = styled.button`
@@ -89,9 +129,7 @@ const ActionButtonDelete = styled.button`
   border: 1px solid #fff;
   outline: 0;
   font-weight: 300;
-  border-radius: 6px;
-
-  &:hover {
+  i &:hover {
     opacity: 0.8;
     transform: scale(1.2);
   }

@@ -36,12 +36,11 @@ class UsersController < ApplicationController
         user = User.find(params[:id])
         user.destroy
         head :no_content
-
     end
 
     private
 
     def user_params
-        params.permit(:name, :email, :phone_number,:password, :password_confirmation)
+        params.permit(:is_admin, :id, :name, :email, :phone_number,:password, :password_confirmation)
     end
 end

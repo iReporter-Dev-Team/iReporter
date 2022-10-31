@@ -7,6 +7,18 @@ import Map from "./Map";
 const AboutUs = () => {
   const [activeSlide, setActiveSlide] = useState(1);
   const [interventions, setInterventions] = useState([]);
+
+  /*****handles if logged in *******/
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+  /*****handles if logged in *******/
+
   useEffect(() => {
     let current = 1;
     const cycleReviews = () => {
@@ -73,27 +85,38 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div className="container">
-      <div class="row">
+    <div className="welcome">
+      <div className="row">
         <section className="float-container">
           <div className="float-child1 col">
             <h1>
-              <span style={{ fontweight: "bold", color: "#C60021" }}>
+              <span style={{ fontweight: "bold", color: "#5a7670" }}>
                 Welcome To &nbsp;
               </span>
-              <span>iReporter</span>
+              <span style={{ fontweight: "bold", color: "white" }}>
+                iReporter
+              </span>
             </h1>
-            A Platform where you can report any form of corruption or
-            Intervention incidences.
+            <p>
+              A Platform where you can report any form of corruption or
+              Intervention incidences.
+            </p>
           </div>
           <div className="float-child col">
             <Map />
           </div>
         </section>
-
         <section className="about">
-          <h1 style={{ fontweight: "bold", textAlign: "center" }}>About Us &nbsp;</h1>
-          <p>
+          <h1
+            style={{
+              fontweight: "bold",
+              textAlign: "center",
+              color: "#fa7670",
+            }}
+          >
+            About Us &nbsp;
+          </h1>
+          <p style={{ padding: "30px" }}>
             Corruption is a huge bane to Africa’s development. African countries
             must develop novel and localised solutions that will curb this
             menace, hence the birth of iReporter. iReporter enables any/every
@@ -102,10 +125,14 @@ const AboutUs = () => {
             that needs government intervention
           </p>
         </section>
-        <h2 style={{ fontweight: "bold",  textAlign: 'center' }}>Client's Stories</h2>
+        <h2
+          style={{ fontweight: "bold", textAlign: "center", color: "#fa7670" }}
+        >
+          Client's Stories
+        </h2>
         <div className="App ">
-          <ul className="carousel__list">
-            {interventions?.map((intervention, index) => {
+          <ul className="carousel__list" style={{ backgroundColor: "white" }}>
+            {interventions.map((intervention, index) => {
               const { description, location } = intervention;
               const count = index + 1;
 
@@ -121,13 +148,27 @@ const AboutUs = () => {
                   <blockquote className="carousel__quote">
                     <cite>
                       {/* <span className="carousel__name">{name}</span> */}
-                      <span className="carousel__citation">{location}</span>
+                      <span className="carousel__citation">
+                        Brief Report from {location}
+                      </span>
                     </cite>
                     <p>
                       "{description.substring(0, 400)}"{" "}
-                      <Link to="/login" style={{ fontweight: "bold" }}>
-                        ...Read more
-                      </Link>
+                      {user ? (
+                        <Link
+                          to="/interventions/:id"
+                          style={{ fontweight: "bold", textDecoration: "none", color: "#fa7670" }}
+                        >
+                          ...Read more
+                        </Link>
+                      ) : (
+                        <Link
+                          to="/get-started"
+                          style={{ fontweight: "bold", textDecoration: "none", color: "#fa7670" }}
+                        >
+                          ...Read more
+                        </Link>
+                      )}
                     </p>
                   </blockquote>
                 </li>
@@ -145,11 +186,19 @@ const AboutUs = () => {
               />
             </li>
           </ul>
-          <Link to="/get-started">
-            <MDBBtn outline rounded className="mx-2" color="dark">
-              Share Your Story
-            </MDBBtn>
-          </Link>
+          {user ? (
+            <Link to="/user-landing" style={{ marginLeft: "20px"}}>
+              <MDBBtn outline rounded className="mx-2" color="light">
+                Share Your Story
+              </MDBBtn>
+            </Link>
+          ) : (
+            <Link to="/get-started" style={{ marginLeft: "20px"}}>
+              <MDBBtn outline rounded className="mx-2" color="light">
+                Share Your Story
+              </MDBBtn>
+            </Link>
+          )}
         </div>
       </div>
     </div>
