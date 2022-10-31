@@ -4,15 +4,19 @@ import Navbar from "../components/Navbar";
 import "../styles/LocationBar.css";
 
 export default function UserLanding({ user }) {
-  const [location, setLocation] = useState(null);
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
+  const [headline, setHeadline] = useState('');
+  const [location, setLocation] = useState('');
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
   const [image, setImage] = useState("");
   const [video, setVideo] = useState("");
   const [description, setDescription] = useState("");
   // redflag
   const [categoryBtn, setCategoryBtn] = useState("redflag");
   const [displayy, setDisplayy] = useState("none");
+  //errors
+  const [errors, setErrors] = useState([]);
+
 
   // ************* Map Location Functionality *************
   const autoCompleteRef = useRef();
@@ -43,33 +47,77 @@ export default function UserLanding({ user }) {
 
   function handleSubmitRedflag(e) {
     e.preventDefault();
+
     const formData = {
+      headline,
       location,
+      latitude,
+      longitude,
       image,
       video,
       description,
-      status: "under investigation",
-      user_id: 1,
+      status: "Under Investigation",
+      user_id: user.id,
     };
-    console.log("Red Flag");
-    console.log(formData);
 
-    setDisplayy("none");
+    // const data = new FormData()
+    // data.append("image", image)
+    // data.append("location", location)
+    // data.append("video", video)
+    // data.append("description", description)
+    // data.append("user_id", 1)
+    
+    // console.log(data);
+  
+
+    fetch("/redflags", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+      .then((r) => {
+        if (r.ok) {
+          r.json().then(data => console.log(data))
+          setDisplayy("none");
+
+        } else {
+          r.json().then((err) => setErrors(err.errors));
+        }
+      });
   }
 
   function handleSubmitIntervention(e) {
     e.preventDefault();
     const formData = {
+      headline,
       location,
+      latitude,
+      longitude,
       image,
       video,
       description,
-      status: "under investigation",
-      user_id: 1,
+      status: "Under Investigation",
+      user_id: user.id,
     };
     console.log("Intervention");
     console.log(formData);
 
+    fetch("/interventions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then((r) => {
+      if (r.ok) {
+        r.json().then(data => console.log(data))
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
     setDisplayy("none");
   }
 
@@ -78,9 +126,9 @@ export default function UserLanding({ user }) {
       <Navbar />
       <Logo>Welcome, {user?.name}!</Logo>
 
-      <div style={{}}>
+      <div style={{ marginTop: 20 }}>
         <div class="row justify-content-center">
-          <div class="col-sm-5 mb-3">
+          <div class="col-sm-5 mb-2">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">What is a Red-Flag Incident?</h5>
@@ -108,7 +156,7 @@ export default function UserLanding({ user }) {
             </div>
           </div>
 
-          <div class="col-sm-5 mb-3">
+          <div class="col-sm-5 mb-2">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">What is an Intervention Incident?</h5>
@@ -119,7 +167,7 @@ export default function UserLanding({ user }) {
                 />
                 <h5>
                   An intervention is a call for a government agency to intervene
-                  e.g repair bad roads, collapsed bridges e.t.c
+                  e.g repairing bad roads.
                 </h5>
                 <div class="text-center">
                   <button
@@ -127,6 +175,7 @@ export default function UserLanding({ user }) {
                     onClick={() => {
                       setCategoryBtn("intervention");
                       setDisplayy("block");
+                      // setDisplayy("none");
                     }}
                   >
                     Report An Intervention Incident
@@ -137,7 +186,6 @@ export default function UserLanding({ user }) {
           </div>
         </div>
       </div>
-
       <div style={{ display: displayy }}>
         <div class="d-flex justify-content-center">
           <div class="col-sm-10 ">
@@ -156,8 +204,16 @@ export default function UserLanding({ user }) {
                       : "Post an Intervention Incident"}
                   </h2>
                 </div>
-
                 <div>
+                <label htmlFor="Location" className="form-label">
+                    Headline
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Describe in a few words the incident"
+                    onChange={(e) => setHeadline(e.target.value)}
+                  />
                   <label htmlFor="Location" className="form-label">
                     Location
                   </label>
@@ -167,7 +223,6 @@ export default function UserLanding({ user }) {
                     className="form-control"
                     // value={location.address}
                     placeholder="Add Location"
-                    // onChange={(e) => setLocation(e.target.value)}
                   />
                   {location && (
                     <div
@@ -194,6 +249,18 @@ export default function UserLanding({ user }) {
                 </div>
                 {location && (
                   <>
+                  <div>
+                      <label htmlFor="Latitude" className="form-label">
+                        Address
+                      </label>
+                      <input
+                        type="float"
+                        className="form-control"
+                        placeholder="Location"
+                        defaultValue={location.address}
+                        onChange={(e) => setLocation(e.target.value)}
+                      />
+                    </div>
                     <div>
                       <label htmlFor="Latitude" className="form-label">
                         Latitude
@@ -203,6 +270,7 @@ export default function UserLanding({ user }) {
                         className="form-control"
                         placeholder="Latitude Coordinate"
                         defaultValue={location.lat.toFixed(6)}
+                        onChange={(e) => setLatitude(e.target.value)}
                       />
                     </div>
                     <div>
@@ -214,6 +282,7 @@ export default function UserLanding({ user }) {
                         className="form-control"
                         placeholder="Longitude Coordinate"
                         defaultValue={location.lng.toFixed(6)}
+                        onChange={(e) => setLongitude(e.target.value)}
                       />
                     </div>
                   </>
@@ -225,8 +294,10 @@ export default function UserLanding({ user }) {
                   </label>
                   <input
                     type="text"
+                    name="image"
                     className="form-control"
                     value={image}
+                    // accept="image/*"
                     placeholder="Upload Image"
                     onChange={(e) => setImage(e.target.value)}
                   />
@@ -239,12 +310,13 @@ export default function UserLanding({ user }) {
                   <input
                     type="text"
                     className="form-control"
+                    // accept="video/*"
                     value={video}
+                    // placeholder="video here..."
                     placeholder="Upload Video"
                     onChange={(e) => setVideo(e.target.value)}
                   />
                 </div>
-
                 <div>
                   <label htmlFor="Description" className="form-label">
                     Incident Description
@@ -267,6 +339,11 @@ export default function UserLanding({ user }) {
                         : "Submit Intervention Incident "
                     }
                   />
+                </div>
+                <div>
+                  {errors.map((err) => (
+                    <p key={err} style={{ color: "red" }}>{err}</p>
+                  ))}
                 </div>
               </form>
             </div>

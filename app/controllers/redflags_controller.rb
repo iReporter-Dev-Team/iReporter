@@ -5,7 +5,7 @@ class RedflagsController < ApplicationController
     end
 
     def create
-        redflag = Redflag.create(redflag_params)
+        redflag = Redflag.create!(redflag_params)
         if redflag.valid?
             render json: redflag, status: :created
         else
@@ -37,7 +37,7 @@ class RedflagsController < ApplicationController
     private
     
     def redflag_params
-        params.permit(:id, :location, :image, :video, :status, :description, :user_id)
+        params.permit(:id, :headline, :latitude, :longitude, :location, :image, :video, :status, :description, :user_id)
     end
 
 end

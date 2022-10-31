@@ -16,7 +16,7 @@ function Profile({ user }) {
         .then((r) => r.json())
         .then((data) => setRedflags(data));
     }, []);
-
+    
     const filteredRedflags = redflags.filter((flag) => flag.user.id === user.id);
     const redFlagNumber = filteredRedflags.length
     const userRedFlagList = filteredRedflags.map((userRedFlag) => {

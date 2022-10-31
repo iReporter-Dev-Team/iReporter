@@ -11,7 +11,7 @@ class InterventionsController < ApplicationController
     end
 
     def create
-        intervention = Intervention.create(intervention_params)
+        intervention = Intervention.create!(intervention_params)
         if intervention.valid?
             render json: intervention, status: :created
         else
@@ -37,6 +37,6 @@ class InterventionsController < ApplicationController
     private
 
     def intervention_params
-        params.permit(:location, :image, :video, :status, :description, :user_id)
+        params.permit(:id, :headline, :latitude, :longitude, :location, :image, :video, :status, :description, :user_id)
     end
 end
