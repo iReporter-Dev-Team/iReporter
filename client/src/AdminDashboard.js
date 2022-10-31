@@ -6,9 +6,9 @@ import AdminNavbar from "./components/AdminNavbar";
 import { RiAlertFill } from "react-icons/ri";
 import { FcSupport } from "react-icons/fc"
 
-function AdminDashboard({ user }) {
-  const [redFlags, setRedFlags] = useState([]);
-  const [interventions, setInterventions] = useState([]);
+function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRedFlags}) {
+  // const [redFlags, setRedFlags] = useState([]);
+  // const [interventions, setInterventions] = useState([]);
   const [recordToggle, setRecordToggle] = useState(false)
 
   useEffect(() => {
