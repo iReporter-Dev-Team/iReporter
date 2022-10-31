@@ -14,9 +14,7 @@ export default function UserLanding({ user }) {
 
   function handleSubmitRedflag(e) {
     e.preventDefault();
-    // if (image.size > 1024){
-    // setErrors({ error: "File size cannot exceed more than 1MB" })
-    // }
+
     const formData = {
       location,
       image,
@@ -25,8 +23,16 @@ export default function UserLanding({ user }) {
       status: "under investigation",
       user_id: 1,
     };
-    console.log("Red Flag");
-    console.log(formData);
+
+    // const data = new FormData()
+    // data.append("image", image)
+    // data.append("location", location)
+    // data.append("video", video)
+    // data.append("description", description)
+    // data.append("user_id", 1)
+    
+    // console.log(data);
+  
 
     fetch("/redflags", {
       method: "POST",
@@ -35,16 +41,15 @@ export default function UserLanding({ user }) {
       },
       body: JSON.stringify(formData)
     })
-    .then((r) => {
-      if (r.ok) {
-        r.json().then(data => console.log( data))
-        // navigate("/blogs");
-        setDisplayy("none");
+      .then((r) => {
+        if (r.ok) {
+          r.json().then(data => console.log(data))
+          setDisplayy("none");
 
-      } else {
-        r.json().then((err) => setErrors(err.errors));
-      }
-    });
+        } else {
+          r.json().then((err) => setErrors(err.errors));
+        }
+      });
 
   }
 
@@ -61,29 +66,28 @@ export default function UserLanding({ user }) {
     console.log("Intervention");
     console.log(formData);
 
-    // fetch("/interventions", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(formData)
-    // })
-    // .then((r) => {
-    //   if (r.ok) {
-    //     r.json().then(data => setInterventions([...interventions, data]))
-    //     navigate("/blogs");
-    //   } else {
-    //     r.json().then((err) => setErrors(err.errors));
-    //   }
-    // });
+    fetch("/interventions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then((r) => {
+      if (r.ok) {
+        r.json().then(data => console.log(data))
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
     setDisplayy("none");
   }
 
   return (
     <>
 
-      <div style={{marginTop:20}}>
-      <h2 style={{ marginTop: "60px", marginLeft:80 }}>Welcome {user?.name}</h2>
+      <div style={{ marginTop: 20 }}>
+        <h2 style={{ marginTop: "60px", marginLeft: 80 }}>Welcome {user?.name}</h2>
 
         <div class="row justify-content-center">
           <div class="col-sm-5 mb-2">
@@ -176,11 +180,12 @@ export default function UserLanding({ user }) {
                     image
                   </label>
                   <input
-                    type="file"
+                    type="text"
+                    name="image"
                     className="form-control"
-                    // value={image}
-                    accept="image/*"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    value={image}
+                    // accept="image/*"
+                    onChange={(e) => setImage(e.target.value)}
                   />
                 </div>
 
@@ -189,12 +194,12 @@ export default function UserLanding({ user }) {
                     video
                   </label>
                   <input
-                    type="file"
+                    type="text"
                     className="form-control"
-                    accept="video/*"
-                    // value={video}
+                    // accept="video/*"
+                    value={video}
                     // placeholder="video here..."
-                    onChange={(e) => setVideo(e.target.files[0])}
+                    onChange={(e) => setVideo(e.target.value)}
                   />
                 </div>
 

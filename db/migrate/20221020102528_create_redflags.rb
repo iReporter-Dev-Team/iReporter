@@ -6,7 +6,7 @@ class CreateRedflags < ActiveRecord::Migration[7.0]
       t.text :description
       t.string :status
       t.integer :user_id
-      # t.attachment :image
+      t.string :image
 
       t.timestamps
     end

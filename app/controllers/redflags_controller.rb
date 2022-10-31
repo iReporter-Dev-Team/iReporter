@@ -38,5 +38,4 @@ class RedflagsController < ApplicationController
     def redflag_params
         params.permit(:location, :video, :status, :description, :user_id, :image)
     end
-
 end
