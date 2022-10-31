@@ -4,10 +4,11 @@ import Navbar from "../components/Navbar";
 import "../styles/LocationBar.css";
 
 export default function UserLanding({ user }) {
-  const [headline, setHeadline] = useState('');
-  const [location, setLocation] = useState('');
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+  const [headline, setHeadline] = useState("");
+  const [location, setLocation] = useState("");
+  let [address, setAddress] = useState("");
+  let [latitude, setLatitude] = useState("");
+  let [longitude, setLongitude] = useState("");
   const [image, setImage] = useState("");
   const [video, setVideo] = useState("");
   const [description, setDescription] = useState("");
@@ -16,7 +17,6 @@ export default function UserLanding({ user }) {
   const [displayy, setDisplayy] = useState("none");
   //errors
   const [errors, setErrors] = useState([]);
-
 
   // ************* Map Location Functionality *************
   const autoCompleteRef = useRef();
@@ -33,7 +33,7 @@ export default function UserLanding({ user }) {
       options
     );
 
-    autoCompleteRef.current.addListener("place_changed", function() {
+    autoCompleteRef.current.addListener("place_changed", function () {
       const location = autoCompleteRef.current.getPlace();
       setLocation({
         address: location.name,
@@ -43,6 +43,13 @@ export default function UserLanding({ user }) {
     });
   }, []);
 
+  address = location.address;
+  // console.log(address);
+  latitude = location.lat;
+  // console.log(latitude);
+  longitude = location.lng;
+  // console.log(longitude);
+
   // ************* Map Location Functionality *************
 
   function handleSubmitRedflag(e) {
@@ -50,7 +57,7 @@ export default function UserLanding({ user }) {
 
     const formData = {
       headline,
-      location,
+      address,
       latitude,
       longitude,
       image,
@@ -66,33 +73,31 @@ export default function UserLanding({ user }) {
     // data.append("video", video)
     // data.append("description", description)
     // data.append("user_id", 1)
-    
-    // console.log(data);
-  
+
+    console.log(formData);
 
     fetch("/redflags", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData)
-    })
-      .then((r) => {
-        if (r.ok) {
-          r.json().then(data => console.log(data))
-          setDisplayy("none");
-
-        } else {
-          r.json().then((err) => setErrors(err.errors));
-        }
-      });
+      body: JSON.stringify(formData),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((data) => console.log(data));
+        setDisplayy("none");
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
   }
 
   function handleSubmitIntervention(e) {
     e.preventDefault();
     const formData = {
       headline,
-      location,
+      address,
+      // location,
       latitude,
       longitude,
       image,
@@ -107,13 +112,12 @@ export default function UserLanding({ user }) {
     fetch("/interventions", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData)
-    })
-    .then((r) => {
+      body: JSON.stringify(formData),
+    }).then((r) => {
       if (r.ok) {
-        r.json().then(data => console.log(data))
+        r.json().then((data) => console.log(data));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -205,7 +209,7 @@ export default function UserLanding({ user }) {
                   </h2>
                 </div>
                 <div>
-                <label htmlFor="Location" className="form-label">
+                  <label htmlFor="Location" className="form-label">
                     Headline
                   </label>
                   <input
@@ -249,7 +253,7 @@ export default function UserLanding({ user }) {
                 </div>
                 {location && (
                   <>
-                  <div>
+                    <div>
                       <label htmlFor="Latitude" className="form-label">
                         Address
                       </label>
@@ -257,8 +261,8 @@ export default function UserLanding({ user }) {
                         type="float"
                         className="form-control"
                         placeholder="Location"
-                        defaultValue={location.address}
-                        onChange={(e) => setLocation(e.target.value)}
+                        defaultValue={address}
+                        // onChange={(e) => setAddress(e.target.value)}
                       />
                     </div>
                     <div>
@@ -269,8 +273,8 @@ export default function UserLanding({ user }) {
                         type="float"
                         className="form-control"
                         placeholder="Latitude Coordinate"
-                        defaultValue={location.lat.toFixed(6)}
-                        onChange={(e) => setLatitude(e.target.value)}
+                        defaultValue={latitude}
+                        // onChange={(e) => setLatitude(e.target.value)}
                       />
                     </div>
                     <div>
@@ -281,8 +285,8 @@ export default function UserLanding({ user }) {
                         type="float"
                         className="form-control"
                         placeholder="Longitude Coordinate"
-                        defaultValue={location.lng.toFixed(6)}
-                        onChange={(e) => setLongitude(e.target.value)}
+                        defaultValue={longitude}
+                        // onChange={(e) => setLongitude(e.target.value)}
                       />
                     </div>
                   </>
@@ -342,7 +346,9 @@ export default function UserLanding({ user }) {
                 </div>
                 <div>
                   {errors.map((err) => (
-                    <p key={err} style={{ color: "red" }}>{err}</p>
+                    <p key={err} style={{ color: "red" }}>
+                      {err}
+                    </p>
                   ))}
                 </div>
               </form>
