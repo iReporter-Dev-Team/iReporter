@@ -10,8 +10,8 @@ import Profile from "./components/Profile";
 import UserLanding from "./User-Landing/UserLanding";
 import UsersList from "./components/UsersList";
 import NotFound from "./components/NotFound";
-import UserEditRedFlag from "./components/UserEditRedFlag";
-import UserEditIntervention from "./components/UserEditIntervention";
+// import UserEditRedFlag from "./components/UserEditRedFlag";
+// import UserEditIntervention from "./components/UserEditIntervention";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -36,8 +36,8 @@ function App() {
         {user ? (<Route exact path="/user-landing" element={<UserLanding user={user}/>} />) : (<Route path="/*" element={<NotFound/>}/>)}
         {user?.is_admin ? (<Route exact path="/users" element={<UsersList user={user} />} />) : (<Route path="/*" element={<NotFound/>}/>)}
         {user ? (<Route exact path="/profile" element={<Profile user={user} />} />) : (<Route path="/*" element={<NotFound/>}/>)}
-        {user ? (<Route exact path="/edit-redflag/:id" element={<UserEditRedFlag user={user} />} />) : (<Route path="/*" element={<NotFound/>}/>)}
-        {user ? (<Route exact path="/edit-intervention/:id" element={<UserEditIntervention user={user} />} />) : (<Route path="/*" element={<NotFound/>}/>)}
+        {/* {user ? (<Route exact path="/edit-redflag/:id" element={<UserEditRedFlag user={user} />} />) : (<Route path="/*" element={<NotFound/>}/>)}
+        {user ? (<Route exact path="/edit-intervention/:id" element={<UserEditIntervention user={user} />} />) : (<Route path="/*" element={<NotFound/>}/>)} */}
         <Route path="/*" element={<NotFound/>}/>
       </Routes>
     </div>
