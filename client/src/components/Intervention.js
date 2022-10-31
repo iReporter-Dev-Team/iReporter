@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import emailjs from "emailjs-com";
 import { Link } from "react-router-dom";
 
-function Intervention({ id, name, location, interventions, setInterventions }) {
-  const [status, setStatus] = useState("Under Investigation");
+function Intervention({ id, name, location, interventions, setInterventions, status }) {
+  const [recordStatus, setRecordStatus] = useState("");
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   function handleDeleteIntervention() {
+    setIsDeleting(true);
     fetch(`/interventions/${id}`, {
       method: "DELETE",
     }).then((res) => {
@@ -15,9 +19,11 @@ function Intervention({ id, name, location, interventions, setInterventions }) {
           const revisedInterventions = interventions.filter((intervention) => {
             return intervention.id !== id;
           });
+          setIsDeleting(false);
           setInterventions(revisedInterventions);
         });
       } else {
+        setIsDeleting(false);
         res.json().then((err) => err.errors);
       }
     });
@@ -49,9 +55,39 @@ function Intervention({ id, name, location, interventions, setInterventions }) {
   // ############################ Email Notification Implementiation ######################################################
 
   const handleSelect = (e) => {
-    setStatus(e);
+    setRecordStatus(e);
+    setIsUpdating(true);
+    fetch(`/interventions/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status: recordStatus,
+      }),
+    }).then((r) => {
+      console.log(recordStatus);
+      if (r.ok) {
+        r.json().then(() => {
+          setIsUpdating(false);
+          console.log(status);
+          setRecordStatus(e);
+        });
+      } else {
+        setIsUpdating(false);
+        r.json().then(console.log("Error in updating the status"));
+      }
+    });
     sendEmail();
   };
+
+  useEffect(() => {
+    fetch(`/interventions/${id}`)
+      .then((res) => res.json())
+      .then((status) => {
+        setRecordStatus(status);
+      });
+  }, [id]);
 
   return (
     <>
@@ -62,7 +98,7 @@ function Intervention({ id, name, location, interventions, setInterventions }) {
         <td>
           <Dropdown onSelect={handleSelect}>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
-              {status}
+            {isUpdating ? "Updating the status..." : status}
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item eventKey="Under Investigation">
@@ -79,7 +115,7 @@ function Intervention({ id, name, location, interventions, setInterventions }) {
               <Button variant="info">View</Button>
             </Link>
             <Button onClick={handleDeleteIntervention} variant="danger">
-              Delete
+              {isDeleting ? "Deleting" : "Delete"}
             </Button>
           </div>
         </td>

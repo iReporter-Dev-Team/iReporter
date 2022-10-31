@@ -83,7 +83,7 @@ function RedFlag({
         });
       } else {
         setIsUpdating(false);
-        r.json().then(console.log("Why doesn't this work"));
+        r.json().then(console.log("Error in updating the status"));
       }
     });
     sendEmail();
