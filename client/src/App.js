@@ -6,7 +6,7 @@ import RedFlagsViewDetails from "./components/RedFlagsViewDetails";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 import AdminDashboard from "./AdminDashboard";
-import Profile from "./components/Profile/profile";
+import Profile from "./components/Profile";
 import UserLanding from "./User-Landing/UserLanding";
 import UsersList from "./components/UsersList";
 import NotFound from "./components/NotFound";

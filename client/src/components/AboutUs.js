@@ -187,8 +187,8 @@ const AboutUs = () => {
             </li>
           </ul>
           {user ? (
-            <Link to="/user-landing">
-              <MDBBtn outline rounded className="mx-2" color="dark">
+            <Link to="/user-landing" style={{ marginLeft: "20px"}}>
+              <MDBBtn outline rounded className="mx-2" color="light">
                 Share Your Story
               </MDBBtn>
             </Link>
