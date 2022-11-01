@@ -7,26 +7,27 @@ import UserIntervention from "./UserIntervention";
 
 import Table from 'react-bootstrap/esm/Table';
 function Profile({ user }) {
-    const [redflags, setRedflags] = useState([]);
+    const [redFlags, setRedFlags] = useState([]);
     const [interventions, setInterventions] = useState([]);
     const [reportToggle, setReportToggle] = useState(false);
 
     useEffect(() => {
         fetch("/redflags")
         .then((r) => r.json())
-        .then((data) => setRedflags(data));
+        .then((data) => setRedFlags(data));
     }, []);
     
-    const filteredRedflags = redflags.filter((flag) => flag.user.id === user.id);
-    const redFlagNumber = filteredRedflags.length
-    const userRedFlagList = filteredRedflags.map((userRedFlag) => {
+    const filteredRedFlags = redFlags?.filter((flag) => flag?.user?.id === user?.id);
+    const redFlagNumber = filteredRedFlags?.length
+    const userRedFlagList = filteredRedFlags?.map((userRedFlag) => {
       return <UserRedFlag
       key={userRedFlag.id}
+      id={userRedFlag.id}
       headline={userRedFlag.headline}
       location={userRedFlag.location}
       status={userRedFlag.status}
-      filteredRedflags={filteredRedflags}
-      setRedflags={setRedflags}
+      filteredRedFlags={filteredRedFlags}
+      setRedFlags={setRedFlags}
       />
     })
 
@@ -36,11 +37,12 @@ function Profile({ user }) {
         .then((data) => setInterventions(data));
     }, []);
 
-    const filteredInterventions = interventions.filter((intervention) => intervention.user.id === user.id)
+    const filteredInterventions = interventions?.filter((intervention) => intervention?.user?.id === user?.id)
     const interventionNumber = filteredInterventions.length
     const userInterventionList = filteredInterventions.map((userIntervention) => {
       return <UserIntervention
       key={userIntervention.id}
+      id={userIntervention.id}
       headline={userIntervention.headline}
       location={userIntervention.location}
       status={userIntervention.status}

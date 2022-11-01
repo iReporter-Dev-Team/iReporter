@@ -11,12 +11,11 @@ function RedFlag({
   redFlags,
   setRedFlags,
   status,
-
 }) {
   const [recordStatus, setRecordStatus] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-
+  
   // function handleDeleteRedFlag() {
   //   setIsDeleting(true);
   //   fetch(`/redflags/${id}`, {
