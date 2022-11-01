@@ -4,18 +4,11 @@ import Button from "react-bootstrap/Button";
 import emailjs from "emailjs-com";
 import { Link } from "react-router-dom";
 
-function RedFlag({
-  id,
-  name,
-  location,
-  redFlags,
-  setRedFlags,
-  status,
-}) {
+function RedFlag({ id, name, location, redFlags, setRedFlags, status }) {
   const [recordStatus, setRecordStatus] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  
+
   // function handleDeleteRedFlag() {
   //   setIsDeleting(true);
   //   fetch(`/redflags/${id}`, {
@@ -31,13 +24,14 @@ function RedFlag({
   //     });
   // }
   const handleDeleteRedFlag = () => {
-    fetch(`/redflags/${id}`,{
-        method: 'DELETE',
-    }) .then((response) => response.json())
-    .then(() => {
-      setRedFlags( redFlags.filter((redFlag) => redFlag.id !== id))  
+    fetch(`/redflags/${id}`, {
+      method: "DELETE",
     })
-} 
+      .then((response) => response.json())
+      .then(() => {
+        setRedFlags(redFlags.filter((redFlag) => redFlag.id !== id));
+      });
+  };
   // ############################ Email Notification Implementiation ######################################################
 
   const sendEmail = () => {
