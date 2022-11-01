@@ -155,6 +155,7 @@ export default function UserLanding({ user }) {
                     onClick={() => {
                       setCategoryBtn("redflag");
                       setDisplayy("block");
+                      window.location.href = "#form";
                     }}
                   >
                     Report A Red-Flag Incident
@@ -183,7 +184,7 @@ export default function UserLanding({ user }) {
                     onClick={() => {
                       setCategoryBtn("intervention");
                       setDisplayy("block");
-                      // setDisplayy("none");
+                      window.location.href = "#form";
                     }}
                   >
                     Report An Intervention Incident
@@ -199,6 +200,7 @@ export default function UserLanding({ user }) {
           <div class="col-sm-10 ">
             <div class="shadow p-3 mb-5 bg-white rounded">
               <form
+                id="form"
                 onSubmit={(e) =>
                   categoryBtn === "redflag"
                     ? handleSubmitRedflag(e)
