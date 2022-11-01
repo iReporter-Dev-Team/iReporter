@@ -4,8 +4,8 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import UserRedFlag from './UserRedFlag';
 import UserIntervention from "./UserIntervention";
-
 import Table from 'react-bootstrap/esm/Table';
+
 function Profile({ user }) {
     const [redFlags, setRedFlags] = useState([]);
     const [interventions, setInterventions] = useState([]);

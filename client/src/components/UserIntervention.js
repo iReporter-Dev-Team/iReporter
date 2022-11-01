@@ -31,7 +31,6 @@ function UserIntervention({ id, headline, location, status, filteredIntervention
     fetch(`/interventions/${id}`, {
       method: "DELETE"
     })
- 
     .then(() => {
       setInterventions(filteredInterventions.filter((specificUserIntervention) => specificUserIntervention.id !== id))
     })

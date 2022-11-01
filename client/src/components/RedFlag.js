@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import emailjs from "emailjs-com";
@@ -14,28 +14,13 @@ function RedFlag({
 }) {
   const [recordStatus, setRecordStatus] = useState(status);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
-  
-  // function handleDeleteRedFlag() {
-  //   setIsDeleting(true);
-  //   fetch(`/redflags/${id}`, {
-  //     method: "DELETE",
-  //   })
-  //     .then((res) => res.json())
-  //     .then(() => {
-  //       const revisedRedFlags = redFlags.filter((redFlag) => {
-  //         return redFlag.id !== id;
-  //       });
-  //       setIsDeleting(false);
-  //       setRedFlags(revisedRedFlags);
-  //     });
-  // }
+
   const handleDeleteRedFlag = () => {
     fetch(`/redflags/${id}`,{
         method: 'DELETE',
     }) 
     .then(() => {
-      setRedFlags( redFlags =>redFlags.filter((redFlag) => redFlag.id !== id))  
+      setRedFlags(redFlags => redFlags.filter((redFlag) => redFlag.id !== id))  
     })
 } 
   // ############################ Email Notification Implementiation ######################################################
@@ -65,7 +50,6 @@ function RedFlag({
   // ############################ Email Notification Implementiation ######################################################
 
   const handleSelect = (eventKey) => {
-  
     setIsUpdating(true);
     fetch(`/redflags/${id}`, {
       method: "PATCH",
@@ -90,14 +74,6 @@ function RedFlag({
     });
     sendEmail();
   };
-
-  // useEffect(() => {
-  //   fetch(`/redflags/${id}`)
-  //     .then((res) => res.json())
-  //     .then((status) => {
-  //       setRecordStatus(status);
-  //     });
-  // }, [id]);
 
   return (
     <>
@@ -125,12 +101,10 @@ function RedFlag({
               <Button variant="info">View</Button>
             </Link>
             <Button onClick={handleDeleteRedFlag} variant="danger">
-              {isDeleting ? "Deleting" : "Delete"}
+              Delete
             </Button>
           </div>
         </td>
-        {/* <td>{image}</td>
-        <td>{video}</td> */}
       </tr>
     </>
   );

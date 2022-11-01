@@ -6,9 +6,7 @@ import AdminNavbar from "./components/AdminNavbar";
 import { RiAlertFill } from "react-icons/ri";
 import { FcSupport } from "react-icons/fc"
 
-function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRedFlags,onUpdatedRecord}) {
-  // const [redFlags, setRedFlags] = useState([]);
-  // const [interventions, setInterventions] = useState([]);
+function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRedFlags }) {
   const [recordToggle, setRecordToggle] = useState(false)
 
   useEffect(() => {
@@ -30,7 +28,7 @@ function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRe
     key={redFlag.id}
     id={redFlag.id}
     name={redFlag?.user?.name}
-    location={redFlag.location}
+    location={redFlag.address}
     image={redFlag.image}
     video={redFlag.video}
     status={redFlag.status}
@@ -45,7 +43,7 @@ function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRe
       key={intervention.id}
       id={intervention.id}
       name={intervention?.user?.name}
-      location={intervention.location}
+      location={intervention.address}
       image={intervention.image}
       video={intervention.video}
       status={intervention.status}
@@ -68,8 +66,6 @@ function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRe
           <th>Location</th>
           <th>Status</th>
           <th>Record actions</th>
-          {/* <th>Image of incident</th>
-          <th>Video of incident</th> */}
         </tr>
       </thead>
       <tbody>
@@ -87,8 +83,6 @@ function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRe
           <th>Location</th>
           <th>Status</th>
           <th>Record actions</th>
-          {/* <th>Image of incident</th>
-          <th>Video of incident</th> */}
         </tr>
       </thead>
       <tbody>
@@ -96,7 +90,6 @@ function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRe
       </tbody>
     </Table>
       )}
-     
     </div>
   )
 }

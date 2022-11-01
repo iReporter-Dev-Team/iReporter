@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import emailjs from "emailjs-com";
@@ -12,29 +12,11 @@ function Intervention({
   setInterventions,
   status,
 }) {
+
   const [recordStatus, setRecordStatus] = useState(status);
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-console.log(status)
-  // function handleDeleteIntervention() {
-  //   setIsDeleting(true);
-  //   fetch(`/interventions/${id}`, {
-  //     method: "DELETE",
-  //   }).then((res) => {
-  //     if (res.ok) {
-  //       res.json().then(() => {
-  //         const revisedInterventions = interventions.filter((intervention) => {
-  //           return intervention.id !== id;
-  //         });
-  //         setIsDeleting(false);
-  //         setInterventions(revisedInterventions);
-  //       });
-  //     } else {
-  //       setIsDeleting(false);
-  //       res.json().then((err) => err.errors);
-  //     }
-  //   });
-  // }
+
   const handleDeleteIntervention = () => {
     console.log(interventions)
     fetch(`/interventions/${id}`, {
@@ -98,14 +80,6 @@ console.log(status)
     sendEmail();
   };
 
-  // useEffect(() => {
-  //   fetch(`/interventions/${id}`)
-  //     .then((res) => res.json())
-  //     .then((status) => {
-  //       setRecordStatus(status);
-  //     });
-  // }, [id]);
-
   return (
     <>
       <tr>
@@ -132,12 +106,10 @@ console.log(status)
               <Button variant="info">View</Button>
             </Link>
             <Button onClick={handleDeleteIntervention} variant="danger">
-              {isDeleting ? "Deleting" : "Delete"}
+              Delete
             </Button>
           </div>
         </td>
-        {/* <td>{image}</td>
-        <td>{video}</td> */}
       </tr>
     </>
   );
