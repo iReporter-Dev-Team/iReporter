@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import "../styles/LocationBar.css";
 
 export default function UserLanding({ user }) {
+  const navigate = useNavigate()
   const [headline, setHeadline] = useState("");
   const [location, setLocation] = useState("");
   let [address, setAddress] = useState("");
@@ -86,6 +88,7 @@ export default function UserLanding({ user }) {
       if (r.ok) {
         r.json().then((data) => console.log(data));
         setDisplayy("none");
+        navigate('/profile')
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -118,6 +121,7 @@ export default function UserLanding({ user }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((data) => console.log(data));
+        navigate('/profile')
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
