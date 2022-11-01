@@ -56,7 +56,6 @@ puts '...seeding interventions 🚧'
             status: "Under Investigation", 
             description: "Driving across 6th street is a nightmare! Local authorities should tackle the potholes and puddle issues that are making the road unusable.", 
             user_id:u1.id)
-            
         Intervention.create!(
                 headline: "Street Light Fallen onto Kenyatta Avenue",
                 location: "Nairobi", 
