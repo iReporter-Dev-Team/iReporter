@@ -6,10 +6,17 @@ import AdminNavbar from "./components/AdminNavbar";
 import { RiAlertFill } from "react-icons/ri";
 import { FcSupport } from "react-icons/fc";
 
+<<<<<<< HEAD
 function AdminDashboard({ user }) {
   const [redFlags, setRedFlags] = useState([]);
   const [interventions, setInterventions] = useState([]);
   const [recordToggle, setRecordToggle] = useState(false);
+=======
+function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRedFlags}) {
+  // const [redFlags, setRedFlags] = useState([]);
+  // const [interventions, setInterventions] = useState([]);
+  const [recordToggle, setRecordToggle] = useState(false)
+>>>>>>> 3e277bbe736f7f3da578a3b5b79c28e7459067f5
 
   useEffect(() => {
     fetch("/redflags")

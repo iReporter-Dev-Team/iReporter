@@ -16,25 +16,34 @@ function Intervention({
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  function handleDeleteIntervention() {
-    setIsDeleting(true);
+  // function handleDeleteIntervention() {
+  //   setIsDeleting(true);
+  //   fetch(`/interventions/${id}`, {
+  //     method: "DELETE",
+  //   }).then((res) => {
+  //     if (res.ok) {
+  //       res.json().then(() => {
+  //         const revisedInterventions = interventions.filter((intervention) => {
+  //           return intervention.id !== id;
+  //         });
+  //         setIsDeleting(false);
+  //         setInterventions(revisedInterventions);
+  //       });
+  //     } else {
+  //       setIsDeleting(false);
+  //       res.json().then((err) => err.errors);
+  //     }
+  //   });
+  // }
+  const handleDeleteIntervention = () => {
     fetch(`/interventions/${id}`, {
       method: "DELETE",
-    }).then((res) => {
-      if (res.ok) {
-        res.json().then(() => {
-          const revisedInterventions = interventions.filter((intervention) => {
-            return intervention.id !== id;
-          });
-          setIsDeleting(false);
-          setInterventions(revisedInterventions);
-        });
-      } else {
-        setIsDeleting(false);
-        res.json().then((err) => err.errors);
-      }
-    });
-  }
+    })
+      .then((response) => response.json())
+      .then(() => {
+        setInterventions(interventions.filter((item) => item.id !== id));
+      });
+  };
   // ############################ Email Notification Implementiation ######################################################
 
   const sendEmail = () => {
