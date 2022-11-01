@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function UserRedFlag({ id, headline, location, status, filteredRedFlags, setRedflags }) {
+function UserRedFlag({ id, headline, location, status, filteredRedFlags, setRedFlags }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -27,19 +27,6 @@ function UserRedFlag({ id, headline, location, status, filteredRedFlags, setRedf
     }
   })
 
-  const handleDeleteUserRedFlag = () => {
-    fetch(`/redflags/${id}`, {
-      method: "DELETE"
-    })
-    .then((r) => r.json())
-    .then(() => {
-      const revisedUserRedFlags = filteredRedFlags.filter((specificUserRedFlag) => {
-        return specificUserRedFlag.id !== id
-      })
-      setRedflags(revisedUserRedFlags)
-    })
-  }
-  
   useEffect(() => {
     fetch('redflags')
   },[])
@@ -98,7 +85,7 @@ function UserRedFlag({ id, headline, location, status, filteredRedFlags, setRedf
             }
           })
           handleClose()
-          setRedflags(updatedUserRedFlags)
+          setRedFlags(updatedUserRedFlags)
           setIsSaving(false)
         })
       } else {
@@ -107,7 +94,16 @@ function UserRedFlag({ id, headline, location, status, filteredRedFlags, setRedf
       }
     })
   }
-
+  
+  const handleDeleteUserRedFlag = () => {
+      fetch(`/redflags/${id}`, {
+        method: "DELETE"
+      })
+      .then((r) => r.json())
+      .then(() => {
+        setRedFlags(filteredRedFlags.filter((specificUserRedFlag) => specificUserRedFlag.id !== id))
+      })
+    }
   return (
     <>
     <tr>
@@ -117,7 +113,7 @@ function UserRedFlag({ id, headline, location, status, filteredRedFlags, setRedf
         <td><div style={{ display: "flex"}}><Link style={{flexGrow: "0.25"}} onClick={fetchUserRedFlagData}><Button variant="info">Edit</Button></Link><Button variant="danger" onClick={handleDeleteUserRedFlag}>Delete</Button></div></td>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Edit your intervention report</Modal.Title>
+            <Modal.Title>Edit your red flag report</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={handleSubmit}>

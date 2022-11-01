@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { MdEmail } from "react-icons/md";
-import { CiFaceSmile } from "react-icons/ci";
+import { IoPerson } from "react-icons/io5";
 import { BsPhoneVibrate } from "react-icons/bs";
 import Error from "../styles/Error";
 
@@ -50,7 +50,7 @@ function User({ user, onDeleteUser }) {
   return (
     <Card key={user.id}>
       <UserName>
-        <CiFaceSmile style={{ fontSize: "60px" }} /> {user.name}
+        <IoPerson style={{ fontSize: "60px" }} /> {user.name}
       </UserName>
       <Email>
         <MdEmail /> : {user.email}
