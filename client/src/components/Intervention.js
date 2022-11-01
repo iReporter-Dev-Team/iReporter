@@ -8,7 +8,6 @@ function Intervention({
   name,
   location,
 }) {
-  const [isDeleting, setIsDeleting] = useState(false);
   const [interventions, setInterventions] = useState([]);
   const [status, setStatus] = useState("")
 
@@ -25,13 +24,14 @@ function Intervention({
   }, [])
 
   const handleDeleteIntervention = () => {
-    fetch(`/interventions/${id}`,{
-        method: 'DELETE',
-    }) .then((response) => response.json())
-    .then(() => {
-      setInterventions( interventions.filter((intervention) => intervention.id !== id))  
+    console.log(interventions)
+    fetch(`/interventions/${id}`, {
+      method: "DELETE",
     })
-  } 
+      .then(() => {
+        setInterventions( interventions=> interventions.filter((item) => item.id !== id));
+      });
+  };
 
   const handleSelect = (e) => {
     setStatus(e)
@@ -77,7 +77,7 @@ function Intervention({
               <Button variant="info">View</Button>
             </Link>
             <Button onClick={handleDeleteIntervention} variant="danger">
-              {isDeleting ? "Deleting" : "Delete"}
+              Delete
             </Button>
           </div>
         </td>

@@ -27,11 +27,11 @@ function RedFlag({
   const handleDeleteRedFlag = () => {
     fetch(`/redflags/${id}`,{
         method: 'DELETE',
-    }) .then((response) => response.json())
+    }) 
     .then(() => {
-      setRedFlags( redFlags.filter((redFlag) => redFlag.id !== id))  
+      setRedFlags( redFlags =>redFlags.filter((redFlag) => redFlag.id !== id))  
     })
-  } 
+}
 
   const handleSelect = (e) => {
     setStatus(e)
