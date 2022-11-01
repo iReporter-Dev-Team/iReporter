@@ -54,7 +54,9 @@ puts '...seeding interventions 🚧'
             video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
             status: "Under Investigation", 
             description: "Driving across 6th street is a nightmare! Local authorities should tackle the potholes and puddle issues that are making the road unusable.", 
+            # user_id:rand(1..7))
             user_id:rand(1..7))
+
      end
 
 puts '...seeding redflags 🚩'

@@ -4,7 +4,14 @@ import Button from "react-bootstrap/Button";
 import emailjs from "emailjs-com";
 import { Link } from "react-router-dom";
 
-function Intervention({ id, name, location, interventions, setInterventions, status }) {
+function Intervention({
+  id,
+  name,
+  location,
+  interventions,
+  setInterventions,
+  status,
+}) {
   const [recordStatus, setRecordStatus] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -98,7 +105,7 @@ function Intervention({ id, name, location, interventions, setInterventions, sta
         <td>
           <Dropdown onSelect={handleSelect}>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
-            {isUpdating ? "Updating the status..." : status}
+              {isUpdating ? "Updating the status..." : status}
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item eventKey="Under Investigation">
