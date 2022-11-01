@@ -8,34 +8,37 @@ function RedFlag({
   id,
   name,
   location,
-  image,
-  video,
   redFlags,
-  redFlag,
   setRedFlags,
   status,
-  description,
-  user_id,
+
 }) {
   const [recordStatus, setRecordStatus] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  function handleDeleteRedFlag() {
-    setIsDeleting(true);
-    fetch(`/redflags/${id}`, {
-      method: "DELETE",
+  // function handleDeleteRedFlag() {
+  //   setIsDeleting(true);
+  //   fetch(`/redflags/${id}`, {
+  //     method: "DELETE",
+  //   })
+  //     .then((res) => res.json())
+  //     .then(() => {
+  //       const revisedRedFlags = redFlags.filter((redFlag) => {
+  //         return redFlag.id !== id;
+  //       });
+  //       setIsDeleting(false);
+  //       setRedFlags(revisedRedFlags);
+  //     });
+  // }
+  const handleDeleteRedFlag = () => {
+    fetch(`/redflags/${id}`,{
+        method: 'DELETE',
+    }) .then((response) => response.json())
+    .then(() => {
+      setRedFlags( redFlags.filter((redFlag) => redFlag.id !== id))  
     })
-      .then((res) => res.json())
-      .then(() => {
-        const revisedRedFlags = redFlags.filter((redFlag) => {
-          return redFlag.id !== id;
-        });
-        setIsDeleting(false);
-        setRedFlags(revisedRedFlags);
-      });
-  }
-
+} 
   // ############################ Email Notification Implementiation ######################################################
 
   const sendEmail = () => {
