@@ -6,9 +6,9 @@ import AdminNavbar from "./components/AdminNavbar";
 import { RiAlertFill } from "react-icons/ri";
 import { FcSupport } from "react-icons/fc"
 
-function AdminDashboard({ user }) {
-  const [redFlags, setRedFlags] = useState([]);
-  const [interventions, setInterventions] = useState([]);
+function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRedFlags,onUpdatedRecord}) {
+  // const [redFlags, setRedFlags] = useState([]);
+  // const [interventions, setInterventions] = useState([]);
   const [recordToggle, setRecordToggle] = useState(false)
 
   useEffect(() => {
@@ -30,10 +30,11 @@ function AdminDashboard({ user }) {
     key={redFlag.id}
     id={redFlag.id}
     name={redFlag?.user?.name}
-    location={redFlag.address}
+    location={redFlag.location}
     image={redFlag.image}
     video={redFlag.video}
     status={redFlag.status}
+  
   />
   })
 
@@ -44,7 +45,7 @@ function AdminDashboard({ user }) {
       key={intervention.id}
       id={intervention.id}
       name={intervention?.user?.name}
-      location={intervention.address}
+      location={intervention.location}
       image={intervention.image}
       video={intervention.video}
       status={intervention.status}
@@ -67,6 +68,8 @@ function AdminDashboard({ user }) {
           <th>Location</th>
           <th>Status</th>
           <th>Record actions</th>
+          {/* <th>Image of incident</th>
+          <th>Video of incident</th> */}
         </tr>
       </thead>
       <tbody>
@@ -84,6 +87,8 @@ function AdminDashboard({ user }) {
           <th>Location</th>
           <th>Status</th>
           <th>Record actions</th>
+          {/* <th>Image of incident</th>
+          <th>Video of incident</th> */}
         </tr>
       </thead>
       <tbody>
@@ -91,6 +96,7 @@ function AdminDashboard({ user }) {
       </tbody>
     </Table>
       )}
+     
     </div>
   )
 }

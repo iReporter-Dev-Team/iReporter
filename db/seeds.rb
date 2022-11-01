@@ -48,7 +48,7 @@ puts '...seeding interventions 🚧'
         Intervention.create!(
             headline: "Street Light Fallen onto Kenyatta Avenue",
             location: "Nairobi", 
-          
+            address: "Nairobi",
             latitude: -1.2891362,
             longitude: 36.8209288,
             image: "https://images.unsplash.com/photo-1590719550920-7543bd5657a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
@@ -59,7 +59,7 @@ puts '...seeding interventions 🚧'
         Intervention.create!(
                 headline: "Street Light Fallen onto Kenyatta Avenue",
                 location: "Nairobi", 
-             
+                address: "Nairobi",
                 latitude: -1.2891362,
                 longitude: 36.8209288,
                 image: "https://images.unsplash.com/photo-1590719550920-7543bd5657a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
@@ -70,7 +70,7 @@ puts '...seeding interventions 🚧'
         Intervention.create!(
                     headline: "Street Light Fallen onto Kenyatta Avenue",
                     location: "Nairobi", 
-                 
+                    address: "Nairobi",
                     latitude: -1.2891362,
                     longitude: 36.8209288,
                     image: "https://images.unsplash.com/photo-1590719550920-7543bd5657a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
@@ -81,7 +81,7 @@ puts '...seeding interventions 🚧'
         Intervention.create!(
                         headline: "Street Light Fallen onto Kenyatta Avenue",
                         location: "Nairobi", 
-                   
+                        address: "Nairobi",
                         latitude: -1.2891362,
                         longitude: 36.8209288,
                         image: "https://images.unsplash.com/photo-1590719550920-7543bd5657a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
@@ -92,7 +92,7 @@ puts '...seeding interventions 🚧'
         Intervention.create!(
                             headline: "Street Light Fallen onto Kenyatta Avenue",
                             location: "Nairobi", 
-                        
+                            address: "Nairobi",
                             latitude: -1.2891362,
                             longitude: 36.8209288,
                             image: "https://images.unsplash.com/photo-1590719550920-7543bd5657a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
@@ -103,7 +103,7 @@ puts '...seeding interventions 🚧'
         Intervention.create!(
                                 headline: "Street Light Fallen onto Kenyatta Avenue",
                                 location: "Nairobi", 
-                               
+                                address: "Nairobi",
                                 latitude: -1.2891362,
                                 longitude: 36.8209288,
                                 image: "https://images.unsplash.com/photo-1590719550920-7543bd5657a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
@@ -118,7 +118,7 @@ puts '...seeding redflags 🚩'
         Redflag.create!(
             headline: "Motorist bribed traffic police outside KICC",
             location: "Nairobi",
-           
+            address: "Nairobi", 
             latitude: -0.099518,
             longitude: 34.757851,
             image: "https://images.unsplash.com/photo-1544449566-dee13645ade8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
@@ -129,7 +129,7 @@ puts '...seeding redflags 🚩'
             Redflag.create!(
                 headline: "Motorist bribed traffic police outside KICC",
                 location: "Nairobi", 
-              
+                address: "Nairobi",
                 latitude: -0.099518,
                 longitude: 34.757851,
                 image: "https://images.unsplash.com/photo-1544449566-dee13645ade8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
@@ -140,7 +140,7 @@ puts '...seeding redflags 🚩'
                 Redflag.create!(
                     headline: "Motorist bribed traffic police outside KICC",
                     location: "Nairobi", 
-                  
+                    address: "Nairobi",
                     latitude: -0.099518,
                     longitude: 34.757851,
                     image: "https://images.unsplash.com/photo-1544449566-dee13645ade8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
@@ -151,7 +151,7 @@ puts '...seeding redflags 🚩'
                     Redflag.create!(
                         headline: "Motorist bribed traffic police outside KICC",
                         location: "Nairobi", 
-                       
+                        address: "Nairobi",
                         latitude: -0.099518,
                         longitude: 34.757851,
                         image: "https://images.unsplash.com/photo-1544449566-dee13645ade8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
@@ -162,7 +162,7 @@ puts '...seeding redflags 🚩'
                         Redflag.create!(
                             headline: "Motorist bribed traffic police outside KICC",
                             location: "Nairobi", 
-                        
+                            address: "Nairobi",
                             latitude: -0.099518,
                             longitude: 34.757851,
                             image: "https://images.unsplash.com/photo-1544449566-dee13645ade8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
@@ -173,7 +173,7 @@ puts '...seeding redflags 🚩'
                             Redflag.create!(
                                 headline: "Motorist bribed traffic police outside KICC",
                                 location: "Nairobi", 
-                             
+                                address: "Nairobi",
                                 latitude: -0.099518,
                                 longitude: 34.757851,
                                 image: "https://images.unsplash.com/photo-1544449566-dee13645ade8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",

@@ -99,7 +99,7 @@ function UserRedFlag({ id, headline, location, status, filteredRedFlags, setRedF
       fetch(`/redflags/${id}`, {
         method: "DELETE"
       })
-      .then((r) => r.json())
+    
       .then(() => {
         setRedFlags(filteredRedFlags.filter((specificUserRedFlag) => specificUserRedFlag.id !== id))
       })
