@@ -74,6 +74,7 @@ html {
   border: 3px solid #fa7670;
   padding: 55px;
 }
+
 .App {
   text-align: center;
   display: grid;
@@ -155,6 +156,7 @@ html {
 }
 
 .carousel__quote {
+  margin-right: 20px;
   font-style: italic;
   line-height: 1.5;
 }

@@ -41,7 +41,7 @@ function UserRedFlag({ id, headline, location, status, filteredRedFlags, setRedF
 
   const [updateRedFlagData, setUpdateRedFlagData] = useState({
     headline: userRedFlag.headline,
-    location: userRedFlag.location,
+    location: userRedFlag.address,
     description: userRedFlag.description
   })
 
@@ -49,7 +49,7 @@ function UserRedFlag({ id, headline, location, status, filteredRedFlags, setRedF
     handleShow()
     setUpdateRedFlagData({
     headline: userRedFlag.headline,
-    location: userRedFlag.location,
+    location: userRedFlag.address,
     description: userRedFlag.description
   })}
 
