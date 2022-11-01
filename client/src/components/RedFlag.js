@@ -1,55 +1,103 @@
 import React, { useState, useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
+import emailjs from "emailjs-com";
 import { Link } from "react-router-dom";
 
 function RedFlag({
   id,
   name,
   location,
+  redFlags,
+  setRedFlags,
+  status,
 }) {
+  const [recordStatus, setRecordStatus] = useState(status);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [redFlags, setRedFlags] = useState([]);
-  const [status, setStatus] = useState("")
-
-  useEffect(() => {
-    fetch(`/redflags/${id}`)
-    .then((r) => r.json())
-    .then((data) => setStatus(data.status))
-  },[])
-
-  useEffect(() => {
-    fetch('/redflags')
-    .then((r) => r.json())
-    .then((data) => setRedFlags(data))
-  }, [])
-
+  
+  // function handleDeleteRedFlag() {
+  //   setIsDeleting(true);
+  //   fetch(`/redflags/${id}`, {
+  //     method: "DELETE",
+  //   })
+  //     .then((res) => res.json())
+  //     .then(() => {
+  //       const revisedRedFlags = redFlags.filter((redFlag) => {
+  //         return redFlag.id !== id;
+  //       });
+  //       setIsDeleting(false);
+  //       setRedFlags(revisedRedFlags);
+  //     });
+  // }
   const handleDeleteRedFlag = () => {
     fetch(`/redflags/${id}`,{
         method: 'DELETE',
-    }) .then((response) => response.json())
+    }) 
     .then(() => {
-      setRedFlags( redFlags.filter((redFlag) => redFlag.id !== id))  
+      setRedFlags( redFlags =>redFlags.filter((redFlag) => redFlag.id !== id))  
     })
-  } 
+} 
+  // ############################ Email Notification Implementiation ######################################################
 
-  const handleSelect = (e) => {
-    setStatus(e)
-    fetch(`redflags/${id}`, {
-      method: 'PATCH',
-      body: JSON.stringify({
-        status: (e),
-      }),
-      headers: {
-        'Content-type': 'application/json'
+  const sendEmail = () => {
+    const templateParams = {
+      name: `/redflags/${id}.name`,
+      email: `/redflags/${id}.email`,
+      message: "Your red-flag record status has been updated!",
+    };
+
+    // dummy params => emailjs restricts to 200 free emails a month
+    emailjs.send("gmail", "feedback", templateParams, "gydg76y3g7u3ygf").then(
+      (response) => {
+        console.log(
+          "SUCCESS! Email has been sent to you!",
+          response.status,
+          response.text
+        );
       },
-    })
-      .then((response) => response.json())
-      .then((data) => { 
-        const updatedRedFlagRecords = {...redFlags, ...data}
-        setRedFlags(updatedRedFlagRecords)
-      })
-  }
+      (error) => {
+        console.log("FAILED...", error);
+      }
+    );
+  };
+
+  // ############################ Email Notification Implementiation ######################################################
+
+  const handleSelect = (eventKey) => {
+  
+    setIsUpdating(true);
+    fetch(`/redflags/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status: eventKey,
+      }),
+    }).then((r) => {
+   
+      if (r.ok) {
+        r.json().then(() => {
+          setIsUpdating(false);
+          console.log(status);
+          setRecordStatus(eventKey);
+        });
+      } else {
+        setIsUpdating(false);
+        r.json().then(console.log("Error in updating the status"));
+      }
+    });
+    sendEmail();
+  };
+
+  // useEffect(() => {
+  //   fetch(`/redflags/${id}`)
+  //     .then((res) => res.json())
+  //     .then((status) => {
+  //       setRecordStatus(status);
+  //     });
+  // }, [id]);
 
   return (
     <>
@@ -60,7 +108,7 @@ function RedFlag({
         <td>
           <Dropdown onSelect={handleSelect}>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
-              {status}
+              {isUpdating ? "Updating the status..." : recordStatus}
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item eventKey="Under Investigation">
@@ -81,6 +129,8 @@ function RedFlag({
             </Button>
           </div>
         </td>
+        {/* <td>{image}</td>
+        <td>{video}</td> */}
       </tr>
     </>
   );
