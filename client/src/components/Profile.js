@@ -17,12 +17,13 @@ function Profile({ user }) {
         .then((data) => setRedflags(data));
     }, []);
     
-    const filteredRedflags = redflags.filter((flag) => flag.user.id === user.id);
-    const redFlagNumber = filteredRedflags.length
-    const userRedFlagList = filteredRedflags.map((userRedFlag) => {
+    const filteredRedflags = redflags?.filter((flag) => flag.user.id === user.id);
+    const redFlagNumber = filteredRedflags?.length
+    const userRedFlagList = filteredRedflags?.map((userRedFlag) => {
       return <UserRedFlag
       key={userRedFlag.id}
       id={userRedFlag.id}
+      headline={userRedFlag.headline}
       location={userRedFlag.location}
       status={userRedFlag.status}
       filteredRedflags={filteredRedflags}
@@ -36,12 +37,13 @@ function Profile({ user }) {
         .then((data) => setInterventions(data));
     }, []);
 
-    const filteredInterventions = interventions.filter((intervention) => intervention.user.id === user.id)
+    const filteredInterventions = interventions?.filter((intervention) => intervention?.user?.id === user?.id)
     const interventionNumber = filteredInterventions.length
     const userInterventionList = filteredInterventions.map((userIntervention) => {
       return <UserIntervention
       key={userIntervention.id}
       id={userIntervention.id}
+      headline={userIntervention.headline}
       location={userIntervention.location}
       status={userIntervention.status}
       filteredInterventions={filteredInterventions}

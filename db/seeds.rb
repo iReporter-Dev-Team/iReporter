@@ -1,46 +1,49 @@
-puts "...seeding users 👨‍👩‍👧"
+Redflag.destroy_all
+Intervention.destroy_all
 
-     u1 = User.create!(
-     name:"Said Hussein",  
-     email:"said@gmail.com",
-     phone_number:"1111111111",
-     password:"12345said",
-     is_admin: true) 
+# puts "...seeding users 👨‍👩‍👧"
 
-     u2 = User.create!(
-     name:"Ken Muyesu",  
-     email:"ken@gmail.com",
-     phone_number:"1111111111",
-     password:"12345ken",
-     is_admin: true) 
+#      u1 = User.create!(
+#      name:"Said Hussein",  
+#      email:"said@gmail.com",
+#      phone_number:"1111111111",
+#      password:"12345said",
+#      is_admin: true) 
 
-     u3 = User.create!(
-     name:"Damaris Nduku",  
-     email:"damaris@gmail.com",
-     phone_number:"1111111111",
-     password:"12345damaris",
-     is_admin: true) 
+#      u2 = User.create!(
+#      name:"Ken Muyesu",  
+#      email:"ken@gmail.com",
+#      phone_number:"1111111111",
+#      password:"12345ken",
+#      is_admin: true) 
 
-     u4 = User.create!(
-     name:"Kelvin Malongo",  
-     email:"kelvin@gmail.com",
-     phone_number:"1111111111",
-     password:"12345kelvin",
-     is_admin: true) 
+#      u3 = User.create!(
+#      name:"Damaris Nduku",  
+#      email:"damaris@gmail.com",
+#      phone_number:"1111111111",
+#      password:"12345damaris",
+#      is_admin: true) 
 
-     u5 = User.create!(
-     name:"Gladys Mungai",  
-     email:"gladys@gmail.com",
-     phone_number:"1111111111",
-     password:"12345gladys",
-     is_admin: true) 
+#      u4 = User.create!(
+#      name:"Kelvin Malongo",  
+#      email:"kelvin@gmail.com",
+#      phone_number:"1111111111",
+#      password:"12345kelvin",
+#      is_admin: true) 
 
-     u6 = User.create!(
-     name:"Amos Sifuna",  
-     email:"amos@gmail.com",
-     phone_number:"1111111111",
-     password:"12345amos",
-     is_admin: true) 
+#      u5 = User.create!(
+#      name:"Gladys Mungai",  
+#      email:"gladys@gmail.com",
+#      phone_number:"1111111111",
+#      password:"12345gladys",
+#      is_admin: true) 
+
+#      u6 = User.create!(
+#      name:"Amos Sifuna",  
+#      email:"amos@gmail.com",
+#      phone_number:"1111111111",
+#      password:"12345amos",
+#      is_admin: true) 
 
 puts '...seeding interventions 🚧'
 
@@ -54,7 +57,7 @@ puts '...seeding interventions 🚧'
             video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
             status: "Under Investigation", 
             description: "Driving across 6th street is a nightmare! Local authorities should tackle the potholes and puddle issues that are making the road unusable.", 
-            user_id:rand(1..7))
+            user_id:7)
      end
 
 puts '...seeding redflags 🚩'
@@ -69,7 +72,7 @@ puts '...seeding redflags 🚩'
             video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
             status: "Under Investigation", 
             description: "Witnessed a motorist bribe a traffic police officer just outside KICC on parliament road. Incident took place at around 2PM 30/10/2022.", 
-            user_id:rand(1..7))
+            user_id:7)
     end
 
 puts "Done seeding!"

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function UserRedFlag({ id, location, status, filteredRedFlags, setRedFlags }) {
+function UserRedFlag({ id, headline, location, status, filteredRedFlags, setRedflags }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -12,6 +12,7 @@ function UserRedFlag({ id, location, status, filteredRedFlags, setRedFlags }) {
   const [isSaving, setIsSaving] = useState(false)
   const [userRedFlag, setUserRedFlag] = useState({
     id: 0,
+    headline: "",
     location: "",
     image: "",
     video: "",
@@ -26,32 +27,56 @@ function UserRedFlag({ id, location, status, filteredRedFlags, setRedFlags }) {
     }
   })
 
+  const handleDeleteUserRedFlag = () => {
+    fetch(`/redflags/${id}`, {
+      method: "DELETE"
+    })
+    .then((r) => r.json())
+    .then(() => {
+      const revisedUserRedFlags = filteredRedFlags.filter((specificUserRedFlag) => {
+        return specificUserRedFlag.id !== id
+      })
+      setRedflags(revisedUserRedFlags)
+    })
+  }
+  
+  useEffect(() => {
+    fetch('redflags')
+  },[])
+
   useEffect(() => {
     fetch(`/redflags/${id}`)
       .then((r) => r.json())
       .then((data) => {
         setUserRedFlag(data)
       })
-  },[id])
+  },[userRedFlag])
 
   const [updateRedFlagData, setUpdateRedFlagData] = useState({
+    headline: userRedFlag.headline,
     location: userRedFlag.location,
     description: userRedFlag.description
   })
 
-  useEffect(() => {
+  const fetchUserRedFlagData = () => {
+    handleShow()
     setUpdateRedFlagData({
-      location: userRedFlag.location,
-      description: userRedFlag.description
-    })
-  }, [])
+    headline: userRedFlag.headline,
+    location: userRedFlag.location,
+    description: userRedFlag.description
+  })}
+
 
   const handleChange = (e) => {
     let name = e.target.name
     let value = e.target.value
     setUpdateRedFlagData({[name]: value})
   }
-  
+
+  useEffect(() => {
+    fetch('redflags')
+  },[])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setIsSaving(true)
@@ -73,7 +98,7 @@ function UserRedFlag({ id, location, status, filteredRedFlags, setRedFlags }) {
             }
           })
           handleClose()
-          setRedFlags(updatedUserRedFlags)
+          setRedflags(updatedUserRedFlags)
           setIsSaving(false)
         })
       } else {
@@ -83,33 +108,31 @@ function UserRedFlag({ id, location, status, filteredRedFlags, setRedFlags }) {
     })
   }
 
-  const handleDeleteUserRedFlag = () => {
-    fetch(`/redflags/${id}`, {
-      method: "DELETE"
-    })
-    .then((r) => r.json())
-    .then(() => {
-      const revisedUserRedFlags = filteredRedFlags.map((specificUserRedFlag) => {
-        return specificUserRedFlag.id !== id
-      })
-      setRedFlags(revisedUserRedFlags)
-    })
-  }
-
   return (
     <>
     <tr>
-        <td>{id}</td>
+        <td>{headline}</td>
         <td>{location}</td>
         <td>{status}</td>
-        <td><div style={{ display: "flex"}}><Link style={{flexGrow: "0.25"}} onClick={handleShow}><Button variant="info">Edit</Button></Link><Button variant="danger" onClick={handleDeleteUserRedFlag}>Delete</Button></div></td>
+        <td><div style={{ display: "flex"}}><Link style={{flexGrow: "0.25"}} onClick={fetchUserRedFlagData}><Button variant="info">Edit</Button></Link><Button variant="danger" onClick={handleDeleteUserRedFlag}>Delete</Button></div></td>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Edit your red flag report</Modal.Title>
+            <Modal.Title>Edit your intervention report</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3">
+                <Form.Label>Heading</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Red Flag Location"
+                  autoFocus
+                  name="headline"
+                  value={updateRedFlagData.headline}
+                  onChange={handleChange}
+                />
+              </Form.Group> 
+              <Form.Group className='mb-3'>
                 <Form.Label>Location</Form.Label>
                 <Form.Control
                   type="text"
