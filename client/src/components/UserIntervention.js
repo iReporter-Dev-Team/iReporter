@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function UserIntervention({ id, location, status, filteredInterventions, setInterventions }) {
+function UserIntervention({ id, headline, location, status, filteredInterventions, setInterventions }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -12,6 +12,7 @@ function UserIntervention({ id, location, status, filteredInterventions, setInte
   const [isSaving, setIsSaving] = useState(false)
   const [userIntervention, setUserIntervention] = useState({
     id: 0,
+    headline: "",
     location: "",
     image: "",
     video: "",
@@ -26,32 +27,53 @@ function UserIntervention({ id, location, status, filteredInterventions, setInte
     }
   })
 
+  const handleDeleteUserIntervention = () => {
+    fetch(`/interventions/${id}`, {
+      method: "DELETE"
+    })
+    .then((r) => r.json())
+    .then(() => {
+      setInterventions(filteredInterventions.filter((specificUserIntervention) => specificUserIntervention.id !== id))
+    })
+  }
+
+  useEffect(() => {
+    fetch('interventions')
+  },[])
+
   useEffect(() => {
     fetch(`/interventions/${id}`)
       .then((r) => r.json())
       .then((data) => {
         setUserIntervention(data)
       })
-  },[id])
+  },[userIntervention])
 
   const [updateInterventionData, setUpdateInterventionData] = useState({
+    headline: userIntervention.headline,
     location: userIntervention.location,
     description: userIntervention.description
   })
 
-  useEffect(() => {
+  const fetchUserInterventionData = () => {
+    handleShow()
     setUpdateInterventionData({
-      location: userIntervention.location,
-      description: userIntervention.description
-    })
-  }, [])
+    headline: userIntervention.headline,
+    location: userIntervention.location,
+    description: userIntervention.description
+  })}
+
 
   const handleChange = (e) => {
     let name = e.target.name
     let value = e.target.value
     setUpdateInterventionData({[name]: value})
   }
-  
+
+  useEffect(() => {
+    fetch('interventions')
+  },[])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setIsSaving(true)
@@ -83,26 +105,13 @@ function UserIntervention({ id, location, status, filteredInterventions, setInte
     })
   }
 
-  const handleDeleteUserIntervention = () => {
-    fetch(`/redflags/${id}`, {
-      method: "DELETE"
-    })
-    .then((r) => r.json())
-    .then(() => {
-      const revisedUserInterventions = filteredInterventions.map((specificUserIntervention) => {
-        return specificUserIntervention.id !== id
-      })
-      setInterventions(revisedUserInterventions)
-    })
-  }
-
   return (
     <>
     <tr>
-        <td>{id}</td>
+        <td>{headline}</td>
         <td>{location}</td>
         <td>{status}</td>
-        <td><div style={{ display: "flex"}}><Link style={{flexGrow: "0.25"}} onClick={handleShow}><Button variant="info">Edit</Button></Link><Button variant="danger" onClick={handleDeleteUserIntervention}>Delete</Button></div></td>
+        <td><div style={{ display: "flex"}}><Link style={{flexGrow: "0.25"}} onClick={fetchUserInterventionData}><Button variant="info">Edit</Button></Link><Button variant="danger" onClick={handleDeleteUserIntervention}>Delete</Button></div></td>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Edit your intervention report</Modal.Title>
@@ -110,6 +119,17 @@ function UserIntervention({ id, location, status, filteredInterventions, setInte
           <Modal.Body>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3">
+                <Form.Label>Heading</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Intervention Location"
+                  autoFocus
+                  name="headline"
+                  value={updateInterventionData.headline}
+                  onChange={handleChange}
+                />
+              </Form.Group> 
+              <Form.Group className='mb-3'>
                 <Form.Label>Location</Form.Label>
                 <Form.Control
                   type="text"

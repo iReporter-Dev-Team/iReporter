@@ -22,7 +22,7 @@ function Profile({ user }) {
     const userRedFlagList = filteredRedflags.map((userRedFlag) => {
       return <UserRedFlag
       key={userRedFlag.id}
-      id={userRedFlag.id}
+      headline={userRedFlag.headline}
       location={userRedFlag.location}
       status={userRedFlag.status}
       filteredRedflags={filteredRedflags}
@@ -41,7 +41,7 @@ function Profile({ user }) {
     const userInterventionList = filteredInterventions.map((userIntervention) => {
       return <UserIntervention
       key={userIntervention.id}
-      id={userIntervention.id}
+      headline={userIntervention.headline}
       location={userIntervention.location}
       status={userIntervention.status}
       filteredInterventions={filteredInterventions}

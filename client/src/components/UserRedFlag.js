@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function UserRedFlag({ id, location, status, filteredRedFlags, setRedFlags }) {
+function UserRedFlag({ id, headline, location, status, filteredRedFlags, setRedFlags }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -12,6 +12,7 @@ function UserRedFlag({ id, location, status, filteredRedFlags, setRedFlags }) {
   const [isSaving, setIsSaving] = useState(false)
   const [userRedFlag, setUserRedFlag] = useState({
     id: 0,
+    headline: "",
     location: "",
     image: "",
     video: "",
@@ -99,7 +100,7 @@ function UserRedFlag({ id, location, status, filteredRedFlags, setRedFlags }) {
   return (
     <>
     <tr>
-        <td>{id}</td>
+        <td>{headline}</td>
         <td>{location}</td>
         <td>{status}</td>
         <td><div style={{ display: "flex"}}><Link style={{flexGrow: "0.25"}} onClick={handleShow}><Button variant="info">Edit</Button></Link><Button variant="danger" onClick={handleDeleteUserRedFlag}>Delete</Button></div></td>
