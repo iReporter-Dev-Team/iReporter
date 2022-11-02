@@ -31,7 +31,6 @@ function UserIntervention({ id, headline, location, status, filteredIntervention
     fetch(`/interventions/${id}`, {
       method: "DELETE"
     })
-    .then((r) => r.json())
     .then(() => {
       setInterventions(filteredInterventions.filter((specificUserIntervention) => specificUserIntervention.id !== id))
     })
@@ -51,7 +50,7 @@ function UserIntervention({ id, headline, location, status, filteredIntervention
 
   const [updateInterventionData, setUpdateInterventionData] = useState({
     headline: userIntervention.headline,
-    location: userIntervention.location,
+    location: userIntervention.address,
     description: userIntervention.description
   })
 
@@ -59,7 +58,7 @@ function UserIntervention({ id, headline, location, status, filteredIntervention
     handleShow()
     setUpdateInterventionData({
     headline: userIntervention.headline,
-    location: userIntervention.location,
+    location: userIntervention.address,
     description: userIntervention.description
   })}
 

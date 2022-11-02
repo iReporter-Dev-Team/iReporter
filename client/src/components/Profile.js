@@ -4,8 +4,8 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import UserRedFlag from './UserRedFlag';
 import UserIntervention from "./UserIntervention";
-
 import Table from 'react-bootstrap/esm/Table';
+
 function Profile({ user }) {
     const [redFlags, setRedFlags] = useState([]);
     const [interventions, setInterventions] = useState([]);
@@ -24,7 +24,7 @@ function Profile({ user }) {
       key={userRedFlag.id}
       id={userRedFlag.id}
       headline={userRedFlag.headline}
-      location={userRedFlag.location}
+      location={userRedFlag.address}
       status={userRedFlag.status}
       filteredRedFlags={filteredRedFlags}
       setRedFlags={setRedFlags}
@@ -44,7 +44,7 @@ function Profile({ user }) {
       key={userIntervention.id}
       id={userIntervention.id}
       headline={userIntervention.headline}
-      location={userIntervention.location}
+      location={userIntervention.address}
       status={userIntervention.status}
       filteredInterventions={filteredInterventions}
       setInterventions={setInterventions}

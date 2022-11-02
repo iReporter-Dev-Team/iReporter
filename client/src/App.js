@@ -23,7 +23,7 @@ function App() {
       }
     });
   }, []);
-
+  
   return (
     <div className="row mt-3">
       <Routes>
@@ -57,6 +57,7 @@ function App() {
                 setRedFlags={setRedFlags}
                 interventions={interventions}
                 setInterventions={setInterventions}
+               
               />
             }
           />

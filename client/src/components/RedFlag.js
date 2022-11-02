@@ -1,31 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import emailjs from "emailjs-com";
 import { Link } from "react-router-dom";
 
-function RedFlag({ id, name, location, redFlags, setRedFlags, status }) {
-  const [recordStatus, setRecordStatus] = useState("");
+function RedFlag({
+  id,
+  name,
+  location,
+  redFlags,
+  setRedFlags,
+  status,
+}) {
+  const [recordStatus, setRecordStatus] = useState(status);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
 
-  // function handleDeleteRedFlag() {
-  //   setIsDeleting(true);
-  //   fetch(`/redflags/${id}`, {
-  //     method: "DELETE",
-  //   })
-  //     .then((res) => res.json())
-  //     .then(() => {
-  //       const revisedRedFlags = redFlags.filter((redFlag) => {
-  //         return redFlag.id !== id;
-  //       });
-  //       setIsDeleting(false);
-  //       setRedFlags(revisedRedFlags);
-  //     });
-  // }
   const handleDeleteRedFlag = () => {
-    fetch(`/redflags/${id}`, {
-      method: "DELETE",
+    fetch(`/redflags/${id}`,{
+        method: 'DELETE',
+    }) 
+    .then(() => {
+      setRedFlags(redFlags => redFlags.filter((redFlag) => redFlag.id !== id))  
     })
       .then((response) => response.json())
       .then(() => {
@@ -58,8 +53,7 @@ function RedFlag({ id, name, location, redFlags, setRedFlags, status }) {
 
   // ############################ Email Notification Implementiation ######################################################
 
-  const handleSelect = (e) => {
-    setRecordStatus(e);
+  const handleSelect = (eventKey) => {
     setIsUpdating(true);
     fetch(`/redflags/${id}`, {
       method: "PATCH",
@@ -67,15 +61,15 @@ function RedFlag({ id, name, location, redFlags, setRedFlags, status }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        status: recordStatus,
+        status: eventKey,
       }),
     }).then((r) => {
-      console.log(recordStatus);
+   
       if (r.ok) {
         r.json().then(() => {
           setIsUpdating(false);
           console.log(status);
-          setRecordStatus(e);
+          setRecordStatus(eventKey);
         });
       } else {
         setIsUpdating(false);
@@ -84,14 +78,6 @@ function RedFlag({ id, name, location, redFlags, setRedFlags, status }) {
     });
     sendEmail();
   };
-
-  useEffect(() => {
-    fetch(`/redflags/${id}`)
-      .then((res) => res.json())
-      .then((status) => {
-        setRecordStatus(status);
-      });
-  }, [id]);
 
   return (
     <>
@@ -102,7 +88,7 @@ function RedFlag({ id, name, location, redFlags, setRedFlags, status }) {
         <td>
           <Dropdown onSelect={handleSelect}>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
-              {isUpdating ? "Updating the status..." : status}
+              {isUpdating ? "Updating the status..." : recordStatus}
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item eventKey="Under Investigation">
@@ -119,12 +105,10 @@ function RedFlag({ id, name, location, redFlags, setRedFlags, status }) {
               <Button variant="info">View</Button>
             </Link>
             <Button onClick={handleDeleteRedFlag} variant="danger">
-              {isDeleting ? "Deleting" : "Delete"}
+              Delete
             </Button>
           </div>
         </td>
-        {/* <td>{image}</td>
-        <td>{video}</td> */}
       </tr>
     </>
   );

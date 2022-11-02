@@ -6,9 +6,7 @@ import AdminNavbar from "./components/AdminNavbar";
 import { RiAlertFill } from "react-icons/ri";
 import { FcSupport } from "react-icons/fc";
 
-function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRedFlags}) {
-  // const [redFlags, setRedFlags] = useState([]);
-  // const [interventions, setInterventions] = useState([]);
+function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRedFlags }) {
   const [recordToggle, setRecordToggle] = useState(false)
 
   useEffect(() => {
@@ -24,37 +22,34 @@ function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRe
   }, []);
 
   const redFlagList = redFlags.map((redFlag) => {
-    return (
-      <RedFlag
-        redFlags={redFlags}
-        setRedFlags={setRedFlags}
-        key={redFlag.id}
-        id={redFlag.id}
-        name={redFlag?.user?.name}
-        location={redFlag.location}
-        image={redFlag.image}
-        video={redFlag.video}
-        status={redFlag.status}
-      />
-    );
-  });
+  return <RedFlag 
+    redFlags={redFlags}
+    setRedFlags={setRedFlags}
+    key={redFlag.id}
+    id={redFlag.id}
+    name={redFlag?.user?.name}
+    location={redFlag.address}
+    image={redFlag.image}
+    video={redFlag.video}
+    status={redFlag.status}
+  
+  />
+  })
 
   const interventionList = interventions.map((intervention) => {
-    return (
-      <Intervention
-        interventions={interventions}
-        setInterventions={setInterventions}
-        key={intervention.id}
-        id={intervention.id}
-        name={intervention?.user?.name}
-        location={intervention.location}
-        image={intervention.image}
-        video={intervention.video}
-        status={intervention.status}
-      />
-    );
-  });
-
+    return <Intervention 
+      interventions={interventions}
+      setInterventions={setInterventions}
+      key={intervention.id}
+      id={intervention.id}
+      name={intervention?.user?.name}
+      location={intervention.address}
+      image={intervention.image}
+      video={intervention.video}
+      status={intervention.status}
+    />
+    })
+    
   return (
     <div>
       <AdminNavbar />
@@ -90,6 +85,7 @@ function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRe
         )}
       </header>
       {recordToggle ? (
+<<<<<<< HEAD
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -119,6 +115,39 @@ function AdminDashboard({ user ,interventions, setInterventions, redFlags, setRe
           </thead>
           <tbody>{interventionList}</tbody>
         </Table>
+=======
+      <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>Red Flags</th>
+          <th>Name of Reporter</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Record actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {redFlagList}
+      </tbody>
+    </Table>
+      )
+      :
+      (
+    <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>Interventions</th>
+          <th>Name of Reporter</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Record actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {interventionList}
+      </tbody>
+    </Table>
+>>>>>>> 65fd1faf4f7e9230de0ba8ea964bcce9462c59d0
       )}
     </div>
   );

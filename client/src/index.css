@@ -60,20 +60,51 @@ html {
   text-align: center;
 } */
 .View{
+  position: relative;
+  height: 100%;
   background-color:#fa7670;
-  height: 100vh;
-  text-align: center;
-  display: "flex";
+display: flex;
+flex-direction: column;
+align-items: center;
+
+ 
+
+  /* text-align: center; */
+  /* border: 1px solid black; */
+  /* background-color: lightblue; */
+  /* padding-top: 50px;
+  /* padding-right: 50px; */
+  /* padding-bottom: 50px;
+  padding-left: 900px; */ 
   
 }
+.curve{
+  position:absolute;
+  height: 225px;
+  width: 100%;
+  bottom: -10%;
 
-.clearfix {
-  content: "";
-  clear: both;
-  display: table;
-  border: 3px solid #fa7670;
-  padding: 55px;
 }
+.curve::before {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 100% 50%;
+  width: 37%;
+  height: 5%;
+  transform: translate(85%, 60%);
+  background-color: hsl(0, 21%, 16%);
+}
+
+
+
+/* .clearfix { */
+  /* content: "";
+  clear: both; */
+  /* display: table; */
+  /* border: 3px solid #fa7670; */
+  /* padding-left: 200px;} */
+
 .App {
   text-align: center;
   display: grid;
@@ -155,6 +186,7 @@ html {
 }
 
 .carousel__quote {
+  margin-right: 20px;
   font-style: italic;
   line-height: 1.5;
 }
