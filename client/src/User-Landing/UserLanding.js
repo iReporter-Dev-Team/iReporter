@@ -57,38 +57,40 @@ export default function UserLanding({ user }) {
   function handleSubmitRedflag(e) {
     e.preventDefault();
 
-    const formData = {
-      headline,
-      address,
-      latitude,
-      longitude,
-      image,
-      video,
-      description,
-      status: "Under Investigation",
-      user_id: user.id,
-    };
+    // const formData = {
+    //   headline,
+    //   address,
+    //   latitude,
+    //   longitude,
+    //   video,
+    //   description,
+    //   status: "Under Investigation",
+    //   user_id: user.id,
+    // };
 
-    // const data = new FormData()
-    // data.append("image", image)
-    // data.append("location", location)
-    // data.append("video", video)
-    // data.append("description", description)
-    // data.append("user_id", 1)
+    const formData = new FormData()
+    formData.append("headline", headline)
+    formData.append("address", address)
+    formData.append("latitude", latitude)
+    formData.append("longitude", longitude)
+    formData.append("image", e.target.image.files[0])
+    formData.append("video", e.target.video.files[0])
+    formData.append("description", description)
+    formData.append("user_id", user.id)
+    formData.append("status", "Under Investigation")
 
     console.log(formData);
 
     fetch("/redflags", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
+      body: formData
     }).then((r) => {
       if (r.ok) {
         r.json().then((data) => console.log(data));
         setDisplayy("none");
-        navigate('/profile')
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -97,31 +99,41 @@ export default function UserLanding({ user }) {
 
   function handleSubmitIntervention(e) {
     e.preventDefault();
-    const formData = {
-      headline,
-      address,
-      // location,
-      latitude,
-      longitude,
-      image,
-      video,
-      description,
-      status: "Under Investigation",
-      user_id: user.id,
-    };
-    console.log("Intervention");
+    // const formData = {
+    //   headline,
+    //   address,
+    //   // location,
+    //   latitude,
+    //   longitude,
+    //   video,
+    //   description,
+    //   status: "Under Investigation",
+    //   user_id: user.id,
+    // };
+
+    const formData = new FormData()
+    formData.append("headline", headline)
+    formData.append("address", address)
+    formData.append("latitude", latitude)
+    formData.append("longitude", longitude)
+    formData.append("address", address)
+    formData.append("image", e.target.image.files[0])
+    formData.append("video", e.target.video.files[0])
+    formData.append("description", description)
+    formData.append("user_id", user.id)
+    formData.append("status", "Under Investigation")
+
     console.log(formData);
 
     fetch("/interventions", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
+      body: formData
     }).then((r) => {
       if (r.ok) {
         r.json().then((data) => console.log(data));
-        navigate('/profile')
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -268,7 +280,7 @@ export default function UserLanding({ user }) {
                         className="form-control"
                         placeholder="Location"
                         defaultValue={address}
-                        // onChange={(e) => setAddress(e.target.value)}
+                      // onChange={(e) => setAddress(e.target.value)}
                       />
                     </div>
                     <div>
@@ -280,7 +292,7 @@ export default function UserLanding({ user }) {
                         className="form-control"
                         placeholder="Latitude Coordinate"
                         defaultValue={latitude}
-                        // onChange={(e) => setLatitude(e.target.value)}
+                      // onChange={(e) => setLatitude(e.target.value)}
                       />
                     </div>
                     <div>
@@ -292,7 +304,7 @@ export default function UserLanding({ user }) {
                         className="form-control"
                         placeholder="Longitude Coordinate"
                         defaultValue={longitude}
-                        // onChange={(e) => setLongitude(e.target.value)}
+                      // onChange={(e) => setLongitude(e.target.value)}
                       />
                     </div>
                   </>
@@ -303,13 +315,12 @@ export default function UserLanding({ user }) {
                     Image
                   </label>
                   <input
-                    type="text"
+                    type="file"
                     name="image"
                     className="form-control"
-                    value={image}
-                    // accept="image/*"
+                    id="image"
+                    accept="image/*"
                     placeholder="Upload Image"
-                    onChange={(e) => setImage(e.target.value)}
                   />
                 </div>
 
@@ -318,13 +329,12 @@ export default function UserLanding({ user }) {
                     Video
                   </label>
                   <input
-                    type="text"
+                    type="file"
                     className="form-control"
-                    // accept="video/*"
-                    value={video}
-                    // placeholder="video here..."
+                    accept="video/*"
+                    name={video}
+                    id="video"
                     placeholder="Upload Video"
-                    onChange={(e) => setVideo(e.target.value)}
                   />
                 </div>
                 <div>
