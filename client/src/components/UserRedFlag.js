@@ -48,32 +48,18 @@ function UserRedFlag({
 
   const [updateRedFlagData, setUpdateRedFlagData] = useState({
     headline: userRedFlag.headline,
-<<<<<<< HEAD
-    location: userRedFlag.location,
-    description: userRedFlag.description,
-  });
-=======
     location: userRedFlag.address,
     description: userRedFlag.description
   })
->>>>>>> 65fd1faf4f7e9230de0ba8ea964bcce9462c59d0
 
   const fetchUserRedFlagData = () => {
     handleShow();
     setUpdateRedFlagData({
-<<<<<<< HEAD
-      headline: userRedFlag.headline,
-      location: userRedFlag.location,
-      description: userRedFlag.description,
-    });
-  };
-=======
     headline: userRedFlag.headline,
     location: userRedFlag.address,
     description: userRedFlag.description
   })}
 
->>>>>>> 65fd1faf4f7e9230de0ba8ea964bcce9462c59d0
 
   const handleChange = (e) => {
     let name = e.target.name;
