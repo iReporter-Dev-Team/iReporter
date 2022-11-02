@@ -1,17 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import "../styles/LocationBar.css";
 
 export default function UserLanding({ user }) {
-  const navigate = useNavigate()
   const [headline, setHeadline] = useState("");
   const [location, setLocation] = useState("");
   let [address, setAddress] = useState("");
   let [latitude, setLatitude] = useState("");
   let [longitude, setLongitude] = useState("");
-  const [image, setImage] = useState("");
   const [video, setVideo] = useState("");
   const [description, setDescription] = useState("");
   // redflag
@@ -81,20 +78,20 @@ export default function UserLanding({ user }) {
 
     console.log(formData);
 
-    fetch("/redflags", {
-      method: "POST",
-      // headers: {
-      //   "Content-Type": "application/json",
-      // },
-      body: formData
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((data) => console.log(data));
-        setDisplayy("none");
-      } else {
-        r.json().then((err) => setErrors(err.errors));
-      }
-    });
+      fetch("/redflags", {
+        method: "POST",
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
+        body: formData
+      }).then((r) => {
+        if (r.ok) {
+          r.json().then((data) => console.log(data));
+          setDisplayy("none");
+        } else {
+          r.json().then((err) => setErrors(err.errors));
+        }
+      });
   }
 
   function handleSubmitIntervention(e) {
@@ -167,7 +164,6 @@ export default function UserLanding({ user }) {
                     onClick={() => {
                       setCategoryBtn("redflag");
                       setDisplayy("block");
-                      window.location.href = "#form";
                     }}
                   >
                     Report A Red-Flag Incident
@@ -196,7 +192,7 @@ export default function UserLanding({ user }) {
                     onClick={() => {
                       setCategoryBtn("intervention");
                       setDisplayy("block");
-                      window.location.href = "#form";
+                      // setDisplayy("none");
                     }}
                   >
                     Report An Intervention Incident
@@ -212,7 +208,6 @@ export default function UserLanding({ user }) {
           <div class="col-sm-10 ">
             <div class="shadow p-3 mb-5 bg-white rounded">
               <form
-                id="form"
                 onSubmit={(e) =>
                   categoryBtn === "redflag"
                     ? handleSubmitRedflag(e)
@@ -234,6 +229,7 @@ export default function UserLanding({ user }) {
                     type="text"
                     className="form-control"
                     placeholder="Describe in a few words the incident"
+                    value={headline}
                     onChange={(e) => setHeadline(e.target.value)}
                   />
                   <label htmlFor="Location" className="form-label">
@@ -333,8 +329,8 @@ export default function UserLanding({ user }) {
                     className="form-control"
                     accept="video/*"
                     name={video}
-                    id="video"
-                    placeholder="Upload Video"
+                    id ="video"
+                    placeholder ="Upload Video"
                   />
                 </div>
                 <div>
