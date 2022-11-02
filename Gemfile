@@ -10,6 +10,8 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.18'
 
 gem 'faker'
 
+gem "jsonapi-serializer", "~> 2.2"
+
 gem 'active_model_serializers'
 
 # Use sqlite3 as the database for Active Record

@@ -91,6 +91,8 @@ GEM
     irb (1.4.2)
       reline (>= 0.3.0)
     jsonapi-renderer (0.2.2)
+    jsonapi-serializer (2.2.0)
+      activesupport (>= 4.2)
     jwt (2.5.0)
     loofah (2.19.0)
       crass (~> 1.0.2)
@@ -171,6 +173,7 @@ DEPENDENCIES
   bcrypt (~> 3.1, >= 3.1.18)
   debug
   faker
+  jsonapi-serializer (~> 2.2)
   jwt
   puma (~> 5.0)
   rack-cors
@@ -182,4 +185,4 @@ RUBY VERSION
    ruby 2.7.4p191
 
 BUNDLED WITH
-   2.3.22
+   2.3.21
