@@ -6,13 +6,22 @@ import React, {
   useCallback,
 } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 import styled from "styled-components";
 //   import { Box } from “../styles”;
+import MapStyles from "../styles/MapStyles";
+
 function Map() {
   const [interventions, setInterventions] = useState([]);
   const [redFlags, setRedFlags] = useState([]);
   const [errors, setErrors] = useState([]);
+  const [selectedRed, setSelectedRed] = useState(null);
+  const [selectedInt, setSelectedInt] = useState(null);
 
   useEffect(() => {
     fetch("/interventions")
@@ -29,16 +38,30 @@ function Map() {
   }, []);
 
   const interventionMarkers = interventions.map((intervention) => {
-    const center = { lat: intervention.latitude, lng: intervention.longitude };
+    const center = {
+      lat: intervention.latitude,
+      lng: intervention.longitude,
+      address: intervention.address,
+      headline: intervention.headline,
+      status: intervention.status,
+    };
     return center;
   });
 
   const redFlagMarkers = redFlags.map((redFlag) => {
-    const center = { lat: redFlag.latitude, lng: redFlag.longitude };
+    const center = {
+      lat: redFlag.latitude,
+      lng: redFlag.longitude,
+      address: redFlag.address,
+      headline: redFlag.headline,
+      status: redFlag.status,
+    };
     return center;
+    // console.log(redFlag);
   });
+  // console.log(redFlagMarkers);
 
-  const { isLoaded } = useLoadScript({
+  const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     // libraries: ["places"],
   });
@@ -50,17 +73,25 @@ function Map() {
   // const location_c = useMemo(() => ({ lat: -1.333731, lng: 36.927109 }), []);
   // const location_d = useMemo(() => ({ lat: 0.1545, lng: 37.3171 }), []);
 
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(9);
+  }, []);
+
   const options = useMemo(
     () => ({
-      // mapId: “886d6323cb151ce5”, //not so secret
-      mapId: "886d6323cb151ce5",
+      // mapId: "886d6323cb151ce5",
       disableDefaultUI: true,
-      clickableIcons: false,
+      clickableIcons: true,
+      styles: MapStyles,
+      zoomControl: true,
     }),
     []
   );
   //   optimize re-rendering
   const onLoad = useCallback((map) => (mapRef.current = map), []);
+
+  if (loadError) return "Error loading maps";
   if (!isLoaded)
     return (
       <div>
@@ -75,11 +106,56 @@ function Map() {
         <GoogleMap zoom={7} center={center} options={options} onLoad={onLoad}>
           <MapContainer>
             {interventionMarkers.map((int) => (
-              <Marker key={int.id} position={int} />
+              <Marker
+                key={int.id}
+                position={int}
+                icon="http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+                title="hbdbdh"
+                onClick={() => {
+                  setSelectedInt(int);
+                  panTo(int);
+                }}
+              />
             ))}
             {redFlagMarkers.map((red) => (
-              <Marker key={red.id} position={red} />
+              <Marker
+                key={red.id}
+                position={red}
+                icon="http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                onClick={() => {
+                  setSelectedRed(red);
+                  panTo(red);
+                }}
+              />
             ))}
+            {selectedInt ? (
+              <InfoWindow
+                position={{ lat: selectedInt.lat, lng: selectedInt.lng }}
+                onCloseClick={() => {
+                  setSelectedInt(null);
+                }}
+              >
+                <div>
+                  <h6>{selectedInt.headline}</h6>
+                  <p>Location: {selectedInt.address}</p>
+                  <p>Status: {selectedInt.status}</p>
+                </div>
+              </InfoWindow>
+            ) : null}
+            {selectedRed ? (
+              <InfoWindow
+                position={{ lat: selectedRed.lat, lng: selectedRed.lng }}
+                onCloseClick={() => {
+                  setSelectedRed(null);
+                }}
+              >
+                <div>
+                  <h6>{selectedRed.headline}</h6>
+                  <p>Location: {selectedRed.address}</p>
+                  <p>Status: {selectedRed.status}</p>
+                </div>
+              </InfoWindow>
+            ) : null}
           </MapContainer>
         </GoogleMap>
       </Box>
