@@ -21,6 +21,11 @@ class InterventionsController < ApplicationController
 
     def update
         intervention = Intervention.find(params[:id])
+        user = User.find_by(id: session[:user_id])
+        reporter = intervention.user
+        if user != reporter
+            RecordMailer.record_update(reporter, intervention).deliver_now
+        end
         if intervention.update(intervention_params)
             render json: intervention, status: :ok
         else
