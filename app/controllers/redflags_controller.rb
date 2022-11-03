@@ -8,7 +8,7 @@ class RedflagsController < ApplicationController
     def create
         redflag = Redflag.create!(redflag_params)
         if redflag.valid?
-            render json: redflag, status: :created
+            render json: RedflagImageSerializer.new(redflag).serializable_hash[:data][:attributes], status: :created
         else
             render json: { errors: redflag.errors.full_messages }, status: :unprocessable_entity
         end
@@ -16,7 +16,7 @@ class RedflagsController < ApplicationController
     
     def show 
         redflag = Redflag.find_by!(id: params[:id])
-        render json: redflag, status: :ok
+        render json: RedflagImageSerializer.new(redflag).serializable_hash[:data][:attributes], status: :ok
     end
 
     def update

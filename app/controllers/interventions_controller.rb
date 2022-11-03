@@ -7,13 +7,13 @@ class InterventionsController < ApplicationController
 
     def show 
         intervention = Intervention.find_by!(id: params[:id])
-        render json: intervention, status: :ok
+        render json: InterventionImageSerializer.new(intervention).serializable_hash[:data][:attributes], status: :ok
     end
 
     def create
         intervention = Intervention.create!(intervention_params)
         if intervention.valid?
-            render json: intervention, status: :created
+            render json: InterventionImageSerializer.new(intervention).serializable_hash[:data][:attributes], status: :created
         else
             render json: { errors: intervention.errors.full_messages }, status: :unprocessable_entity
         end
