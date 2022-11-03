@@ -73,7 +73,7 @@ Said Hussein -->
 ## Description
 
 iReporter is an App that enables any citizen to bring any form of corruption to the notice of the appropriate authorities and the general public. Users can also report on things that needs government intervention.<br>
-[Back to top](#iReporter)
+[Back to top](#ireporter)
 
 ## Features
 
@@ -86,13 +86,13 @@ As a user of the application, one will be able to:
 5.  Users can add images and or video uploads to their records.
 6.  Users get real-time email notification when Admin changes the status of their record.
     <br>
-    [Back to top](#iReporter)
+    [Back to top](#ireporter)
 
 ## Requirements
 
 - Access to a computer, laptop or phone
 - Access to the internet <br>
-  [Back to top](#iReporter)
+  [Back to top](#ireporter)
 
 ## Installation Process
 
@@ -104,13 +104,13 @@ As a user of the application, one will be able to:
 
 ---
 
-[Back to top](#iReporter)
+[Back to top](#ireporter)
 
 ## Live link
 
 - Click this link to view the live application
 
-[Back to top](#iReporter)
+[Back to top](#ireporter)
 
 ## Technology Used
 
@@ -119,7 +119,7 @@ As a user of the application, one will be able to:
 - HTML - Developed the basic structure of the pages
 - CSS - Used to style the UI
 
-[Back to top](#iReporter)
+[Back to top](#ireporter)
 
 ## License
 
@@ -141,7 +141,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[Back to top](#iReporter)
+[Back to top](#ireporter)
 
 ## Authors Info
 
@@ -154,4 +154,4 @@ Github profiles are:
 - Damaris Nduku ~> https://github.com/ndush
 - Amos Sifuma ~> https://github.com/AmosJune
 
-[Back to top](#iReporter)
+[Back to top](#ireporter)
