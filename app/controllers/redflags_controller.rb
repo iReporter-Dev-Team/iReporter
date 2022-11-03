@@ -5,7 +5,6 @@ class RedflagsController < ApplicationController
         redflag = Redflag.all
         render json: redflag, status: :ok
 
-        # render json: RedflagImageSerializer.new(redflag).serializable_hash[:data][:attributes], status: :ok
     end
 
     def create

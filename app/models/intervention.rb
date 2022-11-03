@@ -4,6 +4,7 @@ class Intervention < ApplicationRecord
     has_one_attached :image
 
     has_one_attached :video
+    
     validates :description, presence: true, length:  {:in => 100..500 }
     validates :headline, presence: true, length: {:in => 16..150}
     validates :address, presence: true

@@ -31,8 +31,8 @@ export default function RedFlagsViewDetails({}){
             .then((redflags) => {
               console.log(redflags)
 
-               setImage(redflags.image)
-             setVideo(redflags.video)
+               setImage(redflags.image_url)
+             setVideo(redflags.video_url)
             setTitle(redflags.title)
                setLocation(redflags.location)
                 setDescription(redflags.description)
@@ -50,7 +50,7 @@ export default function RedFlagsViewDetails({}){
             <AdminNavbar/>
       <header style={{ display: "flex", marginTop: "150px", marginBottom: "10px"}}></header>
             <center>
-                <img src={image} style={{height: 350 + 'px', width: 450 + 'px',float:"left"}} />
+                <img src={image} alt="redflag image" style={{height: 350 + 'px', width: 450 + 'px',float:"left"}} />
                 <iframe
       width="450"
       height="350"

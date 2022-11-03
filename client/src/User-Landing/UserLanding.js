@@ -92,6 +92,7 @@ export default function UserLanding({ user }) {
           r.json().then((err) => setErrors(err.errors));
         }
       });
+      setDescription("")
   }
 
   function handleSubmitIntervention(e) {
