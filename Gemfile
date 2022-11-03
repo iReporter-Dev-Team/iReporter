@@ -14,6 +14,8 @@ gem 'active_model_serializers'
 
 gem 'actionmailer', '~> 7.0.4'
 
+gem 'jsonapi-serializer', "~> 2.2"
+
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 
