@@ -2,13 +2,16 @@ class RedflagsController < ApplicationController
     before_action :authorize
     skip_before_action :authorize, only: [:index, :show]
     def index
-        render json: Redflag.all, status: :ok
+        redflag = Redflag.all
+        render json: redflag, status: :ok
+
+        # render json: RedflagImageSerializer.new(redflag).serializable_hash[:data][:attributes], status: :ok
     end
 
     def create
         redflag = Redflag.create!(redflag_params)
         if redflag.valid?
-            render json: redflag, status: :created
+            render json: RedflagImageSerializer.new(redflag).serializable_hash[:data][:attributes], status: :created
         else
             render json: { errors: redflag.errors.full_messages }, status: :unprocessable_entity
         end
@@ -16,7 +19,8 @@ class RedflagsController < ApplicationController
     
     def show 
         redflag = Redflag.find_by!(id: params[:id])
-        render json: redflag, status: :ok
+        # render json: redflag, status: :ok
+        render json: RedflagImageSerializer.new(redflag).serializable_hash[:data][:attributes], status: :ok
     end
 
     def update

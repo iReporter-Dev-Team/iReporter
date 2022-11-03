@@ -13,7 +13,7 @@ class Intervention < ApplicationRecord
         Rails.application.routes.url_helpers.url_for(image) if image.attached?
     end  
       
-    def image_url
+    def video_url
       Rails.application.routes.url_helpers.url_for(video) if video.attached?
     end
     
