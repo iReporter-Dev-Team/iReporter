@@ -21,7 +21,12 @@ class RedflagsController < ApplicationController
 
     def update
         redflag = Redflag.find(params[:id])
-        if redflag.update!(redflag_params)
+        user = User.find_by(id: session[:user_id])
+        reporter = redflag.user
+        if user != reporter
+            StatusMailer.status_update(reporter, redflag).deliver_now
+        end
+        if redflag.update!(redflag_params) 
             render json: redflag, status: :ok
         else
             render json: { errors: redflag.errors.full_messages }, 
