@@ -10,6 +10,7 @@ import Profile from "./components/Profile";
 import UserLanding from "./User-Landing/UserLanding";
 import UsersList from "./components/UsersList";
 import NotFound from "./components/NotFound";
+import NotAuthorized from "./components/NotAuthorized";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -35,7 +36,7 @@ function App() {
             element={<InterventionsViewDetails />}
           />
         ) : (
-          <Route path="/*" element={<NotFound />} />
+          <Route path="/interventions/:interventionId" element={<NotAuthorized />} />
         )}
         {user?.is_admin ? (
           <Route
@@ -44,7 +45,7 @@ function App() {
             element={<RedFlagsViewDetails />}
           />
         ) : (
-          <Route path="/*" element={<NotFound />} />
+          <Route path="/redflags/:redflagId" element={<NotAuthorized />} />
         )}
         {user?.is_admin ? (
           <Route
@@ -62,7 +63,7 @@ function App() {
             }
           />
         ) : (
-          <Route path="/*" element={<NotFound />} />
+          <Route path="/dashboard" element={<NotAuthorized />} />
         )}
         <Route exact path="/login" element={<SignIn onLogin={setUser} />} />
         <Route
@@ -77,17 +78,17 @@ function App() {
             element={<UserLanding user={user} />}
           />
         ) : (
-          <Route path="/*" element={<NotFound />} />
+          <Route path="/user-landing" element={<NotAuthorized />} />
         )}
         {user?.is_admin ? (
           <Route exact path="/users" element={<UsersList user={user} />} />
         ) : (
-          <Route path="/*" element={<NotFound />} />
+          <Route path="/users" element={<NotAuthorized />} />
         )}
         {user ? (
           <Route exact path="/profile" element={<Profile user={user} />} />
         ) : (
-          <Route path="/*" element={<NotFound />} />
+          <Route path="/profile" element={<NotAuthorized />} />
         )}
         <Route path="/*" element={<NotFound />} />
       </Routes>

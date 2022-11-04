@@ -88,7 +88,7 @@ function SignUp({ onLogin }) {
           <MdPhone style={{ color: "c60021", borderRight: "1px solid #000" }}/> */}
         <input 
         className='sign-up-input'
-        type="number" 
+        type="tel" 
         placeholder='Phone Number'
         required
         onChange={(e) => setPhoneNumber(e.target.value)}
