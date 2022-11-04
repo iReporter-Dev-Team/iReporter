@@ -8,6 +8,8 @@ gem "rails", "~> 7.0.4"
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.18'
 
+gem 'twilio-ruby', '~> 5.73.1'
+
 gem 'faker'
 
 gem 'active_model_serializers'

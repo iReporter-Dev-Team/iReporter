@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import "../styles/LocationBar.css";
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function UserLanding({ user }) {
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false);
   const [headline, setHeadline] = useState("");
   const [location, setLocation] = useState("");
   let [address, setAddress] = useState("");
@@ -56,7 +58,7 @@ export default function UserLanding({ user }) {
 
   function handleSubmitRedflag(e) {
     e.preventDefault();
-
+    setIsLoading(true)
     const formData = new FormData()
     formData.append("headline", headline)
     formData.append("address", address)
@@ -89,6 +91,7 @@ export default function UserLanding({ user }) {
       if (r.ok) {
         r.json().then((data) => console.log(data));
         setDisplayy("none");
+        setIsLoading(false)
         navigate('/profile')
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -132,7 +135,6 @@ export default function UserLanding({ user }) {
     <>
       <Navbar />
       <Logo>Welcome, {user?.name}!</Logo>
-
       <div style={{ marginTop: 20 }}>
         <div class="row justify-content-center">
           <div class="col-sm-5 mb-2">
@@ -337,6 +339,7 @@ export default function UserLanding({ user }) {
                   />
                 </div>
                 <div class="text-center">
+                {isLoading ? (<Spinner animation="grow" variant="danger" />) : (
                   <input
                     class="btn btn-danger mt-3"
                     type={"submit"}
@@ -346,6 +349,7 @@ export default function UserLanding({ user }) {
                         : "Submit Intervention Incident "
                     }
                   />
+                )}
                 </div>
                 <div>
                   {errors.map((err) => (
