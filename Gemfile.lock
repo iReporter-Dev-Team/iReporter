@@ -124,6 +124,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.9-x86_64-darwin)
       racc (~> 1.4)
+    pg (1.4.4)
     public_suffix (5.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -163,7 +164,6 @@ GEM
     reline (0.3.1)
       io-console (~> 0.5)
     ruby2_keywords (0.0.5)
-    sqlite3 (1.5.3-x86_64-darwin)
     thor (1.2.1)
     timeout (0.3.0)
     twilio-ruby (5.73.1)
@@ -189,10 +189,10 @@ DEPENDENCIES
   jsonapi-serializer (~> 2.2)
   jwt
   letter_opener
+  pg
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.4)
-  sqlite3 (~> 1.4)
   twilio-ruby (~> 5.73.1)
   tzinfo-data
 
