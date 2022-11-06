@@ -40,6 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_102124) do
   end
 
   create_table "interventions", force: :cascade do |t|
+    t.string "title"
     t.string "location"
     t.text "description"
     t.string "status"
@@ -53,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_102124) do
   end
 
   create_table "redflags", force: :cascade do |t|
+    t.string "title"
     t.string "location"
     t.text "description"
     t.string "status"

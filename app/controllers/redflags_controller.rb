@@ -24,7 +24,7 @@ class RedflagsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         reporter = redflag.user
         if user != reporter
-            RedFlagSMS.new.send_sms(reporter, redflag)
+            RedflagSms.new.send_sms(reporter, redflag)
             StatusMailer.status_update(reporter, redflag).deliver_now
         end
         if redflag.update!(redflag_params) 

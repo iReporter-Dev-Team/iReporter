@@ -42,6 +42,13 @@ puts "...seeding users 👨‍👩‍👧"
         password:"12345amos",
         is_admin: true) 
 
+        u7 = User.create!(
+        name:"James Kamau",  
+        email:"ireportertestdev@gmail.com",
+        phone_number:"+254758991601",
+        password:"12345james",
+        is_admin: false) 
+        
 puts '...seeding interventions 🚧'
 
         Intervention.create!(
@@ -54,7 +61,7 @@ puts '...seeding interventions 🚧'
                 video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
                 status: "Under Investigation", 
                 description: "Driving across 6th street is a nightmare! Local authorities should tackle the potholes and puddle issues that are making the road unusable.", 
-            user_id:rand(1..8))
+            user_id:7)
         Intervention.create!(
                 headline: "Street Light Fallen onto Kenyatta Avenue",
                 location: "Nairobi", 
@@ -65,7 +72,7 @@ puts '...seeding interventions 🚧'
                 video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
                 status: "Under Investigation", 
                 description: "Driving across 6th street is a nightmare! Local authorities should tackle the potholes and puddle issues that are making the road unusable.", 
-                user_id:rand(1..8))    
+                user_id:7)    
         Intervention.create!(
                 headline: "Street Light Fallen onto Kenyatta Avenue",
                 location: "Nairobi", 
@@ -76,7 +83,7 @@ puts '...seeding interventions 🚧'
                 video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
                 status: "Under Investigation", 
                 description: "Driving across 6th street is a nightmare! Local authorities should tackle the potholes and puddle issues that are making the road unusable.", 
-                user_id:rand(1..8))
+                user_id:7)
         Intervention.create!(
                 headline: "Street Light Fallen onto Kenyatta Avenue",
                 location: "Nairobi", 
@@ -87,7 +94,7 @@ puts '...seeding interventions 🚧'
                 video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
                 status: "Under Investigation", 
                 description: "Driving across 6th street is a nightmare! Local authorities should tackle the potholes and puddle issues that are making the road unusable.", 
-                user_id:rand(1..8))
+                user_id:7)
         Intervention.create!(
                 headline: "Street Light Fallen onto Kenyatta Avenue",
                 location: "Nairobi", 
@@ -98,7 +105,7 @@ puts '...seeding interventions 🚧'
                 video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
                 status: "Under Investigation", 
                 description: "Driving across 6th street is a nightmare! Local authorities should tackle the potholes and puddle issues that are making the road unusable.", 
-                            user_id:rand(1..8))
+                user_id:7)
         Intervention.create!(
                 headline: "Street Light Fallen onto Kenyatta Avenue",
                 location: "Nairobi", 
@@ -109,7 +116,7 @@ puts '...seeding interventions 🚧'
                 video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
                 status: "Under Investigation", 
                 description: "Driving across 6th street is a nightmare! Local authorities should tackle the potholes and puddle issues that are making the road unusable.", 
-                user_id:rand(1..8)
+                user_id:7)
 
 puts '...seeding redflags 🚩'
 
@@ -123,7 +130,7 @@ puts '...seeding redflags 🚩'
             video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
             status: "Under Investigation", 
             description: "Witnessed a motorist bribe a traffic police officer just outside KICC on parliament road. Incident took place at around 2PM 30/10/2022.", 
-            user_id:rand(1..8))
+            user_id:7)
 
             Redflag.create!(
                 headline: "Motorist bribed traffic police outside KICC",
@@ -135,7 +142,7 @@ puts '...seeding redflags 🚩'
                 video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
                 status: "Under Investigation", 
                 description: "Witnessed a motorist bribe a traffic police officer just outside KICC on parliament road. Incident took place at around 2PM 30/10/2022.", 
-                user_id:rand(1..8))
+                user_id:7)
 
             Redflag.create!(
                     headline: "Motorist bribed traffic police outside KICC",
@@ -147,7 +154,7 @@ puts '...seeding redflags 🚩'
                     video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
                     status: "Under Investigation", 
                     description: "Witnessed a motorist bribe a traffic police officer just outside KICC on parliament road. Incident took place at around 2PM 30/10/2022.", 
-                    user_id:rand(1..8))
+                    user_id:7)
 
             Redflag.create!(
                 headline: "Motorist bribed traffic police outside KICC",
@@ -159,7 +166,7 @@ puts '...seeding redflags 🚩'
                 video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
                 status: "Under Investigation", 
                 description: "Witnessed a motorist bribe a traffic police officer just outside KICC on parliament road. Incident took place at around 2PM 30/10/2022.", 
-                user_id:rand(1..8))
+                user_id:7)
 
             Redflag.create!(
                 headline: "Motorist bribed traffic police outside KICC",
@@ -171,7 +178,7 @@ puts '...seeding redflags 🚩'
                 video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
                 status: "Under Investigation", 
                 description: "Witnessed a motorist bribe a traffic police officer just outside KICC on parliament road. Incident took place at around 2PM 30/10/2022.", 
-                user_id:rand(1..8))
+                user_id:7)
 
             Redflag.create!(
                 headline: "Motorist bribed traffic police outside KICC",
@@ -183,7 +190,7 @@ puts '...seeding redflags 🚩'
                 video: "https://www.youtube.com/watch?v=GOISuk0pYIY", 
                 status: "Under Investigation", 
                 description: "Witnessed a motorist bribe a traffic police officer just outside KICC on parliament road. Incident took place at around 2PM 30/10/2022.", 
-                user_id:rand(1..8))
+                user_id:7)
 
 
 puts "Done seeding!"

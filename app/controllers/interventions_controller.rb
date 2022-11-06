@@ -24,7 +24,7 @@ class InterventionsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         reporter = intervention.user
         if user != reporter
-            InterventionSMS.new.send_text(reporter, intervention)
+            InterventionSms.new.send_text(reporter, intervention)
             RecordMailer.record_update(reporter, intervention).deliver_now
         end
         if intervention.update(intervention_params)

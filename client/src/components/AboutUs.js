@@ -149,7 +149,7 @@ const AboutUs = () => {
         <div className="App ">
           <ul className="carousel__list" style={{ backgroundColor: "white" }}>
             {interventions.map((intervention, index) => {
-              const { description, location } = intervention;
+              const { description, address } = intervention;
               const count = index + 1;
 
               return (
@@ -165,7 +165,7 @@ const AboutUs = () => {
                     <cite>
                       {/* <span className="carousel__name">{name}</span> */}
                       <span className="carousel__citation">
-                        Brief Report from {location}
+                        Brief Report from {address}
                       </span>
                     </cite>
                     <p>

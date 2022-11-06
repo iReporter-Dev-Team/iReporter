@@ -1,7 +1,7 @@
-class InterventionSMS
+class InterventionSms
     attr_reader :client
     def initialize
-        @client = Twilio::REST::Client.new account_sid="ACa2c2ee39fa125e90229997e14be32ecc", auth_token="176ec4e7d1eb1480c7853793776f832e"
+        @client = Twilio::REST::Client.new account_sid="ACa2c2ee39fa125e90229997e14be32ecc", auth_token="0454ec8c627158f732e0f2122908abcb"
     end
 
     def send_text(user, intervention)
