@@ -12,5 +12,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
 
   delete '/logout', to: 'sessions#destroy'
-  
+
+  # handle thorny client-side routing issues
+  get '*path', to: "fallback#index", constraints: ->(request) do 
+    !request.xhr? && request.format.html?
+  end
 end
