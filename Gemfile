@@ -11,6 +11,7 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.18'
 gem 'twilio-ruby', '~> 5.73.1'
 
 gem 'faker'
+gem 'pg'
 
 gem 'active_model_serializers'
 
