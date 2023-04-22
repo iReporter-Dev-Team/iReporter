@@ -16,5 +16,5 @@ database: ireporter_test
 
 production:
 <<: *default
-database: ireporter_test
+database: ireporter_production
 url: <%= ENV['DATABASE_URL'] %>
