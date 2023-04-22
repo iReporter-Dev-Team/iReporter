@@ -1,19 +1,20 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV.fetch('DB_HOST', 'localhost') %>
-  username: <%= ENV.fetch('DB_USERNAME', 'postgress') %>
-  password: <%= ENV.fetch('DB_PASSWORD', 'postgress') %>
+adapter: postgresql
+encoding: unicode
+pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+# host: <%= ENV.fetch('DB_HOST', 'localhost') %>
+# username: <%= ENV.fetch('DB_USERNAME', 'postgress') %>
+# password: <%= ENV.fetch('DB_PASSWORD', 'postgress') %>
 
 development:
-  <<: *default
-  database: iReporter_development
+<<: *default
+database: ireporter_development
 
 test:
-  <<: *default
-  database: iReporter_test
+<<: *default
+database: ireporter_test
 
 production:
-  <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+<<: *default
+database: ireporter_test
+url: <%= ENV['DATABASE_URL'] %>
